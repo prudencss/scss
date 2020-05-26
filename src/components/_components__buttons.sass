@@ -20,56 +20,31 @@ $c-btn__skins: ( default: (padding: $f-space--small $f-space--medium, border-rad
 
   +t-skin(map-get($c-btn__skins, $c-btn__skin))
 
-  /* Branding Color Variants
+  /* Color Variants
    * =========================================================================== */
 
-  @each $_name, $_val in $f-colors-brand
-    $_hover-color-bg: color-transform($_val, $f-color__brand-theme-type)
+	@each $_catName, $_catVal in $f-colors-main
+		@each $_name, $_val in $_catVal
+			$_hover-color-bg: color-transform($_val, $f-color__brand-theme-type)
 
-    &.c-btn--#{$_name}
-      background-color: $_val
-      color: map-get($f-colors-neutral, $_name)
-      text-decoration: none
+			&.c-btn--#{$_name}
+				background-color: $_val
+				color: map-get($f-colors-neutral, $_name)
+				text-decoration: none
 
-      &:hover,
-      &:focus,
-      &:active
-        text-decoration: none
-        color: color-transform(map-get($f-colors-neutral, $_name), "semi-" + $f-color__brand-theme-type-accent)
+				&:hover,
+				&:focus,
+				&:active
+					text-decoration: none
+					color: color-transform(map-get($f-colors-neutral, $_name), "semi-" + $f-color__brand-theme-type-accent)
 
-      &:hover,
-      &:focus
-        &:not(.a-ripple)
-          background-color: $_hover-color-bg
+				&:hover,
+				&:focus
+					&:not(.a-ripple)
+						background-color: $_hover-color-bg
 
-      &:active:not(.a-ripple)
-        background-color: color-transform($_val, $f-color__brand-theme-type)
-
-  /* State Color Variants
-   * =========================================================================== */
-
-  @each $_name, $_val in $f-colors-state
-    $_hover-color-bg: color-transform($_val, $f-color__brand-theme-type)
-
-    &.c-btn--#{$_name}
-      background-color: $_val
-      color: $f-color__neutral-primary
-      text-decoration: none
-
-      &:hover,
-      &:focus,
-      &:active
-        text-decoration: none
-        color: color-transform($f-color__neutral-primary, "semi-" + $f-color__brand-theme-type-accent)
-
-      &:hover,
-      &:focus
-        &:not(.a-ripple)
-          background-color: $_hover-color-bg
-
-      &:active:not(.a-ripple)
-        background-color: color-transform($_val, $f-color__brand-theme-type)
-
+				&:active:not(.a-ripple)
+					background-color: color-transform($_val, $f-color__brand-theme-type)
 
   /* Size variants
    * ========================================================================== */
@@ -79,7 +54,7 @@ $c-btn__skins: ( default: (padding: $f-space--small $f-space--medium, border-rad
 
     &.c-btn--#{$_name}
       padding: $_val ($_val * 1.618)
-      font-size: calc(1rem + (#{$_val} / 2))
+      font-size: 1rem
 
       &.c-btn--fab
         padding: unset

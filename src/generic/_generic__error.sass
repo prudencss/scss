@@ -1,0 +1,19 @@
+/* -------------------------------------------------------------------------
+ * ERROR Hinting
+ *
+ * React componentDidCatch motivated/inspired basic error boundary hinting
+ * available in debug mode only
+
+@if $s-config__debug
+  // If the output is scoped into a selector, apply box sizing on all elements
+  .debug--error
+		border: 3px solid red !important
+		background-color: rgba(255, 0, 0, .1) !important
+
+	.debug--warning
+		border: 3px solid orange !important
+		background-color: rgba(255, 160, 55, .1) !important
+
+	.debug--info
+		border: 3px solid blue !important
+		background-color: rgba(0, 0, 255, .1) !important
