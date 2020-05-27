@@ -20,22 +20,21 @@
   "homepage": "https://github.com/prudencss/sass#readme",
   "scripts": {
     "check": "npm-run-all --parallel check:**",
-    "check:sasslint": "npx sass-lint -c ./.sass-lint.yml './src/**/*.sass' -v -q",
+    "check:lint": "npx stylelint './src/**/*.sass'",
     "check:sass": "node ./tasks/check_sass_compile.js",
     "resolve-sass-imports": "node tasks/resolve-sass-imports.js"
   },
   "devDependencies": {
-    "JSONStream": "^1.3.4",
-    "chalk": "^1.1.3",
-    "cross-env": "^4.0.0",
-    "husky": "^0.13.3",
-    "import-resolve": "^0.4.0",
-    "node-sass": "^4.5.2",
-    "npm-run-all": "^4.0.2",
-    "sass-lint": "^1.12.1"
+    "JSONStream": "^1.3.5",
+    "chalk": "^4.0.0",
+    "cross-env": "^7.0.2",
+    "husky": "^4.2.5",
+    "import-resolve": "^0.5.1",
+    "node-sass": "^4.14.1",
+    "npm-run-all": "^4.1.5"
   },
   "main": "src/prudencss.sass",
   "dependencies": {
-    "ajv": "^6.5.3"
+    "ajv": "^6.12.2"
   }
 }
