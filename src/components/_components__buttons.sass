@@ -18,10 +18,9 @@ $c-btn__skins: ( default: (padding: $f-space--small $f-space--medium, border-rad
   &:active:not(.a-ripple)
     background-color: color-transform($f-color__neutral-accent-bg, $f-color__brand-theme-type)
 
-  +t-skin(map-get($c-btn__skins, $c-btn__skin))
+	+t-skin(map-get($c-btn__skins, $c-btn__skin))
 
-  /* Color Variants
-   * =========================================================================== */
+	// Color Variants
 
 	@each $_catName, $_catVal in $f-colors-main
 		@each $_name, $_val in $_catVal
