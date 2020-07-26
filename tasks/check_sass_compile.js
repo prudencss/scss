@@ -30,5 +30,5 @@ function compileFile(filePath) {
 }
 
 
-compileFile('./src/prudencss.sass');
-compileFile('./src/prudencss--scoped.sass');
+compileFile('./src/prudencss.scss');
+compileFile('./src/prudencss--scoped.scss');
