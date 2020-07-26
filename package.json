@@ -40,6 +40,7 @@
   },
   "main": "src/prudencss.sass",
   "dependencies": {
-    "ajv": "^6.12.3"
+    "ajv": "^6.12.3",
+    "sass-convert": "^0.5.2"
   }
 }
