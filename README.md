@@ -1,31 +1,34 @@
-# :pineapple: haiticss
+# :eagle: Prudencss - SCSS ITCSS extensible custom design framework
 
-[![Build Status](https://travis-ci.org/haiticss/haiticss.svg?branch=master)](https://travis-ci.org/haiticss/haiticss)
+[![Build Status](https://travis-ci.org/prudencss/scss.svg?branch=master)](https://travis-ci.org/prudencss/scss)
 
-Like others, [haiticss](https://haiticss.io/) is just another CSS framework to wear any project with the [ITCSS](http://itcss.io/) architecture. Mainly inspired on the excellent project [inuitcss](https://github.com/inuitcss/inuitcss) by [Harry Roberts](https://csswizardry.com/), from where we found our best suitable starting point. If you plan to compare and choose other solutions, we suggest you to check [iotaCSS](https://www.iotacss.com/) and [Nebula CSS](http://rbrtsmith.com/nebula-css/) as well.
+Inspired by [Harry Roberts](https://csswizardry.com/) ITCSS paradigm/CSS architectural pattern.
 
-The main idea that encouraged us to create this project, comes from the necessity to align a solid CSS architecture with a visual language and design collaboration workflow. We use it to build coherent and consistent interfaces, style guides and design systems. Works for both new projects and existing ones, no matter if you start from scratch or you inherited a legacy hell to improve or maintain. If you're looking for similar objectives, maybe you found a suitable starting point for your project.
+### Motivation
 
-In the end we added some layers, and a visual language into the architecture. Using it properly, should help you on building digital products right now, without complex setup neither architectural decisions. With [haiticss](https://haiticss.io/) you can easy be succeed in technical terms, but cherry on the cake comes first with design collaboration, and then spreading the language to all involved stakeholders.
+Being a frontend developer I found myself in the position to implement custom designs and it was rather difficult to use
+typical CSS component frameworks, because their design wasn't flexible enough.
+Though some do have themeing possibly other design flexibility mechanisms, I couldn't find a nice way to simply grab
+some readymade components that would be easy to style.
+Also, I wanted to be able to have a nice CSS basis ... like, a decent normalizing/reset, utility classes, reusable mechanisms etc ...
 
-Main differences from other similar frameworks are:
+Googling around I found HaitiCSS and some other ITCSS frameworks, forked it ... and adapted it somewhat.
+Now there you go.
 
-* Number prefixes on CSS layers, helping non familiar developers to get into the architecture hierarchy [(reconsidering to add again)](https://github.com/haiticss/haiticss/issues/54).
-* Abstract content, no components provided out of the box.
-* Design foundations, a visual language defined by close collaboration between developers and designers. Extensible and customizable.
-* Feature toggling variables to include/exclude any feature and prevent unused CSS output.
-* Objects served both as class based output and mixins as well. It lets you use the black magic on wayward conditions.
-* Added a material layer with configurable base elements.
-* Added an abstract animations layer.
-* Added a color schemes layer.
-* Scoped option built on settings and generic layers, helping to start old site migrations on the fly, respecting the legacy code, but breaking most risky inheritance.
+I'm trying to develop this CSS basis first and then create js/web-components as well.
 
+### Links
+
+Here's some info on ITCSS plus the other ITCSS frameworks:
+
+* [ITCSS](http://itcss.io/)
+* [inuitcss](https://github.com/inuitcss/inuitcss)
+* [haiticss](https://haiticss.io/)
+* [iotaCSS](https://www.iotacss.com/)
+* [Nebula CSS](http://rbrtsmith.com/nebula-css/)
 
 ### References
 
 * [BEM Naming](http://getbem.com/naming/)
 * [Managing CSS Projects with ITCSS](https://www.youtube.com/watch?v=1OKZOV-iLj4&feature=youtu.be)
 * [BEMIT: Taking the BEM Naming Convention a Step Further](https://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/)
-* [inuitcss](https://github.com/inuitcss/inuitcss)
-* [iotaCSS](https://www.iotacss.com/)
-* [Nebula CSS](http://rbrtsmith.com/nebula-css/)
