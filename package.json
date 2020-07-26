@@ -1,26 +1,28 @@
 {
   "name": "@prudencss/sass",
   "version": "0.1.3",
-  "description": "Just another baseline perspective to wear any project with the ITCSS architecture",
+  "description": "ITCSS framework in SCSS dialect. Pixel exact custom design, extendable with components. Based on HaitiCSS",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/prudencss/sass.git"
+    "url": "git+https://github.com/prudencss/scss.git"
   },
   "keywords": [
     "sass",
     "bem",
     "itcss",
-    "bemit"
+    "bemit",
+    "custom design",
+    "pixel-exact"
   ],
   "author": "Johannes Neugschwentner",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/prudencss/sass/issues"
+    "url": "https://github.com/prudencss/scss/issues"
   },
-  "homepage": "https://github.com/prudencss/sass#readme",
+  "homepage": "https://github.com/prudencss/scss#readme",
   "scripts": {
     "check": "npm-run-all --parallel check:**",
-    "check:lint": "npx stylelint './src/**/*.sass'",
+    "check:lint": "npx stylelint './src/**/*.scss'",
     "check:sass": "node ./tasks/check_sass_compile.js",
     "resolve-sass-imports": "node tasks/resolve-sass-imports.js"
   },
@@ -38,9 +40,5 @@
     "stylelint-config-sass-guidelines": "^7.0.0",
     "stylelint-scss": "^3.18.0"
   },
-  "main": "src/prudencss.sass",
-  "dependencies": {
-    "ajv": "^6.12.3",
-    "sass-convert": "^0.5.2"
-  }
+  "main": "src/prudencss.sass"
 }
