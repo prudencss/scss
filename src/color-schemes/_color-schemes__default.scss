@@ -24,12 +24,12 @@ $cs-default__heading-color: $f-color__brand-primary !default;
   color: $cs-default__color;
 
   &,
-  & * {
+  * {
     border-color: $cs-default__border-color;
   }
 
   &::selection,
-  & *::selection {
+  *::selection {
     background-color: $cs-default__selection-bgcolor;
     color: $cs-default__selection-color;
   }

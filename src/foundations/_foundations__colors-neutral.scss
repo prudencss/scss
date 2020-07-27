@@ -7,22 +7,22 @@
 // Black & White
 
 // @if $f-color__brand-theme-type == "light"
-$f-color__neutral-primary: black !default;
-$f-color__neutral-secondary: white !default;
-$f-color__neutral-accent: ivory !default;
+$f-color__neutral-primary: rgb(0, 0, 0) !default;
+$f-color__neutral-secondary: rgb(255, 255, 255) !default;
+$f-color__neutral-accent: rgb(255, 255, 200) default;
 
-$f-color__neutral-primary-bg: white !default;
-$f-color__neutral-secondary-bg: black !default;
-$f-color__neutral-accent-bg: gray !default;
+$f-color__neutral-primary-bg: rgb(255, 255, 255) !default;
+$f-color__neutral-secondary-bg: rgb(0, 0, 0) !default;
+$f-color__neutral-accent-bg: rgb(150, 150, 150) !default;
 
 @if $f-color__brand-theme-type == "dark" {
-  $f-color__neutral-primary: white !default;
-  $f-color__neutral-secondary: black !default;
-  $f-color__neutral-accent: dimgray !default;
+  $f-color__neutral-primary: rgb(255, 255, 255) !default;
+  $f-color__neutral-secondary: rgb(0, 0, 0) !default;
+  $f-color__neutral-accent: rgb(100, 100, 100) !default;
 
-  $f-color__neutral-primary-bg: black !default;
-  $f-color__neutral-secondary-bg: white !default;
-  $f-color__neutral-accent-bg: lightgray !default;
+  $f-color__neutral-primary-bg: rgb(0, 0, 0) !default;
+  $f-color__neutral-secondary-bg: rgb(255, 255, 255) !default;
+  $f-color__neutral-accent-bg: rgb(200, 200, 200) !default;
 }
 
 // Neutral color map
