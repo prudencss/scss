@@ -1,6 +1,6 @@
 # :eagle: Prudencss - SCSS ITCSS extensible custom design framework
 
-[![Build Status](https://travis-ci.org/prudencss/scss.svg?branch=master)](https://travis-ci.org/prudencss/scss)
+[![Build Status](https://travis-ci.com/prudencss/scss.svg?branch=master)](https://travis-ci.com/prudencss/scss)
 
 Inspired by [Harry Roberts](https://csswizardry.com/) ITCSS paradigm/CSS architectural pattern.
 
