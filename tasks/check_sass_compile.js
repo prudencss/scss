@@ -1,7 +1,7 @@
 const path = require('path');
 
 const chalk = require('chalk'),
-      sass = require('node-sass');
+      sass = require('sass');
 
 console.log(chalk.bgBlue.bold('Check SASS compile'), '\n');
 
@@ -12,6 +12,7 @@ function compileFile(filePath) {
         if (error) {
             console.log(chalk.red.bold.underline('SASS COMPILE ERROR!'));
 
+            console.log(error);
             console.log(error.message);
             console.log(error.line);
 
