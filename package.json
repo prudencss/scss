@@ -39,7 +39,7 @@
     "stylelint-config-sass-guidelines": "^7.0.0",
     "stylelint-scss": "^3.18.0"
   },
-  "main": "src/prudencss.sass",
+  "main": "src/prudencss.scss",
   "dependencies": {
     "sass": "^1.26.10"
   }
