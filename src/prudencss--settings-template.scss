@@ -1,0 +1,61 @@
+/* -------------------------------------------------
+ * Prudencss settings: project specific
+ *
+ * Please copy this template-file and provide your _project-specific_ values
+ *
+ * ------------------------------------------------- */
+
+/* -------------------------------------------------
+ * SETTINGS
+ *
+ * Area: Config
+ *
+ * ------------------------------------------------- */
+
+/* -------------------------------------------------------------------------
+ * SCOPED
+ * enable if you are scoping the output in a scope selector
+ *
+ * If set to true, the root html tag must have the scoping CSS-class: 's-prudencss'
+ * */
+
+$s-config__scoped: true;
+
+/* -------------------------------------------------------------------------
+ * SCOPE-SELECTOR
+ *
+ * This will be the CSS-class suffix for which will include all CSS classes of the CSS framework part. Your main/top-level html-tag must include (if scoped) this class in order for selectors to be recognized.
+ * The suffix will be attached to: '.s-'
+ * Example:
+ * $s-config__scope-selector: my-module;
+ * => Root CSS Class: '.s-my-module'
+ * */
+
+$s-config__scope-selector: my-module;
+
+/* -------------------------------------------------------------------------
+ * ENVIRONMENT
+ * dev .................. Development
+ * prod ................. Production */
+
+$s-config__env: "dev" !default;
+
+/* -------------------------------------------------------------------------
+ * DEBUG
+ * for debugging proposes */
+
+$s-config__debug: false;
+
+/* -------------------------------------------------------------------------
+ * PATHS
+ * where to refer for fonts, images and other resources */
+
+$s-config__path--img: "../assets/img";
+$s-config__path--fonts: "../assets/fonts";
+
+/* -------------------------------------------------------------------------
+ * SPECIAL CHARS
+ * peculiar chars used on strings, separators and suffixes */
+
+$s-config__special-char--breakpoint-separator: \@;
+$s-config__special-char--ratio-separator: \:;
