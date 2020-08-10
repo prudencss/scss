@@ -11,6 +11,7 @@
 
 // Enable scoped flag
 $s-config__scoped: true;
+$s-config__scope-selector: prudencss !default;
 
 @import "settings/settings";
 @import "foundations/foundations";
@@ -19,7 +20,7 @@ $s-config__scoped: true;
 /* -------------------------------------------------------------------------
  * SCOPED CLASS AND CONTENT */
 
-.s-prudencss {
+.s-#{$s-config__scope-selector} {
   /* -------------------------------------------------------------------------
    * BASE
    *
