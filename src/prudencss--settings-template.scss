@@ -7,9 +7,6 @@
 
 /* -------------------------------------------------
  * SETTINGS
- *
- * Area: Config
- *
  * ------------------------------------------------- */
 
 /* -------------------------------------------------------------------------
@@ -38,7 +35,7 @@ $s-config__scope-selector: my-module;
  * dev .................. Development
  * prod ................. Production */
 
-$s-config__env: "dev" !default;
+$s-config__env: "dev";
 
 /* -------------------------------------------------------------------------
  * DEBUG
@@ -59,3 +56,162 @@ $s-config__path--fonts: "../assets/fonts";
 
 $s-config__special-char--breakpoint-separator: \@;
 $s-config__special-char--ratio-separator: \:;
+
+/* -------------------------------------------------------------------------
+ * BREAKPOINTS
+ * -------------------------------------------------------------------------*/
+
+// Main portable device portrait breakpoints
+
+$f-breakpoint--portrait__mobile--s: 360px;
+$f-breakpoint--portrait__mobile--m: 480px;
+$f-breakpoint--portrait__mobile--l: 600px;
+
+$f-breakpoint--portrait__tablet--s: 720px;
+$f-breakpoint--portrait__tablet--m: 840px;
+$f-breakpoint--portrait__tablet--l: 960px;
+
+// Main portable device landscape breakpoints
+
+$f-breakpoint--landscape__mobile--s: 480px;
+$f-breakpoint--landscape__mobile--m: 600px;
+$f-breakpoint--landscape__mobile--l: 960px;
+
+$f-breakpoint--landscape__tablet--s: 960px;
+$f-breakpoint--landscape__tablet--m: 1280px;
+$f-breakpoint--landscape__tablet--l: 1440px;
+
+// Main desktop breakpoints
+
+$f-breakpoint__desktop--s: 1440px;
+$f-breakpoint__desktop--m: 1600px;
+$f-breakpoint__desktop--l: 1920px;
+
+/* -------------------------------------------------------------------------
+ * COLORS
+ *
+ * if your main branding colors are lighter please set theme-type to "light", if they are darkish to "dark"
+ * => this determines certain aspects of accent, backgrounds, shadows, ...
+ * ------------------------------------------------------------------------- */
+
+$f-color__brand-theme-type: "light";
+
+// Main colors of the site as of your branding
+
+$f-color__brand-primary: #f25f5c;
+$f-color__brand-secondary: #69b7a4;
+$f-color__brand-accent: #ffe066;
+
+// Main text colors
+
+$f-color__neutral-primary: rgb(0, 0, 0);
+$f-color__neutral-secondary: rgb(255, 255, 255);
+$f-color__neutral-accent: rgb(255, 255, 200);
+
+// Main backround colors
+
+$f-color__neutral-primary-bg: rgb(255, 255, 255);
+$f-color__neutral-secondary-bg: rgb(0, 0, 0);
+$f-color__neutral-accent-bg: rgb(150, 150, 150);
+
+// Main state colors
+
+$f-color__state-success: #36ba33;
+$f-color__state-info: #20a0de;
+$f-color__state-warning: #f99500;
+$f-color__state-danger: #c1101f;
+$f-color__state-disabled: #777;
+
+// Main other colors
+
+// hyperlink color
+$f-color__digital-blue: #0070d2;
+
+/* -------------------------------------------------------------------------
+ * EASINGS
+ * ------------------------------------------------------------------------- */
+
+$f-easings--user: (
+//  "myEasing": cubic-bezier(0, 0, 0, 0)
+);
+
+/* -------------------------------------------------------------------------
+ * DURATIONS
+ * ------------------------------------------------------------------------- */
+
+// Main animation duration timespan
+
+$f-duration: 0.3s;
+
+// Factor for speeding up or slowing down normal animation speed as of speeds: slow, fast as compared to normal
+
+$f-duration-factor: 2;
+
+/* -------------------------------------------------------------------------
+ * FONTS
+ * ------------------------------------------------------------------------- */
+
+// Fallback families
+
+$f-font-family__sans-fallback: Arial, Geneva, sans-serif;
+
+// Main font families
+
+$f-font-family__primary: Tahoma, $f-font-family__sans-fallback;
+$f-font-family__secondary: Verdana, $f-font-family__sans-fallback;
+$f-font-family__accent: Georgia, $f-font-family__sans-fallback;
+
+/* -------------------------------------------------------------------------
+ * FONT SIZES
+ * ------------------------------------------------------------------------- */
+
+// Core Font Size
+$s-core__font-size: 16px;
+
+$f-font-size--xxs: $s-core__font-size - (3 * 2px);
+$f-font-size--xs: $s-core__font-size - (2 * 2px);
+$f-font-size--s: $s-core__font-size - (1 * 2px);
+$f-font-size--m: $s-core__font-size;
+$f-font-size--l: $s-core__font-size + (1 * 2px);
+$f-font-size--xl: $s-core__font-size + (4 * 2px);
+$f-font-size--xxl: $s-core__font-size + (8 * 2px);
+$f-font-size--xxxl: $s-core__font-size + (16 * 2px);
+
+/* -------------------------------------------------------------------------
+ * LINE HEIGHTS
+ * ------------------------------------------------------------------------- */
+
+$f-line-height--tiny: 1;
+$f-line-height--small: 1.25;
+$f-line-height--medium: 1.618;
+$f-line-height--large: 2;
+
+/* -------------------------------------------------------------------------
+ * RADIUS
+ * ------------------------------------------------------------------------- */
+
+// Main radius
+
+$f-radius: 6px;
+
+/* -------------------------------------------------------------------------
+ * SHADOWS
+ * ------------------------------------------------------------------------- */
+
+// Custom user defined shadows map
+
+$f-shadows--custom: (
+// "myShadowStyle": 7px 0px 7px -7px
+);
+
+
+/* -------------------------------------------------------------------------
+ * SPACING - vertical rhythm
+ *
+ * must remain px unit
+ * ------------------------------------------------------------------------- */
+
+$f-space: 12px;
+$f-space__factor: 1.618;
+
+
