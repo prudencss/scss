@@ -8,21 +8,51 @@
  * Extracted from [Google Material Design]
  * (https://www.google.com/design/spec/layout/adaptive-ui.html) */
 
-// Main breakpoints
+// Main portable device portrait breakpoints
 
-$f-breakpoint--xxs: 1px !default;
-$f-breakpoint--xs: 480px !default;
-$f-breakpoint--sm: 600px !default;
-$f-breakpoint--sml: 840px !default;
-$f-breakpoint--md: 960px !default;
-$f-breakpoint--lg: 1280px !default;
-$f-breakpoint--xl: 1440px !default;
-$f-breakpoint--xxl: 1600px !default;
-$f-breakpoint--xxxl: 1920px !default;
+$f-breakpoint--portrait__mobile--s: 360px !default
+$f-breakpoint--portrait__mobile--m: 480px !default
+$f-breakpoint--portrait__mobile--l: 600px !default
+
+$f-breakpoint--portrait__tablet--s: 720px !default
+$f-breakpoint--portrait__tablet--m: 840px !default
+$f-breakpoint--portrait__tablet--l: 960px !default
+
+// Main portable device landscape breakpoints
+
+$f-breakpoint--landscape__mobile--s: 480px !default
+$f-breakpoint--landscape__mobile--m: 600px !default
+$f-breakpoint--landscape__mobile--l: 960px !default
+
+$f-breakpoint--landscape__tablet--s: 960px !default
+$f-breakpoint--landscape__tablet--m: 1280px !default
+$f-breakpoint--landscape__tablet--l: 1440px !default
+
+// Main desktop breakpoints
+
+$f-breakpoint__desktop--s: 1440px !default
+$f-breakpoint__desktop--m: 1600px !default
+$f-breakpoint__desktop--l: 1920px !default
 
 // Breakpoints map
 
-$f-breakpoints: ("xxs": $f-breakpoint--xxs, "xs": $f-breakpoint--xs, "sm": $f-breakpoint--sm, "sml": $f-breakpoint--sml, "md": $f-breakpoint--md, "lg": $f-breakpoint--lg, "xl": $f-breakpoint--xl, "xxl": $f-breakpoint--xxl, "xxxl": $f-breakpoint--xxxl) !default;
+$f-breakpoints: (
+  portrait__mobile--s: $f-breakpoint--portrait__mobile--s,
+  portrait__mobile--m: $f-breakpoint--portrait__mobile--m,
+  portrait__mobile--l: $f-breakpoint--portrait__mobile--l,
+  portrait__tablet--s: $f-breakpoint--portrait__tablet--s,
+  portrait__tablet--m: $f-breakpoint--portrait__tablet--m,
+  portrait__tablet--l: $f-breakpoint--portrait__tablet--l,
+  landscape__mobile--s: $f-breakpoint--landscape__mobile--s,
+  landscape__mobile--m: $f-breakpoint--landscape__mobile--m,
+  landscape__mobile--l: $f-breakpoint--landscape__mobile--l,
+  landscape__tablet--s: $f-breakpoint--landscape__tablet--s,
+  landscape__tablet--m: $f-breakpoint--landscape__tablet--m,
+  landscape__tablet--l: $f-breakpoint--landscape__tablet--l,
+  desktop--s: $f-breakpoint__desktop--s,
+  desktop--m: $f-breakpoint__desktop--m,
+  desktop--l: $f-breakpoint__desktop--l
+);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                               W A R N I N G                                //
