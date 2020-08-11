@@ -1,0 +1,69 @@
+@use "sass:color";
+
+/* -------------------------------------------------------------------------
+ * Color Schemes > inverted */
+
+// Scheme variables
+// --------------------------------------------------
+
+$cs-inverted--enabled: true !default;
+
+$cs-inverted__bg-color: color.invert($e-document__body--bgcolor) !default;
+$cs-inverted__color: color.invert($e-document__body--color) !default;
+$cs-inverted__selection-bgcolor: color.invert($f-color__brand-primary) !default;
+$cs-inverted__selection-color: color.invert($f-color__neutral-primary) !default;
+$cs-inverted__border-color: color.invert($f-color__neutral-accent) !default;
+$cs-inverted__hr-color: color.invert($f-color__neutral-accent) !default;
+$cs-inverted__link-color: color.invert($e-links__color) !default;
+$cs-inverted__link-hovercolor: color.invert($e-links__hover-color) !default;
+$cs-inverted__heading-color: color.invert($f-color__brand-primary) !default;
+
+// Scheme mixin
+// --------------------------------------------------
+
+@mixin cs-inverted {
+  background-color: $cs-inverted__bg-color;
+  color: $cs-inverted__color;
+
+  &,
+  * {
+    border-color: $cs-inverted__border-color;
+  }
+
+  &::selection,
+  *::selection {
+    background-color: $cs-inverted__selection-bgcolor;
+    color: $cs-inverted__selection-color;
+  }
+
+  a {
+    color: $cs-inverted__link-color;
+
+    &:hover,
+    &:focus {
+      color: $cs-inverted__link-hovercolor;
+    }
+  }
+
+  hr {
+    border-color: $cs-inverted__hr-color;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $cs-inverted__heading-color;
+  }
+}
+
+// Scheme selector output
+// --------------------------------------------------
+
+@if $cs-inverted--enabled {
+  .cs-inverted {
+    @include cs-inverted;
+  }
+}
