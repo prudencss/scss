@@ -7,14 +7,20 @@
 // Main duration
 
 $f-duration: 0.3s !default;
+$f-duration-factor: 2 !default;
 
 // Duration variants
 
 $f-duration--none: $f-duration * 0 !default;
-$f-duration--fast: $f-duration / 2 !default;
+$f-duration--fast: $f-duration / $f-duration-factor !default;
 $f-duration--normal: $f-duration !default;
-$f-duration--slow: $f-duration * 2 !default;
+$f-duration--slow: $f-duration * $f-duration-factor !default;
 
 // Durations map
 
-$f-durations: ("none": $f-duration--none, "fast": $f-duration--fast, "normal": $f-duration--normal, "slow": $f-duration--slow) !default;
+$f-durations: (
+  "none": $f-duration--none,
+  "fast": $f-duration--fast,
+  "normal": $f-duration--normal,
+  "slow": $f-duration--slow
+);
