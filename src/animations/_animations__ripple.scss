@@ -1,3 +1,5 @@
+@use "sass:color";
+
 /* -------------------------------------------------------------------------
  * RIPPLE
  *
@@ -27,13 +29,13 @@ $a-ripple__mod-durations: $f-durations !default;
 }
 
 @mixin a-ripple--hover($_color) {
-  background: $_color radial-gradient(circle, transparent 0.1%, color-transform($_color, $f-color__brand-theme-type) 0.1%) (center / 150000%);
+  background: $_color radial-gradient(circle, transparent 0.1%, $_color 0.1%) (center / 150000%);
 }
 
 @mixin a-ripple--in {
   background-size: 100%;
   transition: background 0s;
-  background-color: color-transform($f-color__neutral-accent-bg, "pure-" + $f-color__brand-theme-type);
+  background-color: color.scale($f-color__neutral-accent-bg, $lightness: if(color.lightness($f-color__neutral-accent-bg) > 50%, 50%, -50%));
 }
 
 @mixin a-ripple--in-colored($_color) {
@@ -57,7 +59,7 @@ $a-ripple__mod-durations: $f-durations !default;
 
     &:hover,
     &:focus {
-      @include a-ripple--hover(color-transform($f-color__neutral-accent-bg, "semi-" + $f-color__brand-theme-type));
+      @include a-ripple--hover(color.scale($f-color__neutral-accent-bg, $lightness: if(color.lightness($f-color__neutral-accent-bg) > 50%, 17%, -17%)));
     }
 
     &:active,
@@ -68,12 +70,12 @@ $a-ripple__mod-durations: $f-durations !default;
     @each $_color-name, $_color-val in map-merge($f-colors-brand, $f-colors-state) {
       &:hover[class*="--#{$_color-name}"],
       &:focus[class*="--#{$_color-name}"] {
-        @include a-ripple--hover(color-transform($_color-val, "semi-" + $f-color__brand-theme-type));
+        @include a-ripple--hover(color.scale($_color-val, $lightness: if(color.lightness($_color-val) > 50%, 17%, -17%)));
       }
 
       &:active[class*="--#{$_color-name}"],
       &.in[class*="--#{$_color-name}"] {
-        @include a-ripple--in-colored(color-transform($_color-val, "pure-" + $f-color__brand-theme-type));
+        @include a-ripple--in-colored(color.scale($_color-val, $lightness: if(color.lightness($_color-val) > 50%, 50%, -50%)));
       }
     }
 

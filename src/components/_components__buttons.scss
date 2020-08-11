@@ -13,11 +13,11 @@
 
   &:hover:not(.a-ripple),
   &:focus:not(.a-ripple) {
-    background-color: color-transform($f-color__neutral-accent-bg, "semi-" + $f-color__brand-theme-type);
+    background-color: color.scale($_f-color__neutral-accent-bg, $lightness: if(color.lightness($_f-color__neutral-accent-bg) > 50%, 17%, -17%));
   }
 
   &:active:not(.a-ripple) {
-    background-color: color-transform($f-color__neutral-accent-bg, $f-color__brand-theme-type);
+    background-color: color.scale($_f-color__neutral-accent-bg, $lightness: if(color.lightness($_f-color__neutral-accent-bg) > 50%, 33%, -33%));
   }
 
 
@@ -33,18 +33,18 @@
       &:focus,
       &:active {
         text-decoration: none;
-        color: color-transform(map-get($f-colors-neutral, $_name), "semi-" + $f-color__brand-theme-type-accent);
+        color: color.scale(map-get($f-colors-neutral, $_name), $lightness: if(color.lightness(map-get($f-colors-neutral, $_name)) > 50%, -17%, 17%));
       }
 
       &:hover,
       &:focus {
         &:not(.a-ripple) {
-          background-color: color-transform($_val, $f-color__brand-theme-type);
+          background-color: color.scale($_val, $lightness: if(color.lightness($_val) > 50%, 33%, -33%));
         }
       }
 
       &:active:not(.a-ripple) {
-        background-color: color-transform($_val, $f-color__brand-theme-type);
+        background-color: color.scale($_val, $lightness: if(color.lightness($_val) > 50%, 33%, -33%));
       }
     }
   }
@@ -61,18 +61,18 @@
       &:focus,
       &:active {
         text-decoration: none;
-        color: color-transform($f-color__neutral-primary, "semi-" + $f-color__brand-theme-type-accent);
+        color: color.scale($f-color__neutral-primary, $lightness: if(color.lightness($f-color__neutral-primary) > 50%, -17%, 17%));
       }
 
       &:hover,
       &:focus {
         &:not(.a-ripple) {
-          background-color: color-transform($_val, $f-color__brand-theme-type);
+          background-color: color.scale($_val, $lightness: if(color.lightness($_val) > 50%, 33%, -33%));
         }
       }
 
       &:active:not(.a-ripple) {
-        background-color: color-transform($_val, $f-color__brand-theme-type);
+        background-color: color.scale($_val, $lightness: if(color.lightness($_val) > 50%, 33%, -33%));
       }
     }
   }

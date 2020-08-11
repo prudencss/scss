@@ -1,3 +1,5 @@
+@use "sass:color";
+
 /* -------------------------------------------------------------------------
  * DOCUMENT
  *
@@ -19,8 +21,8 @@
 $e-document__body--font-family: $f-font-family__primary !default;
 $e-document__body--font-size: $s-core__font-size !default;
 $e-document__body--line-height: $f-line-height--medium !default;
-$e-document__body--color: color-transform($f-color__neutral-primary, "ultra-dark") !default;
-$e-document__body--bgcolor: color-transform($f-color__neutral-primary-bg, "ultra-light") !default;
+$e-document__body--color: color.scale($f-color__neutral-primary, $lightness: -50%) !default;
+$e-document__body--bgcolor: color.scale($f-color__neutral-primary-bg, $lightness: 50%) !default;
 
 // Apply document defaults according SETTINGS > CONFIG > SCOPED
 

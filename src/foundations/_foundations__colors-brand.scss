@@ -10,18 +10,6 @@ $f-color__brand-primary: #f25f5c !default;
 $f-color__brand-secondary: #69b7a4 !default;
 $f-color__brand-accent: #ffe066 !default;
 
-// theme type - light or dark -> adjust neutral/text colors to combine
-
-$f-color__brand-theme-type: "light" !default;
-$f-color__brand-theme-type-accent: "";
-
-@if $f-color__brand-theme-type == "light" {
-  $f-color__brand-theme-type-accent: "dark";
-}
-@else {
-  $f-color__brand-theme-type-accent: "light";
-}
-
 // Brand color map
 
 $f-colors-brand: (

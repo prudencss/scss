@@ -31,7 +31,14 @@ $o-bullet__mod-reverse--enabled: true !default;
 // Icons Size Modifiers
 
 $o-bullet__mod-iconsize--enabled: true !default;
-$o-bullet__mod-iconsizes: ("s": 0.5em, "m": 1em, "l": 1.5em, "xl": 2em, "xxl": 2.5em, "xxxl": 3em) !default;
+$o-bullet__mod-iconsizes: (
+  "s": 0.5em,
+  "m": 1em,
+  "l": 1.5em,
+  "xl": 2em,
+  "xxl": 2.5em,
+  "xxxl": 3em
+);
 
 // Object as a mixin
 // --------------------------------------------------
