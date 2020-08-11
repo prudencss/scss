@@ -214,4 +214,90 @@ $f-shadows--custom: (
 $f-space: 12px;
 $f-space__factor: 1.618;
 
+/* -------------------------------------------------------------------------
+ * FEATURE SWITCHES
+ * ------------------------------------------------------------------------- */
+
+// COLOR schemes
+
+$cs-default--enabled: true;
+$cs-inverted--enabled: true;
+
+// MATERIALS (font-family, font-size, line-height, ...)
+
+$m-body--enabled: true;
+$m-body__mod-sizes--enabled: true !default;
+
+$m-heading--enabled: true;
+$m-heading__mod-sizes--enabled: true;
+
+// ANIMATIONS
+
+$a-reveal-opacity--enabled: true;
+$a-reveal-opacity__mod-durations--enabled: true;
+
+$a-reveal-slide--enabled: true;
+$a-reveal-slide__mod-durations--enabled: true;
+$a-reveal-slide__mod-directions--enabled: true;
+
+$a-ripple--enabled: true;
+$a-ripple__mod-durations--enabled: true;
+
+// SPACINGS
+
+$sp-inline__enabled: true;
+$sp-inset__enabled: true;
+$sp-inset-squish__enabled: true;
+$sp-inset-slender__enabled: true;
+$sp-inset-stretch__enabled: true;
+$sp-stack__enabled: true;
+
+// ObJECTS
+
+$o-box--enabled: true;
+
+$o-crop--enabled: true;
+$o-crop__ratios--enabled: true;
+$o-crop__mod-alignments--enabled: true;
+
+$o-flag--enabled: true;
+$o-flag__mod-alignments--enabled: true;
+$o-flag__mod-reverse--enabled: true;
+
+$o-pack--enabled: true;
+$o-pack__mod-spaces--enabled: true;
+$o-pack__mod-alignments--enabled: true;
+$o-pack__mod-reverse--enabled: true;
+$o-pack__mod-auto--enabled: true;
+
+$o-block--enabled: true;
+$o-block__mod-alignments--enabled: true;
+$o-block__mod-stretch--enabled: true;
+
+$o-media--enabled: true;
+$o-media__mod-reverse--enabled: true;
+
+$o-ratio--enabled: true;
+$o-ratio__mod-ratios--enabled: true;
+$o-ratio__mod-bp--enabled: true;
+
+$o-table--enabled: true;
+$o-table_mod-spaces--enabled: true;
+$o-table__mod-fixed--enabled: true;
+
+$o-bullet--enabled: true;
+$o-bullet__mod-block--enabled: true;
+$o-bullet__mod-middle--enabled: true;
+$o-bullet__mod-reverse--enabled: true;
+$o-bullet__mod-iconsize--enabled: true;
+
+$o-layout--enabled: true;
+$o-layout__mod-spaces--enabled: true;
+$o-layout__mod-alignments-v--enabled: true;
+$o-layout__mod-alignments-h--enabled: true;
+$o-layout__mod-reverse--enabled: true;
+
+$o-wrapper--enabled: true;
+$o-wrapper__mod-bp-from--enabled: true;
+$o-wrapper__mod-bp-to--enabled: true;
 
