@@ -20,6 +20,17 @@ $f-easing--excite: cubic-bezier(0.18, 0.67, 0.6, 1.22) !default;
 $f-easing--overshoot: cubic-bezier(0.07, 0.28, 0.32, 1.22) !default;
 $f-easing--anticipate: cubic-bezier(0.38, -0.4, 0.88, 0.65) !default;
 
+// User specific custom easing variants map -- placeholder
+
+$f-easings--user: () !default;
+
 // Easings map
 
-$f-easings: ("base": $f-easing--base, "in": $f-easing--in, "out": $f-easing--out, "excite": $f-easing--excite, "overshoot": $f-easing--overshoot, "anticipate": $f-easing--anticipate) !default;
+$f-easings: map_merge((
+  "base": $f-easing--base,
+  "in": $f-easing--in,
+  "out": $f-easing--out,
+  "excite": $f-easing--excite,
+  "overshoot": $f-easing--overshoot,
+  "anticipate": $f-easing--anticipate
+), $f-easings--user);
