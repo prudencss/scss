@@ -27,7 +27,14 @@ $f-space--huge: round($f-space * $f-space__factor * $f-space__factor) !default;
 
 // Spaces map
 
-$f-spaces: ("none": $f-space--none, "tiny": $f-space--tiny, "small": $f-space--small, "medium": $f-space--medium, "large": $f-space--large, "huge": $f-space--huge) !default;
+$f-spaces: (
+  "none": $f-space--none,
+  "tiny": $f-space--tiny,
+  "small": $f-space--small,
+  "medium": $f-space--medium,
+  "large": $f-space--large,
+  "huge": $f-space--huge
+);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                               W A R N I N G                                //

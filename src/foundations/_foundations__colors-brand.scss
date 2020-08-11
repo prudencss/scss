@@ -24,4 +24,8 @@ $f-color__brand-theme-type-accent: "";
 
 // Brand color map
 
-$f-colors-brand: ("primary": $f-color__brand-primary, "secondary": $f-color__brand-secondary, "accent": $f-color__brand-accent);
+$f-colors-brand: (
+  "primary": $f-color__brand-primary,
+  "secondary": $f-color__brand-secondary,
+  "accent": $f-color__brand-accent
+);

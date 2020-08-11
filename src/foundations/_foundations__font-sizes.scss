@@ -20,7 +20,16 @@ $f-font-size--xxxl: 48px !default;
 
 // Font sizes map
 
-$f-font-sizes: ("xxs": $f-font-size--xxs, "xs": $f-font-size--xs, "s": $f-font-size--s, "m": $f-font-size--m, "l": $f-font-size--l, "xl": $f-font-size--xl, "xxl": $f-font-size--xxl, "xxxl": $f-font-size--xxxl) !default;
+$f-font-sizes: (
+  "xxs": $f-font-size--xxs,
+  "xs": $f-font-size--xs,
+  "s": $f-font-size--s,
+  "m": $f-font-size--m,
+  "l": $f-font-size--l,
+  "xl": $f-font-size--xl,
+  "xxl": $f-font-size--xxl,
+  "xxxl": $f-font-size--xxxl
+);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                               W A R N I N G                                //
