@@ -18,7 +18,7 @@
  * fluidly fill half of the width of the parent. We can have more complex
  * systems:
  *
- *   <div class="o-flexbox o-flexbox--column o-flexbox-row@portrait__tablet--l o-flexbox-row@landscape o-flexbox__display--inline o-flexbox__inline--flex-end o-flexbox__cross--stretch o-flexbox__flex--auto">
+ *   <div class="o-flexbox o-flexbox--column o-flexbox__direction--row@portrait__tablet--l o-flexbox__direction--row@landscape o-flexbox__display--inline o-flexbox__inline--flex-end o-flexbox__cross--stretch o-flexbox__flex--auto">
  *     <div class="o-flexbox__item o-flexbox-item__cross--flex-start ">
  *     </div>
  *     <div class="o-flexbox__item o-flexbox-item__flex-grow--2 ">
@@ -126,19 +126,8 @@ $o-flexbox__mod-flex-shrink--enabled: true !default;
 
 @if $o-flexbox--enabled {
   @each $_direction-value in $o-flexbox__mod-directions {
-    @each $_bp-name, $_bp-value in $o-flexbox__mediaquery--breakpoints {
-      @include t-mq($from: $_bp-name) {
-        .o-flexbox.o-flexbox--#{$_direction-value}#{s-core-string-breakpoint($_bp-name)} {
-          @include o-flexbox($_direction-value);
-        }
-      }
-    }
-    @each $_orientation-name, $_orientation-value in $o-flexbox__mediaquery--orientation {
-      @include t-mq($from: 1, $and: $_orientation-value) {
-        .o-flexbox.o-flexbox--#{$_direction-value}#{s-core-string-breakpoint($_orientation-name)} {
-          @include o-flexbox($_direction-value);
-        }
-      }
+    .o-flexbox.o-flexbox--#{$_direction-value} {
+      @include o-flexbox($_direction-value);
     }
   }
 
@@ -165,15 +154,35 @@ $o-flexbox__mod-flex-shrink--enabled: true !default;
 // Directions modifiers
 // --------------------------------------------------
 
-@mixin o-flexbox__mod-direction($_direction-value: row) {
-  .o-flexbox.o-flexbox__direction--#{$_direction-value} {
-    flex-direction: $_direction-value;
+@mixin o-flexbox__mod-direction($_direction-value: row, $_breakpoint: false) {
+  @if $_breakpoint {
+    .o-flexbox.o-flexbox__direction--#{$_direction-value}#{s-core-string-breakpoint($_breakpoint)} {
+      flex-direction: $_direction-value;
+      padding: if(string.index($_direction-value, "column") > 0, $o-flexbox__space--vertical, 0) if(string.index($_direction-value, "row"), $o-flexbox__space--horizontal, 0);
+    }
+  }
+  @else {
+    .o-flexbox.o-flexbox__direction--#{$_direction-value} {
+      flex-direction: $_direction-value;
+      padding: if(string.index($_direction-value, "column") > 0, $o-flexbox__space--vertical, 0) if(string.index($_direction-value, "row"), $o-flexbox__space--horizontal, 0);
+    }
   }
 }
 
 @if $o-flexbox--enabled and $o-flexbox__mod-directions--enabled {
   @each $_direction-value in $o-flexbox__mod-directions {
     @include o-flexbox__mod-direction($_direction-value);
+
+    @each $_bp-name, $_bp-value in $o-flexbox__mediaquery--breakpoints {
+      @include t-mq($from: $_bp-name) {
+        @include o-flexbox__mod-direction($_direction-value, $_bp-name);
+      }
+    }
+    @each $_orientation-name, $_orientation-value in $o-flexbox__mediaquery--orientation {
+      @include t-mq($from: 1, $and: $_orientation-value) {
+        @include o-flexbox__mod-direction($_direction-value, $_orientation-name);
+      }
+    }
   }
 }
 
