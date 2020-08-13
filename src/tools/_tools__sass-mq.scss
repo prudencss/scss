@@ -9,6 +9,8 @@
 
 $t-sass-mq__base-font-size: $s-core__font-size !default;
 $t-sass-mq__breakpoints: $f-breakpoints !default;
+$t-sass-mq__breakpoints--portrait: $f-breakpoints--portrait !default;
+$t-sass-mq__brekapoints--landscape: $f-breakpoints--landscape !default;
 $t-sass-mq__media-type: all !default;
 
 $t-sass-mq__debug: $s-config__debug !default;
@@ -28,13 +30,23 @@ $t-sass-mq__debug--border-color: rgb(255, 0, 0) !default;
   }
 }
 
+@function t-sass-mq__get-breakpoint-orientation($_bp-name) {
+  @if map-has-key($t-sass-mq__breakpoints--portrait, $_bp-name) {
+    @return "(orientation: landscape)";
+  )
+  @else {
+    @return "(orientation: portrait)";
+  }
+}
+
 // SASS-MQ main mixin
 // --------------------------------------------------
 
 @mixin t-mq($from: false, $until: false, $and: false, $media-type: $t-sass-mq__media-type, $breakpoints: $t-sass-mq__breakpoints) {
   $min-width: 0;
   $max-width: 0;
-  $media-query: "";
+  $media-query: $media-type;
+  $orientation: false;
 
   // From: this breakpoint (inclusive)
 
@@ -43,6 +55,7 @@ $t-sass-mq__debug--border-color: rgb(255, 0, 0) !default;
       $min-width: $from;
     }
     @else {
+      $orientation: t-sass-mq__get-breakpoint-orientation($from);
       $min-width: t-sass-mq__get-breakpoint-width($from, $breakpoints);
     }
   }
@@ -54,6 +67,7 @@ $t-sass-mq__debug--border-color: rgb(255, 0, 0) !default;
       $max-width: $until;
     }
     @else {
+      $orientation: t-sass-mq__get-breakpoint-orientation($until);
       $max-width: t-sass-mq__get-breakpoint-width($until, $breakpoints) - 1px;
     }
   }
@@ -72,14 +86,11 @@ $t-sass-mq__debug--border-color: rgb(255, 0, 0) !default;
     $media-query: "#{$media-query} and #{$and}";
   }
 
-  // Remove unnecessary media query prefix 'all and '
-
-  @if $media-type == "all" and $media-query != "" {
-    $media-type: "";
-    $media-query: str-slice(unquote($media-query), 6);
+  @if $orientation {
+    $media-query: "#{$media-query} and #{$orientation}";
   }
 
-  @media #{$media-type + $media-query} {
+  @media #{$media-query} {
     @content;
   }
 }
