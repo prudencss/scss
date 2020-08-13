@@ -1,0 +1,363 @@
+@use "sass:string";
+
+/* -------------------------------------------------------------------------
+ * FLEXBOX
+ *
+ * Flexbox based layout system.
+ *
+ * The flexbox object provides us with a class-based flexbox system.
+ *
+ *   <div class="o-flexbox o-flexbox--row">
+ *     <div class="o-flexbox__item">
+ *     </div>
+ *     <div class="o-flexbox__item">
+ *     </div>
+ *   </div>
+ *
+ * The above will create a two-column structure in which each column will
+ * fluidly fill half of the width of the parent. We can have more complex
+ * systems:
+ *
+ *   <div class="o-flexbox o-flexbox--column o-flexbox-row@portrait__tablet--l o-flexbox-row@landscape o-flexbox__display--inline o-flexbox__inline--flex-end o-flexbox__cross--stretch o-flexbox__flex--auto">
+ *     <div class="o-flexbox__item o-flexbox-item__cross--flex-start ">
+ *     </div>
+ *     <div class="o-flexbox__item o-flexbox-item__flex-grow--2 ">
+ *     </div>
+ *     <div class="o-flexbox__item o-flexbox-item__cross--center o-flexbox-item__inline--center">
+ *     </div>
+ *   </div>
+ *
+ * In this example:
+ * * The Layout is a stacked column-layout in small portrait resolutions, else a side-by-side row-layout.
+ * * Also we select inline-flex instead of flex, so the container is not automatically gonna extend to the full width/height available.
+ * * The inline positioning of the items is at the end (flex-end), cross axis positioning serves to stretch the item to full dimensions.
+ * * Additionally, we apply a "CSS-preset-rule" to the CSS-flex property of the container, which translates to: `flex: 1 1 auto`
+ * * The first item is positioned individually at the cross axis
+ * * The second item has a higher flex-grow value
+ * * The third item is positioned individually along both axes
+ *
+ * There are plenty more options available to us: explore them below.
+ *
+ * By default we use the `font-size: 0;` trick to remove whitespace between
+ * items. Set this to true in order to use a markup-based strategy like
+ * commenting out whitespace or minifying HTML.
+ *
+ */
+
+// Object variables
+// --------------------------------------------------
+
+// Object toggling
+
+$o-flexbox--enabled: true !default;
+
+// Object fractions for proportional growing/shrinking
+
+$o-flexbox__fractions: 0 1 2 3 4 5 6 7 8 9 10 11 12 !default;
+
+// Breakpoints
+
+$o-flexbox__mediaquery--breakpoints: $f-breakpoints;
+$o-flexbox__mediaquery--orientation: (
+  "portrait": "(orientation: portrait)",
+  "landscape": "(orientation: landscape)"
+);
+
+// Modifiers display
+
+$o-flexbox__mod-displays--enabled: true !default;
+$o-flexbox__mod-displays: (
+  "inline": inline-flex,
+  "block": flex
+) !default;
+
+// Modifiers directions
+
+$o-flexbox__mod-directions--enabled: true !default;
+$o-flexbox__mod-directions: row, row-reverse, column, column-reverse !default;
+
+// Modifiers multiline/wrapping
+
+$o-flexbox__mod-multilines--enabled: true !default;
+$o-flexbox__mod-multilines: wrap, nowrap !default;
+
+// Object Params
+
+$o-flexbox__space--horizontal: $g-reset__spacing--horizontal !default;
+$o-flexbox__space--vertical: $g-reset__spacing--vertical !default;
+
+// Modifiers spaces
+
+$o-flexbox__mod-spaces--enabled: true !default;
+$o-flexbox__mod-spaces: $f-spaces !default;
+
+// Modifiers alignments
+
+$o-flexbox__mod-alignments-inline--enabled: true !default;
+$o-flexbox__mod-alignments-inline: flex-start, flex-end, center, space-around, space-between, space-evenly !default;
+
+$o-flexbox__mod-alignments-cross--enabled: true !default;
+$o-flexbox__mod-alignments-cross: stretch, flex-start, flex-end, center !default;
+
+// Modifiers flex
+
+$o-flexbox__mod-flex--enabled: true !default;
+$o-flexbox__mod-flex: initial, auto, none, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 !default;
+
+$o-flexbox__mod-flex-grow--enabled: true !default;
+$o-flexbox__mod-flex-shrink--enabled: true !default;
+
+// Object as a mixin
+// --------------------------------------------------
+
+@mixin o-flexbox($_direction-value: row) {
+  display: flex;
+  flex-direction: $_direction-value;
+  flex-wrap: nowrap;
+  margin: 0;
+  padding: if(string.index($_direction-value, "column") > 0, $o-flexbox__space--vertical, 0) if(string.index($_direction-value, "row"), $o-flexbox__space--horizontal, 0);
+  list-style: none;
+  font-size: 0;
+}
+
+@mixin o-flexbox__item() {
+  font-size: s-core-px-to-rem($s-core__font-size);
+}
+
+@if $o-flexbox--enabled {
+  @each $_direction-value in $o-flexbox__mod-directions {
+    @each $_bp-name, $_bp-value in $o-flexbox__mediaquery--breakpoints {
+      @include t-mq($from: $_bp-name) {
+        .o-flexbox.o-flexbox--#{$_direction-value}#{s-core-string-breakpoint($_bp-name)} {
+          @include o-flexbox($_direction-value);
+        }
+      }
+    }
+    @each $_orientation-name, $_orientation-value in $o-flexbox__mediaquery--orientation {
+      @include t-mq($from: 1, $and: $_orientation-value) {
+        .o-flexbox.o-flexbox--#{$_direction-value}#{s-core-string-breakpoint($_orientation-name)} {
+          @include o-flexbox($_direction-value);
+        }
+      }
+    }
+  }
+
+  .o-flexbox > o-flexbox__item {
+    @include o-flexbox__item;
+  }
+}
+
+// Display modifiers
+// --------------------------------------------------
+
+@mixin o-flexbox__mod-display($_display-name: block, $_display-value: flex) {
+  .o-flexbox.o-flexbox__display--#{$_display-name} {
+    display: $_display-value;
+  }
+}
+
+@if $o-flexbox--enabled and $o-flexbox__mod-displays--enabled {
+  @each $_display-name, $_display-value in $o-flexbox__mod-displays {
+    @include o-flexbox__mod-display($_display-name, $_display-value);
+  }
+}
+
+// Directions modifiers
+// --------------------------------------------------
+
+@mixin o-flexbox__mod-direction($_direction-value: row) {
+  .o-flexbox.o-flexbox__direction--#{$_direction-value} {
+    flex-direction: $_direction-value;
+  }
+}
+
+@if $o-flexbox--enabled and $o-flexbox__mod-directions--enabled {
+  @each $_direction-value in $o-flexbox__mod-directions {
+    @include o-flexbox__mod-direction($_direction-value);
+  }
+}
+
+// Multiline/Wrap modifiers
+// --------------------------------------------------
+
+@mixin o-flexbox__mod-multiline($_multiline-value: nowrap) {
+  .o-flexbox.o-flexbox__multiline--#{$_multiline-value} {
+    flex-wrap: $_multiline-value;
+  }
+}
+
+@if $o-flexbox--enabled and $o-flexbox__mod-multilines--enabled {
+  @each $_multiline-value in $o-flexbox__mod-multilines {
+    @include o-flexbox__mod-multiline($_multiline-value);
+  }
+}
+
+// Space modifiers
+// --------------------------------------------------
+
+@mixin o-flexbox__mod-space($_space-name: none, $_space-value: 0) {
+  .o-flexbox.o-flexbox-row__space--#{$_space-name} {
+    padding-left: s-core-px-to-rem($_space-value);
+    padding-right: s-core-px-to-rem($_space-value);
+
+    > .o-flexbox__item {
+      padding-left: s-core-px-to-rem($_space-value);
+      padding-right: s-core-px-to-rem($_space-value);
+    }
+  }
+
+  .o-flexbox.o-flexbox-column__space--#{$_space-name} {
+    padding-top: s-core-px-to-rem($_space-value);
+    padding-bottom: s-core-px-to-rem($_space-value);
+
+    > .o-flexbox__item {
+      padding-top: s-core-px-to-rem($_space-value);
+      padding-bottom: s-core-px-to-rem($_space-value);
+    }
+  }
+}
+
+@if $o-flexbox--enabled and $o-flexbox__mod-spaces--enabled {
+  @each $_space-name, $_space-value in $o-flexbox__mod-spaces {
+    @include o-flexbox__mod-space($_space-name, $_space-value);
+  }
+}
+
+// Inline alignment modifiers
+// --------------------------------------------------
+
+@mixin o-flexbox__mod-alignment-inline($_inline-alignment: flex-start) {
+  .o-flexbox.o-flexbox__inline--#{$_inline-alignment} {
+    justify-content: $_inline-alignment;
+  }
+
+  .o-flexbox > .o-flexbox__item.o-flexbox-item__inline--#{$_inline-alignment} {
+    justify-self: $_inline-alignment;
+  }
+}
+
+@if $o-flexbox--enabled and $o-flexbox__mod-alignments-inline--enabled {
+  @each $_inline-alignment in $o-flexbox__mod-alignments-inline {
+    @include o-flexbox__mod-alignment-inline($_inline-alignment);
+  }
+}
+
+// Cross alignment modifiers
+// --------------------------------------------------
+
+@mixin o-flexbox__mod-alignment-cross($_cross-alignment: stretch) {
+  .o-flexbox.o-flexbox__cross--#{$_cross-alignment} {
+    align-items: $_cross-alignment;
+  }
+
+  .o-flexbox > .o-flexbox__item.o-flexbox-item__cross--#{$_cross-alignment} {
+    align-self: $_cross-alignment;
+  }
+}
+
+@if $o-flexbox--enabled and $o-flexbox__mod-alignments-cross--enabled {
+  @each $_alignment in $o-flexbox__mod-alignments-cross {
+    @include o-flexbox__mod-alignment-cross($_alignment);
+  }
+}
+
+// Flex Property default modifiers
+// --------------------------------------------------
+
+@mixin o-flexbox__mod-flex($_flex-valueset: initial) {
+  .o-flexbox.o-flexbox__flex--#{$_flex-valueset} > .o-flexbox__item {
+    flex: $_flex-valueset;
+  }
+
+  .o-flexbox > .o-flexbox__item.o-flexbox-item__flex--#{$_flex-valueset} {
+    flex: $_flex-valueset;
+  }
+}
+
+@if $o-flexbox--enabled and $o-flexbox__mod-flex--enabled {
+  @each $_flex-valueset in $o-flexbox__mod-flex {
+    @include o-flexbox__mod-flex($_flex-valueset);
+  }
+}
+
+// Flex Property grow modifiers
+// --------------------------------------------------
+
+@mixin o-flexbox__mod-flex-grow($_flex-value: 1) {
+  .o-flexbox.o-flexbox__flex-grow--#{$_flex-value} > .o-flexbox__item {
+    flex-grow: $_flex-value;
+  }
+
+  .o-flexbox > .o-flexbox__item.o-flexbox-item__flex-grow--#{$_flex-value} {
+    flex-grow: $_flex-value;
+  }
+}
+
+@if $o-flexbox--enabled and $o-flexbox__mod-flex-grow--enabled {
+  @each $_flex-value in $o-flexbox__fractions {
+    @include o-flexbox__mod-flex-grow($_flex-value);
+  }
+}
+
+// Flex Property shrink modifiers
+// --------------------------------------------------
+
+@mixin o-flexbox__mod-flex-shrink($_flex-value: 1) {
+  .o-flexbox.o-flexbox__flex-shrink--#{$_flex-value} > .o-flexbox__item {
+    flex-shrink: $_flex-value;
+  }
+
+  .o-flexbox > .o-flexbox__item.o-flexbox-item__flex-shrink--#{$_flex-value} {
+    flex-shrink: $_flex-value;
+  }
+}
+
+@if $o-flexbox--enabled and $o-flexbox__mod-flex-shrink--enabled {
+  @each $_flex-value in $o-flexbox__fractions {
+    @include o-flexbox__mod-flex-shrink($_flex-value);
+  }
+}
+
+// Flex Property flex-basis modifiers
+// --------------------------------------------------
+
+@mixin o-flexbox__mod-flex-basis() {
+  @each $_denominator in $o-flexbox__fractions {
+    @for $_numerator from 1 through $_denominator {
+      @if $_numerator != $_denominator or $_denominator == 1 {
+        .o-flexbox.o-flexbox__flex-basis\:#{$_numerator}\/#{$_denominator} > .o-flexbox__item {
+          flex-basis: ($_numerator / $_denominator * 100%);
+        }
+
+        .o-flexbox > .o-flexbox__item.o-flexbox__item--flex-basis\:#{$_numerator}\/#{$_denominator} {
+          flex-basis: ($_numerator / $_denominator * 100%);
+        }
+      }
+    }
+  }
+}
+
+@if $o-flexbox--enabled and $o-flexbox__mod-flex-basis--enabled {
+  @each $_flex-value in $o-flexbox__fractions {
+    @if $_flex-value != 0 {
+      @include o-flexbox__mod-flex-basis($_flex-value);
+    }
+  }
+}
+
+// Unset as mixin
+// --------------------------------------------------
+
+@mixin o-flexbox--unset {
+  display: inherit;
+  margin: inherit;
+  padding: inherit;
+  list-style: inherit;
+  font-size: inherit;
+}
+
+@mixin o-flexbox__item--unset {
+  box-sizing: inherit;
+  display: inherit;
+  font-size: inherit;
+}
