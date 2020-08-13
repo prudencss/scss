@@ -36,22 +36,29 @@ $f-breakpoint__desktop--l: 1920px !default
 
 // Breakpoints map
 
-$f-breakpoints: (
-  portrait__mobile--s: $f-breakpoint--portrait__mobile--s,
-  portrait__mobile--m: $f-breakpoint--portrait__mobile--m,
-  portrait__mobile--l: $f-breakpoint--portrait__mobile--l,
-  portrait__tablet--s: $f-breakpoint--portrait__tablet--s,
-  portrait__tablet--m: $f-breakpoint--portrait__tablet--m,
-  portrait__tablet--l: $f-breakpoint--portrait__tablet--l,
-  landscape__mobile--s: $f-breakpoint--landscape__mobile--s,
-  landscape__mobile--m: $f-breakpoint--landscape__mobile--m,
-  landscape__mobile--l: $f-breakpoint--landscape__mobile--l,
-  landscape__tablet--s: $f-breakpoint--landscape__tablet--s,
-  landscape__tablet--m: $f-breakpoint--landscape__tablet--m,
-  landscape__tablet--l: $f-breakpoint--landscape__tablet--l,
-  desktop--s: $f-breakpoint__desktop--s,
-  desktop--m: $f-breakpoint__desktop--m,
-  desktop--l: $f-breakpoint__desktop--l
+$f-breakpoints--portrait: (
+  "portrait__mobile--s": $f-breakpoint--portrait__mobile--s,
+  "portrait__mobile--m": $f-breakpoint--portrait__mobile--m,
+  "portrait__mobile--l": $f-breakpoint--portrait__mobile--l,
+  "portrait__tablet--s": $f-breakpoint--portrait__tablet--s,
+  "portrait__tablet--m": $f-breakpoint--portrait__tablet--m,
+  "portrait__tablet--l": $f-breakpoint--portrait__tablet--l
+);
+$f-breakpoints--landscape: (
+  "landscape__mobile--s": $f-breakpoint--landscape__mobile--s,
+  "landscape__mobile--m": $f-breakpoint--landscape__mobile--m,
+  "landscape__mobile--l": $f-breakpoint--landscape__mobile--l,
+  "landscape__tablet--s": $f-breakpoint--landscape__tablet--s,
+  "landscape__tablet--m": $f-breakpoint--landscape__tablet--m,
+  "landscape__tablet--l": $f-breakpoint--landscape__tablet--l,
+  "desktop--s": $f-breakpoint__desktop--s,
+  "desktop--m": $f-breakpoint__desktop--m,
+  "desktop--l": $f-breakpoint__desktop--l
+);
+
+$f-breakpoints: map-merge(
+  $f-breakpoints--portrait,
+  $f-breakpoints--landscape
 );
 
 ////////////////////////////////////////////////////////////////////////////////
