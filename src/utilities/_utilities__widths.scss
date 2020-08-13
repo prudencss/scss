@@ -34,11 +34,12 @@ $u-widths--enabled: true !default;
 
 // Fractions
 
-$u-widths__fractions: 1 2 3 4 5 !default;
+$u-widths__fractions: 1 2 3 4 5 6 7 8 9 10 11 12 !default;
 
 // Option Breakpoints
 
 $u-widths__bp--enabled: true !default;
+$u-widths__bp: $f-breakpoints;
 
 // Pull and push options
 
