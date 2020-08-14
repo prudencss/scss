@@ -1,0 +1,118 @@
+/* -------------------------------------------------------------------------
+ * REVEAL SLIDE
+ *
+ * Squash and transform back to original shape with ease-in-out
+ *
+ * Params:
+ * DURATION ........................... Animation duration
+ * DIRECTION .......................... Saquash axis (horizontal, vertical) */
+
+// Animation variables
+// --------------------------------------------------
+
+// Animation toggling
+
+$a-jiggle--enabled: true !default;
+
+// Animation Params
+
+$a-jiggle__duration: $f-duration !default;
+$a-jiggle__direction: "horiontal" !default;
+$a-jiggle__easing-in: $f-easing--anticipate !default;
+$a-jiggle__easing-out: $f-easing--excite !default;
+
+// Modifiers durations
+
+$a-jiggle__mod-durations--enabled: true !default;
+$a-jiggle__mod-durations: $f-durations !default;
+
+// Modifiers directions
+
+$a-jiggle__mod-directions--enabled: true !default;
+$a-jiggle__mod-directions: "horizontal", "vertical" !default
+
+// Helper functions
+// --------------------------------------------------
+
+@function a-jiggle__direction-to-transform($_direction: "horizontal") {
+  $_directions-transforms: (
+    "horizontal": scale3d(.67, 1.618, 1)
+    "vertical": scale3d(1.618, .67, 1)
+  );
+
+  @if not map_has_key($_directions-transforms, $_direction) {
+    @error "a-jiggle__direction-to-transform: `#{$_direction}` is not one of the allowed directions.";
+  }
+
+  @return map_get($_directions-transforms, $_direction);
+}
+
+// Animation as a mixin
+// --------------------------------------------------
+
+@mixin a-jiggle($_duration: $a-jiggle__duration, $_direction: $a-jiggle__direction) {
+  transform: a-jiggle__direction-to-transform($_direction);
+  transition-property: transform;
+  transition-duration: $_duration;
+  transition-timing-function: $a-jiggle__easing-out;
+}
+
+@mixin a-jiggle--in {
+  transform: scale3d(1, 1, 1);
+  transition-timing-function: $a-jiggle__easing-in;
+}
+
+// Animation selector output
+// --------------------------------------------------
+
+@if $a-jiggle--enabled {
+  .a-jiggle {
+    @include a-jiggle;
+
+    &.in,
+    &.action-on-mouse:hover,
+    &.action-on-mouse:focus {
+      @include a-jiggle--in;
+    }
+  }
+}
+
+// Duration modifiers output
+// --------------------------------------------------
+
+@mixin a-jiggle__mod-duration($_duration-name: "normal", $_duration-value: $f-duration--normal) {
+  .a-jiggle--duration-#{$_duration-name} {
+    transition-duration: $_duration-value;
+  }
+}
+
+@if $a-jiggle--enabled and $a-jiggle__mod-durations--enabled {
+  @each $_duration-name, $_duration-value in $a-jiggle__mod-durations {
+    @include a-jiggle__mod-duration($_duration-name, $_duration-value);
+  }
+}
+
+// Direction modifiers output
+// --------------------------------------------------
+
+@mixin a-jiggle__mod-direction($_direction-name: "horizontal") {
+  .a-jiggle--direction-#{$_direction-name} {
+    transform: a-jiggle__direction-to-transform($_direction-name);
+  }
+}
+
+@if $a-jiggle--enabled and $a-jiggle__mod-directions--enabled {
+  @each $_direction-name in $a-jiggle__mod-directions {
+    @include a-jiggle__mod-direction($_direction-name);
+  }
+}
+
+// Unset as mixin
+// --------------------------------------------------
+
+@mixin a-jiggle--unset {
+  transform: initial;
+  transition-property: initial;
+  transition-duration: initial;
+  transition-timing-function: initial;
+}
