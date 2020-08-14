@@ -78,21 +78,13 @@ $o-grid__fractions: (
   "12fr": 12fr
 ) !default;
 
-// Breakpoints
-
-$o-grid__mediaquery--breakpoints: $f-breakpoints;
-$o-grid__mediaquery--orientation: (
-  "portrait": "(orientation: portrait)",
-  "landscape": "(orientation: landscape)"
-);
-
 // Modifiers display
 
 $o-grid__mod-displays--enabled: true !default;
 $o-grid__mod-displays: (
   "inline": inline-grid,
   "block": grid
-) !default;
+);
 
 // Modifiers flow-directions
 

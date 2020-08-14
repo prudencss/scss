@@ -69,17 +69,17 @@ $o-flexbox__mod-displays--enabled: true !default;
 $o-flexbox__mod-displays: (
   "inline": inline-flex,
   "block": flex
-) !default;
+);
 
 // Modifiers directions
 
 $o-flexbox__mod-directions--enabled: true !default;
-$o-flexbox__mod-directions: row, row-reverse, column, column-reverse !default;
+$o-flexbox__mod-directions: row, row-reverse, column, column-reverse;
 
 // Modifiers multiline/wrapping
 
 $o-flexbox__mod-multilines--enabled: true !default;
-$o-flexbox__mod-multilines: wrap, nowrap !default;
+$o-flexbox__mod-multilines: wrap, nowrap;
 
 // Object Params
 
@@ -102,7 +102,7 @@ $o-flexbox__mod-alignments-cross: stretch, flex-start, flex-end, center !default
 // Modifiers flex
 
 $o-flexbox__mod-flex--enabled: true !default;
-$o-flexbox__mod-flex: initial, auto, none, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 !default;
+$o-flexbox__mod-flex: initial, auto, none, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
 
 $o-flexbox__mod-flex-grow--enabled: true !default;
 $o-flexbox__mod-flex-shrink--enabled: true !default;
