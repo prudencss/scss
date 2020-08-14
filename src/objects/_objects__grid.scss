@@ -1,0 +1,422 @@
+@use "sass:string";
+
+/* -------------------------------------------------------------------------
+ * GRID
+ *
+ * Grid based layout system.
+ *
+ * The grid object provides us with a class-based CSS-grid system.
+ *
+ *   <div class="o-grid o-grid--row">
+ *     <div class="o-grid__item">
+ *     </div>
+ *     <div class="o-grid__item">
+ *     </div>
+ *   </div>
+ *
+ * The above will create a two-column structure in which each column will
+ * fluidly fill half of the width of the parent.
+ * If the available space isn't sufficient for both items, the grid should stack them column-wise instead.
+ * We can have more complex
+ * systems:
+ *
+ *   <div class="o-grid o-grid--column o-grid__flow-direction--row@portrait__tablet--l o-grid__flow-direction--row@landscape o-grid__display--inline o-grid__inline--grid-end o-grid__cross--stretch o-grid-items__row--minmax-width#small o-grid-items__row--minmax-width#medium@landscape">
+ *     <div class="o-grid__item o-grid-item__cross--start ">
+ *     </div>
+ *     <div class="o-grid__item">
+ *     </div>
+ *     <div class="o-grid__item o-grid-item__cross--center o-grid-item__inline--center">
+ *     </div>
+ *   </div>
+ *
+ * In this example:
+ * * The Layout is a stacked column-layout in small portrait resolutions, else a side-by-side row-layout.
+ * * Also we select inline-grid instead of grid, so the container is not automatically gonna extend to the full width/height available.
+ * * The inline positioning of the items is at the end (grid-end), cross axis positioning serves to stretch the item to full dimensions.
+ * * Additionally, the items/cells dimension (min & max width)-range is set @small img size for mobile first/standard, plus @medium image size for all landscape orientated monitors ..
+ * * The first item is positioned individually at the cross axis
+ * * The second item has a higher grid-grow value
+ * * The third item is positioned individually along both axes
+ *
+ * There are plenty more options available to us: explore them below.
+ *
+ */
+
+// Object variables
+// --------------------------------------------------
+
+// Object toggling
+
+$o-grid--enabled: true !default;
+
+// Grid templating
+
+$o-grid--template: repeat(auto-fill, auto) !default;
+
+// Grid mediaquery breakpoint and orientation maps
+
+$o-grid__mediaquery--breakpoints: $f-breakpoints;
+$o-grid__mediaquery--orientation: (
+  "portrait": "(orientation: portrait)",
+  "landscape": "(orientation: landscape)"
+);
+
+// Object fractions for proportional growing/shrinking
+
+$o-grid__fractions: (
+  "1fr": 1fr,
+  "2fr": 2fr,
+  "3fr": 3fr,
+  "4fr": 4fr,
+  "5fr": 5fr,
+  "6fr": 6fr,
+  "7fr": 7fr,
+  "8fr": 8fr,
+  "9fr": 9fr,
+  "10fr": 10fr,
+  "11fr": 11fr,
+  "12fr": 12fr
+) !default;
+
+// Breakpoints
+
+$o-grid__mediaquery--breakpoints: $f-breakpoints;
+$o-grid__mediaquery--orientation: (
+  "portrait": "(orientation: portrait)",
+  "landscape": "(orientation: landscape)"
+);
+
+// Modifiers display
+
+$o-grid__mod-displays--enabled: true !default;
+$o-grid__mod-displays: (
+  "inline": inline-grid,
+  "block": grid
+) !default;
+
+// Modifiers flow-directions
+
+$o-grid__mod-flow-directions--enabled: true !default;
+$o-grid__mod-flow-directions: row, row dense, column, column dense !default;
+
+// Object Params
+
+$o-grid__space--horizontal: $g-reset__spacing--horizontal !default;
+$o-grid__space--vertical: $g-reset__spacing--vertical !default;
+
+// Modifiers spaces
+
+$o-grid__mod-spaces--enabled: true !default;
+$o-grid__mod-spaces: $f-spaces !default;
+
+// Modifiers autoitem-widths
+
+$o-grid__mod-autoitem-widths--enabled: true !default;
+$o-grid__mod-autoitem-widths--img: $f-dimensions__img;
+$o-grid__mod-autoitem-widths--fractions: $o-grid__fractions;
+
+// Modifiers autoitem-heights
+
+$o-grid__mod-autoitem-heights--enabled: true !default;
+$o-grid__mod-autoitem-heights--img: $f-dimensions__img;
+$o-grid__mod-autoitem-heights--fractions: $o-grid__fractions;
+
+// Modifiers alignments items
+
+$o-grid__mod-alignments-items-inline--enabled: true !default;
+$o-grid__mod-alignments-items-inline: start, end, center, stretch, space-around, space-between, space-evenly !default;
+
+$o-grid__mod-alignments-items-cross--enabled: true !default;
+$o-grid__mod-alignments-items-cross: start, end, center, stretch, space-around, space-between, space-evenly !default;
+
+// Modifiers alignments (whole) container-content
+
+$o-grid__mod-alignments-content-inline--enabled: true !default;
+$o-grid__mod-alignments-content-inline: start, end, center, stretch, space-around, space-between, space-evenly !default;
+
+$o-grid__mod-alignments-content-cross--enabled: true !default;
+$o-grid__mod-alignments-content-cross: start, end, center, stretch, space-around, space-between, space-evenly !default;
+
+// Modifiers alignments items self
+
+$o-grid__mod-alignments-item-inline--enabled: true !default;
+$o-grid__mod-alignments-item-inline: start, end, center, stretch !default;
+
+$o-grid__mod-alignments-item-cross--enabled: true !default;
+$o-grid__mod-alignments-item-cross: start, end, center, stretch !default;
+
+// Object as a mixin
+// --------------------------------------------------
+
+@mixin o-grid($_flow-direction-value: row) {
+  display: grid;
+  grid-template-columns: $o-grid--template;
+  grid-template-rows: $o-grid--template;
+  row-gap: $o-grid__space--horizontal;
+  column-gap: $o-grid__space--vertical;
+  grid-auto-flow: $_flow-direction-value;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0;
+}
+
+@mixin o-grid__item() {
+  font-size: s-core-px-to-rem($s-core__font-size);
+}
+
+@if $o-grid--enabled {
+  @each $_flow-direction-value in $o-grid__mod-flow-directions {
+    $_escaped-value: $_flow-direction-value;
+    @if string.index($_escaped-value, "dense") > 0 {
+      $_escaped-value: if(string.index($_escaped-value, "row") > 0, row-dense, column-dense);
+    }
+
+    .o-grid.o-grid--#{$_escaped-value} {
+      @include o-grid($_flow-direction-value);
+    }
+  }
+
+  .o-grid > .o-grid__item {
+    @include o-grid__item;
+  }
+}
+
+// Display modifiers
+// --------------------------------------------------
+
+@mixin o-grid__mod-display($_display-name: block, $_display-value: grid) {
+  .o-grid.o-grid__display--#{$_display-name} {
+    display: $_display-value;
+  }
+}
+
+@if $o-grid--enabled and $o-grid__mod-displays--enabled {
+  @each $_display-name, $_display-value in $o-grid__mod-displays {
+    @include o-grid__mod-display($_display-name, $_display-value);
+  }
+}
+
+// Directions modifiers
+// --------------------------------------------------
+
+@mixin o-grid__mod-flow-direction($_flow-direction-value: row, $_breakpoint: false) {
+  $_escaped-value: $_flow-direction-value;
+  @if string.index($_escaped-value, "dense") > 0 {
+    $_escaped-value: if(string.index($_escaped-value, "row") > 0, row-dense, column-dense);
+  }
+
+  @if $_breakpoint {
+    .o-grid.o-grid__flow-direction--#{$_escaped-value}#{s-core-string-breakpoint($_breakpoint)} {
+      grid-auto-flow: $_flow-direction-value;
+    }
+  }
+  @else {
+    .o-grid.o-grid__flow-direction--#{$_escaped-value} {
+      grid-auto-flow: $_flow-direction-value;
+    }
+  }
+}
+
+@if $o-grid--enabled and $o-grid__mod-flow-directions--enabled {
+  @each $_flow-direction-value in $o-grid__mod-flow-directions {
+    @include o-grid__mod-flow-direction($_flow-direction-value);
+
+    @each $_bp-name, $_bp-value in $o-grid__mediaquery--breakpoints {
+      @include t-mq($from: $_bp-name) {
+        @include o-grid__mod-flow-direction($_flow-direction-value, $_bp-name);
+      }
+    }
+    @each $_orientation-name, $_orientation-value in $o-grid__mediaquery--orientation {
+      @include t-mq($from: 1, $and: $_orientation-value) {
+        @include o-grid__mod-flow-direction($_flow-direction-value, $_orientation-name);
+      }
+    }
+  }
+}
+
+// Space modifiers
+// --------------------------------------------------
+
+@mixin o-grid__mod-space($_space-name: none, $_space-value: 0) {
+  .o-grid.o-grid-row__space--#{$_space-name} {
+    row-gap: s-core-px-to-rem($_space-value);
+  }
+
+  .o-grid.o-grid-column__space--#{$_space-name} {
+    column-gap: s-core-px-to-rem($_space-value);
+  }
+}
+
+@if $o-grid--enabled and $o-grid__mod-spaces--enabled {
+  @each $_space-name, $_space-value in $o-grid__mod-spaces {
+    @include o-grid__mod-space($_space-name, $_space-value);
+  }
+}
+
+// Inline alignment modifiers
+// --------------------------------------------------
+
+@mixin o-grid__mod-alignment-items-inline($_inline-alignment: start) {
+  .o-grid.o-grid__inline--#{$_inline-alignment} {
+    justify-items: $_inline-alignment;
+  }
+}
+
+@mixin o-grid__mod-alignment-item-inline($_inline-alignment: start) {
+  .o-grid > .o-grid__item.o-grid-item__inline--#{$_inline-alignment} {
+    justify-self: $_inline-alignment;
+  }
+}
+
+@if $o-grid--enabled and $o-grid__mod-alignments-items-inline--enabled {
+  @each $_inline-alignment in $o-grid__mod-alignments-items-inline {
+    @include o-grid__mod-alignment-items-inline($_inline-alignment);
+  }
+}
+
+@if $o-grid--enabled and $o-grid__mod-alignments-item-inline--enabled {
+  @each $_inline-alignment in $o-grid__mod-alignments-item-inline {
+    @include o-grid__mod-alignment-item-inline($_inline-alignment);
+  }
+}
+
+// Cross alignment modifiers
+// --------------------------------------------------
+
+@mixin o-grid__mod-alignment-items-cross($_cross-alignment: start) {
+  .o-grid.o-grid__cross--#{$_cross-alignment} {
+    align-items: $_cross-alignment;
+  }
+}
+
+@mixin o-grid__mod-alignment-item-cross($_cross-alignment: start) {
+  .o-grid > .o-grid__item.o-grid-item__cross--#{$_cross-alignment} {
+    align-self: $_cross-alignment;
+  }
+}
+
+@if $o-grid--enabled and $o-grid__mod-alignments-items-cross--enabled {
+  @each $_alignment in $o-grid__mod-alignments-items-cross {
+    @include o-grid__mod-alignment-items-cross($_alignment);
+  }
+}
+
+@if $o-grid--enabled and $o-grid__mod-alignments-item-cross--enabled {
+  @each $_alignment in $o-grid__mod-alignments-item-cross {
+    @include o-grid__mod-alignment-item-cross($_alignment);
+  }
+}
+
+// Inline alignment modifiers container-overall-content-level
+// --------------------------------------------------
+
+@mixin o-grid__mod-alignment-content-inline($_inline-alignment: start) {
+  .o-grid.o-grid-content__inline--#{$_inline-alignment} {
+    justify-content: $_inline-alignment;
+  }
+}
+
+@if $o-grid--enabled and $o-grid__mod-alignments-content-inline--enabled {
+  @each $_inline-alignment in $o-grid__mod-alignments-content-inline {
+    @include o-grid__mod-alignment-content-inline($_inline-alignment);
+  }
+}
+
+// Cross alignment modifiers
+// --------------------------------------------------
+
+@mixin o-grid__mod-alignment-content-cross($_cross-alignment: start) {
+  .o-grid.o-grid-content__cross--#{$_cross-alignment} {
+    align-content: $_cross-alignment;
+  }
+}
+
+@if $o-grid--enabled and $o-grid__mod-alignments-content-cross--enabled {
+  @each $_alignment in $o-grid__mod-alignments-content-cross {
+    @include o-grid__mod-alignment-content-cross($_alignment);
+  }
+}
+
+// Row items width-pre-definitions
+// --------------------------------------------------
+
+@mixin o-grid__mod-autoitem-width($_min-width-name, $_min-width-value, $_breakpoint: false) {
+  @if $_breakpoint {
+    .o-grid.o-grid-items__row--minmax-width#{s-core-string-dimension($_min-width-name)}#{s-core-string-breakpoint($breakpoint)} {
+      grid-template-rows: repeat(autofill, minmax($_min-width-value, auto));
+    }
+  }
+  @else {
+    .o-grid.o-grid-items__row--minmax-width#{s-core-string-dimension($_min-width-name)} {
+      grid-template-rows: repeat(autofill, minmax($_min-width-value, auto));
+    }
+  }
+}
+@if $o-grid--enabled and $o-grid__mod-autoitem-widths--enabled {
+  @each $_min-width-name, $_min-width-value in $o-grid__mod-autoitem-widths--img {
+    @include o-grid__mod-autoitem-width($_min-width-name, $_max-width-value);
+  }
+  @each $_min-width-name, $_min-width-value in $o-grid__mod-autoitem-widths--fractions {
+    @each $_bp-name, $_bp-value in $o-grid__mediaquery--breakpoints {
+      @include t-mq($from: $_bp-name) {
+        @include o-grid__mod-autoitem-width($_min-width-name, $_max-width-name, $_bp-name);
+      }
+    }
+    @each $_orientation-name, $_orientation-value in $o-grid__mediaquery--orientation {
+      @include t-mq($from: 1, $and: $_orientation-value) {
+        @include o-grid__mod-autoitem-width($_min-width-name, $_max-width-name, $_orientation-name);
+      }
+    }
+  }
+}
+
+// Column items width-pre-definitions
+// --------------------------------------------------
+
+@mixin o-grid__mod-autoitem-height($_min-height-name, $_min-height-value, $_breakpoint: false) {
+  @if $_breakpoint {
+    .o-grid.o-grid-items__column--minmax-height#{s-core-string-dimension($_min-height-name)}#{s-core-string-breakpoint($_breakpoint)} {
+      grid-template-columns: repeat(autofill, minmax($_min-height-value, auto));
+    }
+  }
+  @else {
+    .o-grid.o-grid-items__column--minmax-height#{s-core-string-dimension($_min-height-name)} {
+      grid-template-columns: repeat(autofill, minmax($_min-height-value, auto));
+    }
+  }
+}
+@if $o-grid--enabled and $o-grid__mod-autoitem-heights--enabled {
+  @each $_min-height-name, $_min-height-value in $o-grid__mod-autoitem-heights--img {
+    @include o-grid__mod-autoitem-height($_min-height-name, $_max-height-value);
+  }
+  @each $_min-height-name, $_min-height-value in $o-grid__mod-autoitem-heights--fractions {
+    @each $_bp-name, $_bp-value in $o-grid__mediaquery--breakpoints {
+      @include t-mq($from: $_bp-name) {
+        @include o-grid__mod-autoitem-height($_min-height-name, $_max-height-name, $_bp-name);
+      }
+    }
+    @each $_orientation-name, $_orientation-value in $o-grid__mediaquery--orientation {
+      @include t-mq($from: 1, $and: $_orientation-value) {
+        @include o-grid__mod-autoitem-height($_min-height-name, $_max-height-name, $_orientation-name);
+      }
+    }
+  }
+}
+
+// Unset as mixin
+// --------------------------------------------------
+
+@mixin o-grid--unset {
+  display: inherit;
+  margin: inherit;
+  padding: inherit;
+  list-style: inherit;
+  font-size: inherit;
+}
+
+@mixin o-grid__item--unset {
+  box-sizing: inherit;
+  display: inherit;
+  font-size: inherit;
+}
