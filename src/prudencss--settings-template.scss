@@ -194,6 +194,31 @@ $f-line-height--large: 2;
 
 $f-radius: 6px;
 
+
+/* -------------------------------------------------------------------------
+ * DIMENSIONS
+ * ------------------------------------------------------------------------- */
+
+// Icon Dimensions
+
+$f-dimension__icon-dimensions--tiny: 16px;
+$f-dimension__icon-dimensions--xsmall: 24px;
+$f-dimension__icon-dimensions--small: 32px;
+$f-dimension__icon-dimensions--medium: 48px;
+$f-dimension__icon-dimensions--large: 64px;
+$f-dimension__icon-dimensions--xlarge: 96px;
+$f-dimension__icon-dimensions--huge: 128px;
+
+// Image Dimensions
+
+$f-dimension__img-dimensions--tiny: 48px;
+$f-dimension__img-dimensions--xsmall: 68px;
+$f-dimension__img-dimensions--small: 96px;
+$f-dimension__img-dimensions--medium: 128px;
+$f-dimension__img-dimensions--large: 256px;
+$f-dimension__img-dimensions--xlarge: 512px;
+$f-dimension__img-dimensions--huge: 1024px;
+
 /* -------------------------------------------------------------------------
  * SHADOWS
  * ------------------------------------------------------------------------- */
@@ -300,4 +325,49 @@ $o-layout__mod-reverse--enabled: true;
 $o-wrapper--enabled: true;
 $o-wrapper__mod-bp-from--enabled: true;
 $o-wrapper__mod-bp-to--enabled: true;
+
+$o-flexbox--enabled: true;
+$o-flexbox__fractions: 0 1 2 3 4 5 6 7 8 9 10 11 12;
+$o-flexbox__mod-display--enabled: true;
+$o-flexbox__mod-directions--enabled: true;
+$o-flexbox__mod-multilines--enabled: true;
+$o-flexbox__space--horizontal: $g-reset__spacing--horizontal;
+$o-flexbox__space--vertical: $g-reset__spacing--vertical;
+$o-flexbox__mod-spaces--enabled: true;
+$o-flexbox__mod-spaces: $f-spaces;
+$o-flexbox__mod-alignments-inline--enabled: true;
+$o-flexbox__mod-alignments-cross--enabled: true;
+$o-flexbox__mod-flex--enabled: true;
+$o-flexbox__mod-flex-grow--enabled: true;
+$o-flexbox__mod-flex-shrink--enabled: true;
+
+$o-grid--enabled: true;
+$o-grid--template: repeat(auto-fill, auto);
+$o-grid__fractions: (
+  "1fr": 1fr,
+  "2fr": 2fr,
+  "3fr": 3fr,
+  "4fr": 4fr,
+  "5fr": 5fr,
+  "6fr": 6fr,
+  "7fr": 7fr,
+  "8fr": 8fr,
+  "9fr": 9fr,
+  "10fr": 10fr,
+  "11fr": 11fr,
+  "12fr": 12fr
+);
+$o-grid__mod-flow-directions--enabled: true;
+$o-grid__space--horizontal: $g-reset__spacing--horizontal;
+$o-grid__space--vertical: $g-reset__spacing--vertical;
+$o-grid__mod-spaces--enabled: true;
+$o-grid__mod-spaces: $f-spaces;
+$o-grid__mod-autoitem-widths--enabled: true;
+$o-grid__mod-autoitem-heights--enabled: true;
+$o-grid__mod-alignments-items-inline--enabled: true;
+$o-grid__mod-alignments-items-cross--enabled: true;
+$o-grid__mod-alignments-content-inline--enabled: true;
+$o-grid__mod-alignments-content-cross--enabled: true;
+$o-grid__mod-alignments-item-inline--enabled: true;
+$o-grid__mod-alignments-item-cross--enabled: true;
 
