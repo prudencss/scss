@@ -1,0 +1,118 @@
+/* -------------------------------------------------------------------------
+ * REVEAL SLIDE
+ *
+ * Squash and transform back to original shape with ease-in-out
+ *
+ * Params:
+ * DURATION ........................... Animation duration
+ * DIRECTION .......................... Saquash axis (clockwise, counter-clockwise) */
+
+// Animation variables
+// --------------------------------------------------
+
+// Animation toggling
+
+$a-tata--enabled: true !default;
+
+// Animation Params
+
+$a-tata__duration: $f-duration !default;
+$a-tata__direction: "clockwise" !default;
+$a-tata__easing-in: $f-easing--excite !default;
+$a-tata__easing-out: $f-easing--out !default;
+
+// Modifiers durations
+
+$a-tata__mod-durations--enabled: true !default;
+$a-tata__mod-durations: $f-durations !default;
+
+// Modifiers directions
+
+$a-tata__mod-directions--enabled: true !default;
+$a-tata__mod-directions: "clockwise", "counter-clockwise" !default
+
+// Helper functions
+// --------------------------------------------------
+
+@function a-tata__direction-to-transform($_direction: "clockwise") {
+  $_directions-transforms: (
+    "clockwise": rotateZ(45deg) scale3d(1.618, 1.618, 1),
+    "counter-clockwise": rotateZ(-45deg) scale3d(1.618, 1.618, 1)
+  );
+
+  @if not map_has_key($_directions-transforms, $_direction) {
+    @error "a-tata__direction-to-transform: `#{$_direction}` is not one of the allowed directions.";
+  }
+
+  @return map_get($_directions-transforms, $_direction);
+}
+
+// Animation as a mixin
+// --------------------------------------------------
+
+@mixin a-tata($_duration: $a-tata__duration, $_direction: $a-tata__direction) {
+  transform: rotateZ(0) scale3d(1, 1, 1);
+  transition-property: transform;
+  transition-duration: $_duration;
+  transition-timing-function: $a-tata__easing-out;
+}
+
+@mixin a-tata--in {
+  transform: a-tata__direction-to-transform($_direction);
+  transition-timing-function: $a-tata__easing-in;
+}
+
+// Animation selector output
+// --------------------------------------------------
+
+@if $a-tata--enabled {
+  .a-tata {
+    @include a-tata;
+
+    &.in,
+    &.action-on-mouse:hover,
+    &.action-on-mouse:focus {
+      @include a-tata--in;
+    }
+  }
+}
+
+// Duration modifiers output
+// --------------------------------------------------
+
+@mixin a-tata__mod-duration($_duration-name: "normal", $_duration-value: $f-duration--normal) {
+  .a-tata--duration-#{$_duration-name} {
+    transition-duration: $_duration-value;
+  }
+}
+
+@if $a-tata--enabled and $a-tata__mod-durations--enabled {
+  @each $_duration-name, $_duration-value in $a-tata__mod-durations {
+    @include a-tata__mod-duration($_duration-name, $_duration-value);
+  }
+}
+
+// Direction modifiers output
+// --------------------------------------------------
+
+@mixin a-tata__mod-direction($_direction-name: "clockwise") {
+  .a-tata--direction-#{$_direction-name} {
+    transform: a-tata__direction-to-transform($_direction-name);
+  }
+}
+
+@if $a-tata--enabled and $a-tata__mod-directions--enabled {
+  @each $_direction-name in $a-tata__mod-directions {
+    @include a-tata__mod-direction($_direction-name);
+  }
+}
+
+// Unset as mixin
+// --------------------------------------------------
+
+@mixin a-tata--unset {
+  transform: initial;
+  transition-property: initial;
+  transition-duration: initial;
+  transition-timing-function: initial;
+}
