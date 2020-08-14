@@ -6,6 +6,7 @@
  * px-to-em .............. returns EM equivalent value using a given PX value and a REM reference
  * px-to-rem ............. returns REM equivalent value using a given PX value
  * rem-to-px ............. returns PX equivalent value using a given REM value
+ * string-dimension....... returns a string with dimension separator concatenated to a given dimension (width, height, fraction, ...)
  * string-breakpoint ..... returns a string with breakpoint separator concatenated to a given breakpoint
  * string-ratio .......... returns a ratio string with its escaped separator of a given width and height
  * strip-units ........... returns the unitless number of a given value */
@@ -14,6 +15,7 @@
 @import "core-functions/px-to-em";
 @import "core-functions/px-to-rem";
 @import "core-functions/rem-to-px";
+@import "core-functions/string-dimension";
 @import "core-functions/string-breakpoint";
 @import "core-functions/string-ratio";
 @import "core-functions/strip-units";

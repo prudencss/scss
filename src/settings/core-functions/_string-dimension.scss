@@ -1,0 +1,11 @@
+/* -------------------------------------------------------------------------
+ * STRING BREAKPOINT
+ *
+ * Returns a dimension string with its escaped separator
+ * Useful for utilities that uses dimensions modifiers
+ *
+ * s-core-string-dimension(md) == \@md */
+
+@function s-core-string-dimension($_dim-name) {
+  @return unquote("#{$s-config__special-char--dimension-separator}#{$_dim-name}");
+}
