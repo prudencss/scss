@@ -1,0 +1,79 @@
+/* -------------------------------------------------------------------------
+ * DIMENSIONS
+ *
+ * This is vars and maps for dimensions of "usual" elements/objects
+ */
+
+// Main dimension
+
+$f-dimension__icon-dimensions--tiny: 16px !default;
+$f-dimension__icon-dimensions--xsmall: 24px !default;
+$f-dimension__icon-dimensions--small: 32px !default;
+$f-dimension__icon-dimensions--medium: 48px !default;
+$f-dimension__icon-dimensions--large: 64px !default;
+$f-dimension__icon-dimensions--xlarge: 96px !default;
+$f-dimension__icon-dimensions--huge: 128px !default;
+
+$f-dimension__img-dimensions--tiny: 48px !default;
+$f-dimension__img-dimensions--xsmall: 68px !default;
+$f-dimension__img-dimensions--small: 96px !default;
+$f-dimension__img-dimensions--medium: 128px !default;
+$f-dimension__img-dimensions--large: 256px !default;
+$f-dimension__img-dimensions--xlarge: 512px !default;
+$f-dimension__img-dimensions--huge: 1024px !default;
+
+// Spaces map
+
+$f-dimensions__icon: (
+  "tiny": $f-icon-dimensions--tiny,
+  "xsmall": $f-icon-dimensions--xsmall,
+  "small": $f-icon-dimensions--small,
+  "medium": $f-icon-dimensions--medium,
+  "large": $f-icon-dimensions--large,
+  "xlarge": $f-icon-dimensions--xlarge,
+  "huge": $f-icon-dimensions--huge
+);
+
+$f-dimensions__img: (
+  "tiny": $f-img-dimensions--tiny,
+  "xsmall": $f-img-dimensions--xsmall,
+  "small": $f-img-dimensions--small,
+  "medium": $f-img-dimensions--medium,
+  "large": $f-img-dimensions--large,
+  "xlarge": $f-img-dimensions--xlarge,
+  "huge": $f-img-dimensions--huge
+);
+
+////////////////////////////////////////////////////////////////////////////////
+//                               W A R N I N G                                //
+//                  DO NOT MODIFY ANYTHING BEYOND THIS POINT                  //
+////////////////////////////////////////////////////////////////////////////////
+
+/* SAFE CHECKING
+ * Check that the chosen values are pixel numbers. */
+
+@each $_dimension__name, $_dimension__value in $f-dimensions__icon {
+  @if type-of($_dimension__value) == number {
+    @if $_dimension__name != "none" {
+      @if unit($_dimension__value) != "px" {
+        @error "$f-dimensions: `#{$_dimension__name}` needs to be a pixel value.";
+      }
+    }
+  }
+  @else {
+    @error "$f-dimensions: `#{$_dimension__name}` needs to be a number.";
+  }
+}
+
+@each $_dimension__name, $_dimension__value in $f-dimensions__img {
+  @if type-of($_dimension__value) == number {
+    @if $_dimension__name != "none" {
+      @if unit($_dimension__value) != "px" {
+        @error "$f-dimensions: `#{$_dimension__name}` needs to be a pixel value.";
+      }
+    }
+  }
+  @else {
+    @error "$f-dimensions: `#{$_dimension__name}` needs to be a number.";
+  }
+}
