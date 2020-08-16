@@ -4,20 +4,64 @@
  * Font families & fallback
  * The values here are for sample proposes, consider add your owns */
 
+// Default internet fonts switch
+
+$f-font-family-remote-default--enabled: true !default;
+
+// Shall the additional font-family-categories be included?
+// ie.: serif, code, decorative (group)
+// Those by default are set as some nice google fonts (as activated by the remote-default switch)
+
+$f-font-family-additional--enabled: true !default;
+
 // Fallback families
 
-$f-font-family__sans-fallback: Arial, Geneva, sans-serif !default;
+$f-font-family__sans-fallback: Tahoma, Arial, Geneva, sans-serif !default;
+$f-font-family__serif-fallback: 'Merriweather', 'Arvo', serif !default;
 
 // Main font families
 
-$f-font-family__primary: Tahoma, $f-font-family__sans-fallback !default;
-$f-font-family__secondary: Verdana, $f-font-family__sans-fallback !default;
-$f-font-family__accent: Georgia, $f-font-family__sans-fallback !default;
+$f-font-family__primary: 'Alegreya sans', $f-font-family__sans-fallback !default;
+$f-font-family__secondary: 'Merriweather sans', $f-font-family__sans-fallback !default;
+$f-font-family__accent: 'Righteous', $f-font-family__sans-fallback !default;
+
+$f-font-family__serif: 'Alegreya', $f-font-family__serif-fallback;
+$f-font-family__code: 'Fira Code', monospace !default;
+$f-font-family__decorative: (
+  "billboard--shiny": 'Raleway Dots',
+  "alacarte--curvy": 'Lobster',
+  "newspaper--bold-thin": 'Abril Fatface',
+  "newspaper--swing": 'Righteous',
+  "comic--sketch": 'Fredericka the Great'
+) !default;
 
 // Font families map
 
-$f-font-families: (
+$f-font-families-core: (
   "primary": $f-font-family__primary,
   "secondary": $f-font-family__secondary,
   "accent": $f-font-family__accent
 );
+
+$f-font-families-additional: (
+  "serif": $f-font-family__serif,
+  "code": $f-font-family__code,
+  "decorative": $f-font-family__decorative,
+));
+
+@if $f-font-family-additional--enabled {
+  $f-font-families: map.merge($f-font-families, $f-font-families-additional);
+}
+@else {
+  $f-font-families: f-font-families-core;
+}
+
+// Font Families default import
+@if $f-font-family-remote-default--enabled {
+  @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Alegreya+Sans:ital,wght@0,100;0,300;0,400;0,500;0,700;0,800;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&family=Alegreya:ital,wght@0,400;0,500;0,700;0,800;0,900;1,400;1,500;1,700;1,800;1,900&family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Fira+Code:wght@300;400;500;600;700&family=Fredericka+the+Great&family=Lobster&family=Merriweather+Sans:ital,wght@0,300;0,400;0,700;0,800;1,300;1,400;1,700;1,800&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Raleway+Dots&family=Righteous&display=swap');
+}
+
+/* TODO
+ * debugging?
+ * paragraph material
+ */
