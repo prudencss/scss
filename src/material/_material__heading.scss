@@ -13,7 +13,7 @@ $m-heading--enabled: true !default;
 // Material default properties
 
 $m-heading__properties: (
-  "font-family": $f-font-family__secondary,
+  "font-family": $f-font-family__primary,
   "font-weight": 400,
   "font-size": $f-font-size--xxl,
   "line-height": $e-headings__line-height,
@@ -40,20 +40,25 @@ $m-heading__mod-sizes: (
   ),
   "medium": $m-heading__properties,
   "large": (
-    "font-family": $f-font-family__secondary,
+    "font-family": $f-font-family__primary,
     "font-weight": 400,
     "font-size": $f-font-size--xxxl,
     "line-height": $e-headings__line-height,
     "margin-bottom": $e-headings__margin-bottom
   ),
   "huge": (
-    "font-family": $f-font-family__secondary,
+    "font-family": $f-font-family__primary,
     "font-weight": 400,
     "font-size": $f-font-size--xxxl + $f-font-size--m,
     "line-height": $e-headings__line-height,
     "margin-bottom": $e-headings__margin-bottom
   )
 ) !default;
+
+// Material Font-Family Modifiers
+
+$m-heading__mod-font-families--enabled: true !default;
+$m-heading__mod-font-families: $f-font-families;
 
 // Headings as a mixin
 // --------------------------------------------------
@@ -104,3 +109,4 @@ $m-heading__mod-sizes: (
     }
   }
 }
+
