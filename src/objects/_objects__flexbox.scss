@@ -104,6 +104,7 @@ $o-flexbox__mod-alignments-cross: stretch, flex-start, flex-end, center !default
 $o-flexbox__mod-flex--enabled: true !default;
 $o-flexbox__mod-flex: initial, auto, none, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
 
+$o-flexbox__mod-flex-basis--enabled: true !default;
 $o-flexbox__mod-flex-grow--enabled: true !default;
 $o-flexbox__mod-flex-shrink--enabled: true !default;
 
@@ -158,13 +159,13 @@ $o-flexbox__mod-flex-shrink--enabled: true !default;
   @if $_breakpoint {
     .o-flexbox.o-flexbox__direction--#{$_direction-value}#{s-core-string-breakpoint($_breakpoint)} {
       flex-direction: $_direction-value;
-      padding: if(string.index($_direction-value, "column") > 0, $o-flexbox__space--vertical, 0) if(string.index($_direction-value, "row"), $o-flexbox__space--horizontal, 0);
+      padding: if(string.index($_direction-value, "column") != null, $o-flexbox__space--vertical, 0) if(string.index($_direction-value, "row") != null, $o-flexbox__space--horizontal, 0);
     }
   }
   @else {
     .o-flexbox.o-flexbox__direction--#{$_direction-value} {
       flex-direction: $_direction-value;
-      padding: if(string.index($_direction-value, "column") > 0, $o-flexbox__space--vertical, 0) if(string.index($_direction-value, "row"), $o-flexbox__space--horizontal, 0);
+      padding: if(string.index($_direction-value, "column") != null, $o-flexbox__space--vertical, 0) if(string.index($_direction-value, "row") != null, $o-flexbox__space--horizontal, 0);
     }
   }
 }
@@ -332,14 +333,16 @@ $o-flexbox__mod-flex-shrink--enabled: true !default;
 
 @mixin o-flexbox__mod-flex-basis() {
   @each $_denominator in $o-flexbox__fractions {
-    @for $_numerator from 1 through $_denominator {
-      @if $_numerator != $_denominator or $_denominator == 1 {
-        .o-flexbox.o-flexbox__flex-basis#{s-core-string-ratio($_numerator, $_denominator)} > .o-flexbox__item {
-          flex-basis: ($_numerator / $_denominator * 100%);
-        }
+    @if $_denominator != 0 {
+      @for $_numerator from 1 through $_denominator {
+        @if $_numerator != $_denominator or $_denominator == 1 {
+          .o-flexbox.o-flexbox__flex-basis#{s-core-string-ratio($_numerator, $_denominator)} > .o-flexbox__item {
+            flex-basis: ($_numerator / $_denominator * 100%);
+          }
 
-        .o-flexbox > .o-flexbox__item.o-flexbox__item--flex-basis#{s-core-string-ratio($_numerator, $_denominator)} {
-          flex-basis: ($_numerator / $_denominator * 100%);
+          .o-flexbox > .o-flexbox__item.o-flexbox__item--flex-basis#{s-core-string-ratio($_numerator, $_denominator)} {
+            flex-basis: ($_numerator / $_denominator * 100%);
+          }
         }
       }
     }
@@ -347,11 +350,7 @@ $o-flexbox__mod-flex-shrink--enabled: true !default;
 }
 
 @if $o-flexbox--enabled and $o-flexbox__mod-flex-basis--enabled {
-  @each $_flex-value in $o-flexbox__fractions {
-    @if $_flex-value != 0 {
-      @include o-flexbox__mod-flex-basis($_flex-value);
-    }
-  }
+  @include o-flexbox__mod-flex-basis();
 }
 
 // Unset as mixin

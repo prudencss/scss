@@ -29,15 +29,15 @@ $a-jiggle__mod-durations: $f-durations !default;
 // Modifiers directions
 
 $a-jiggle__mod-directions--enabled: true !default;
-$a-jiggle__mod-directions: "horizontal", "vertical" !default
+$a-jiggle__mod-directions: "horizontal", "vertical" !default;
 
 // Helper functions
 // --------------------------------------------------
 
 @function a-jiggle__direction-to-transform($_direction: "horizontal") {
   $_directions-transforms: (
-    "horizontal": scale3d(.67, 1.618, 1)
-    "vertical": scale3d(1.618, .67, 1)
+    "horizontal": scale3d(0.67, 1.618, 1),
+    "vertical": scale3d(1.618, 0.67, 1)
   );
 
   @if not map_has_key($_directions-transforms, $_direction) {

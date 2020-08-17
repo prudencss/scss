@@ -25,23 +25,23 @@ $f-dimension__img-dimensions--huge: 1024px !default;
 // Spaces map
 
 $f-dimensions__icon: (
-  "tiny": $f-icon-dimensions--tiny,
-  "xsmall": $f-icon-dimensions--xsmall,
-  "small": $f-icon-dimensions--small,
-  "medium": $f-icon-dimensions--medium,
-  "large": $f-icon-dimensions--large,
-  "xlarge": $f-icon-dimensions--xlarge,
-  "huge": $f-icon-dimensions--huge
+  "tiny": $f-dimension__icon-dimensions--tiny,
+  "xsmall": $f-dimension__icon-dimensions--xsmall,
+  "small": $f-dimension__icon-dimensions--small,
+  "medium": $f-dimension__icon-dimensions--medium,
+  "large": $f-dimension__icon-dimensions--large,
+  "xlarge": $f-dimension__icon-dimensions--xlarge,
+  "huge": $f-dimension__icon-dimensions--huge
 );
 
 $f-dimensions__img: (
-  "tiny": $f-img-dimensions--tiny,
-  "xsmall": $f-img-dimensions--xsmall,
-  "small": $f-img-dimensions--small,
-  "medium": $f-img-dimensions--medium,
-  "large": $f-img-dimensions--large,
-  "xlarge": $f-img-dimensions--xlarge,
-  "huge": $f-img-dimensions--huge
+  "tiny": $f-dimension__img-dimensions--tiny,
+  "xsmall": $f-dimension__img-dimensions--xsmall,
+  "small": $f-dimension__img-dimensions--small,
+  "medium": $f-dimension__img-dimensions--medium,
+  "large": $f-dimension__img-dimensions--large,
+  "xlarge": $f-dimension__img-dimensions--xlarge,
+  "huge": $f-dimension__img-dimensions--huge
 );
 
 ////////////////////////////////////////////////////////////////////////////////

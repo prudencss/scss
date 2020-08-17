@@ -89,7 +89,7 @@ $o-grid__mod-displays: (
 // Modifiers flow-directions
 
 $o-grid__mod-flow-directions--enabled: true !default;
-$o-grid__mod-flow-directions: row, row dense, column, column dense !default;
+$o-grid__mod-flow-directions: "row", "row dense", "column", "column dense" !default;
 
 // Object Params
 
@@ -140,13 +140,13 @@ $o-grid__mod-alignments-item-cross: start, end, center, stretch !default;
 // Object as a mixin
 // --------------------------------------------------
 
-@mixin o-grid($_flow-direction-value: row) {
+@mixin o-grid($_flow-direction-value: "row") {
   display: grid;
   grid-template-columns: $o-grid--template;
   grid-template-rows: $o-grid--template;
   row-gap: $o-grid__space--horizontal;
   column-gap: $o-grid__space--vertical;
-  grid-auto-flow: $_flow-direction-value;
+  grid-auto-flow: string.unquote($_flow-direction-value);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -160,8 +160,8 @@ $o-grid__mod-alignments-item-cross: start, end, center, stretch !default;
 @if $o-grid--enabled {
   @each $_flow-direction-value in $o-grid__mod-flow-directions {
     $_escaped-value: $_flow-direction-value;
-    @if string.index($_escaped-value, "dense") > 0 {
-      $_escaped-value: if(string.index($_escaped-value, "row") > 0, row-dense, column-dense);
+    @if string.index($_escaped-value, "dense") != null {
+      $_escaped-value: if(string.index($_escaped-value, "row") != null, row-dense, column-dense);
     }
 
     .o-grid.o-grid--#{$_escaped-value} {
@@ -192,20 +192,20 @@ $o-grid__mod-alignments-item-cross: start, end, center, stretch !default;
 // Directions modifiers
 // --------------------------------------------------
 
-@mixin o-grid__mod-flow-direction($_flow-direction-value: row, $_breakpoint: false) {
+@mixin o-grid__mod-flow-direction($_flow-direction-value: "row", $_breakpoint: false) {
   $_escaped-value: $_flow-direction-value;
-  @if string.index($_escaped-value, "dense") > 0 {
-    $_escaped-value: if(string.index($_escaped-value, "row") > 0, row-dense, column-dense);
+  @if string.index($_escaped-value, "dense") != null {
+    $_escaped-value: if(string.index($_escaped-value, "row") != null, row-dense, column-dense);
   }
 
   @if $_breakpoint {
     .o-grid.o-grid__flow-direction--#{$_escaped-value}#{s-core-string-breakpoint($_breakpoint)} {
-      grid-auto-flow: $_flow-direction-value;
+      grid-auto-flow: string.unquote($_flow-direction-value);
     }
   }
   @else {
     .o-grid.o-grid__flow-direction--#{$_escaped-value} {
-      grid-auto-flow: $_flow-direction-value;
+      grid-auto-flow: string.unquote($_flow-direction-value);
     }
   }
 }
@@ -335,7 +335,7 @@ $o-grid__mod-alignments-item-cross: start, end, center, stretch !default;
 
 @mixin o-grid__mod-autoitem-width($_min-width-name, $_min-width-value, $_breakpoint: false) {
   @if $_breakpoint {
-    .o-grid.o-grid-items__row--minmax-width#{s-core-string-dimension($_min-width-name)}#{s-core-string-breakpoint($breakpoint)} {
+    .o-grid.o-grid-items__row--minmax-width#{s-core-string-dimension($_min-width-name)}#{s-core-string-breakpoint($_breakpoint)} {
       grid-template-rows: repeat(autofill, minmax($_min-width-value, auto));
     }
   }
@@ -347,17 +347,17 @@ $o-grid__mod-alignments-item-cross: start, end, center, stretch !default;
 }
 @if $o-grid--enabled and $o-grid__mod-autoitem-widths--enabled {
   @each $_min-width-name, $_min-width-value in $o-grid__mod-autoitem-widths--img {
-    @include o-grid__mod-autoitem-width($_min-width-name, $_max-width-value);
+    @include o-grid__mod-autoitem-width($_min-width-name, $_min-width-value);
   }
   @each $_min-width-name, $_min-width-value in $o-grid__mod-autoitem-widths--fractions {
     @each $_bp-name, $_bp-value in $o-grid__mediaquery--breakpoints {
       @include t-mq($from: $_bp-name) {
-        @include o-grid__mod-autoitem-width($_min-width-name, $_max-width-name, $_bp-name);
+        @include o-grid__mod-autoitem-width($_min-width-name, $_min-width-value, $_bp-name);
       }
     }
     @each $_orientation-name, $_orientation-value in $o-grid__mediaquery--orientation {
       @include t-mq($from: 1, $and: $_orientation-value) {
-        @include o-grid__mod-autoitem-width($_min-width-name, $_max-width-name, $_orientation-name);
+        @include o-grid__mod-autoitem-width($_min-width-name, $_min-width-value, $_orientation-name);
       }
     }
   }
@@ -380,17 +380,17 @@ $o-grid__mod-alignments-item-cross: start, end, center, stretch !default;
 }
 @if $o-grid--enabled and $o-grid__mod-autoitem-heights--enabled {
   @each $_min-height-name, $_min-height-value in $o-grid__mod-autoitem-heights--img {
-    @include o-grid__mod-autoitem-height($_min-height-name, $_max-height-value);
+    @include o-grid__mod-autoitem-height($_min-height-name, $_min-height-value);
   }
   @each $_min-height-name, $_min-height-value in $o-grid__mod-autoitem-heights--fractions {
     @each $_bp-name, $_bp-value in $o-grid__mediaquery--breakpoints {
       @include t-mq($from: $_bp-name) {
-        @include o-grid__mod-autoitem-height($_min-height-name, $_max-height-name, $_bp-name);
+        @include o-grid__mod-autoitem-height($_min-height-name, $_min-height-name, $_bp-name);
       }
     }
     @each $_orientation-name, $_orientation-value in $o-grid__mediaquery--orientation {
       @include t-mq($from: 1, $and: $_orientation-value) {
-        @include o-grid__mod-autoitem-height($_min-height-name, $_max-height-name, $_orientation-name);
+        @include o-grid__mod-autoitem-height($_min-height-name, $_min-height-name, $_orientation-name);
       }
     }
   }

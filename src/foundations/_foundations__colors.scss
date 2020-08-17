@@ -1,3 +1,5 @@
+@use "sass:map";
+
 /* -------------------------------------------------------------------------
  * COLORS
  *
@@ -18,22 +20,7 @@ $f-colors-main: (
   "state": $f-colors-state
 );
 
-$f-colors: map-merge(
-  $f-colors-main,
-  (
-    "vendor": $f-colors-vendor,
-    "other": $f-colors-other
-  )
-) !default;
-
-$f-colors-qualities:
-  "ultra-light",
-  "light",
-  "semi-light",
-  "semi-dark",
-  "dark",
-  "ultra-dark",
-  "opaque",
-  "semi-opaque",
-  "semi-transparent",
-  "transparent";
+$f-colors: map.merge($f-colors-main, (
+  "vendor": $f-colors-vendor,
+  "other": $f-colors-other
+)) !default;

@@ -33,7 +33,7 @@ $t-sass-mq__debug--border-color: rgb(255, 0, 0) !default;
 @function t-sass-mq__get-breakpoint-orientation($_bp-name) {
   @if map-has-key($t-sass-mq__breakpoints--portrait, $_bp-name) {
     @return "(orientation: landscape)";
-  )
+  }
   @else {
     @return "(orientation: portrait)";
   }

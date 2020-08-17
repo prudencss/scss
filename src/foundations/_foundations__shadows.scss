@@ -22,7 +22,7 @@ $f-shadows--custom: () !default;
 // Shadows map
 
 $f-shadows: map_merge((
-  "default": $f-shadow;
+  "default": $f-shadow,
   "discrete": $f-shadow--discrete,
   "elevated": $f-shadow--elevated,
   "elevated-bottom": $f-shadow--elevated-bottom,

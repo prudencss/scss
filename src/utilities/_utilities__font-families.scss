@@ -14,7 +14,7 @@ $u-font-families--enabled: true !default;
 
 // Font-families maps
 
-$u-font-families__maps: map.remove($f-font-families, "decorative") !default;
+$u-font-families__maps: map.remove($f-font-families-core, "decorative") !default;
 
 // Utilities output
 // --------------------------------------------------

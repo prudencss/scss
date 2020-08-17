@@ -132,7 +132,7 @@ $f-color__digital-blue: #0070d2;
  * ------------------------------------------------------------------------- */
 
 $f-easings--user: (
-//  "myEasing": cubic-bezier(0, 0, 0, 0)
+  //  "myEasing": cubic-bezier(0, 0, 0, 0)
 );
 
 /* -------------------------------------------------------------------------
@@ -165,22 +165,22 @@ $f-font-family-additional--enabled: true;
 // Fallback families
 
 $f-font-family__sans-fallback: Tahoma, Arial, Geneva, sans-serif;
-$f-font-family__serif-fallback: 'Merriweather', 'Arvo', serif;
+$f-font-family__serif-fallback: "Merriweather", "Arvo", serif;
 
 // Main font families
 
-$f-font-family__primary: 'Alegreya sans', $f-font-family__sans-fallback;
-$f-font-family__secondary: 'Merriweather sans', $f-font-family__sans-fallback;
-$f-font-family__accent: 'Righteous', $f-font-family__sans-fallback;
+$f-font-family__primary: "Alegreya sans", $f-font-family__sans-fallback;
+$f-font-family__secondary: "Merriweather sans", $f-font-family__sans-fallback;
+$f-font-family__accent: "Righteous", $f-font-family__sans-fallback;
 
-$f-font-family__serif: 'Alegreya', $f-font-family__serif-fallback;
-$f-font-family__code: 'Fira Code', monospace;
+$f-font-family__serif: "Alegreya", $f-font-family__serif-fallback;
+$f-font-family__code: "Fira Code", monospace;
 $f-font-family__decorative: (
-  "billboard--shiny": 'Raleway Dots',
-  "alacarte--curvy": 'Lobster',
-  "newspaper--bold-thin": 'Abril Fatface',
-  "newspaper--swing": 'Righteous',
-  "comic--sketch": 'Fredericka the Great'
+  "billboard--shiny": "Raleway Dots",
+  "alacarte--curvy": "Lobster",
+  "newspaper--bold-thin": "Abril Fatface",
+  "newspaper--swing": "Righteous",
+  "comic--sketch": "Fredericka the Great"
 );
 
 /* font families may be applied via the font-families utility classes:
@@ -253,7 +253,7 @@ $f-dimension__img-dimensions--huge: 1024px;
 // Custom user defined shadows map
 
 $f-shadows--custom: (
-// "myShadowStyle": 7px 0px 7px -7px
+  // "myShadowStyle": 7px 0px 7px -7px
 );
 
 
