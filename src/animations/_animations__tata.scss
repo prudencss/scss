@@ -58,7 +58,7 @@ $a-tata__mod-directions: "clockwise", "counter-clockwise" !default;
 }
 
 @mixin a-tata--in {
-  transform: a-tata__direction-to-transform($_direction);
+  transform: a-tata__direction-to-transform();
   transition-timing-function: $a-tata__easing-in;
 }
 
