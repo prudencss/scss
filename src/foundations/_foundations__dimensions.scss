@@ -22,6 +22,14 @@ $f-dimension__img-dimensions--large: 256px !default;
 $f-dimension__img-dimensions--xlarge: 512px !default;
 $f-dimension__img-dimensions--huge: 1024px !default;
 
+$f-dimension__arrow-dimensions--tiny: 3px !default;
+$f-dimension__arrow-dimensions--xsmall: 7px !default;
+$f-dimension__arrow-dimensions--small: 9px !default;
+$f-dimension__arrow-dimensions--medium: 13px !default;
+$f-dimension__arrow-dimensions--large: 15px !default;
+$f-dimension__arrow-dimensions--xlarge: 25!default;
+$f-dimension__arrow-dimensions--huge: 49px !default;
+
 // Spaces map
 
 $f-dimensions__icon: (
@@ -42,6 +50,16 @@ $f-dimensions__img: (
   "large": $f-dimension__img-dimensions--large,
   "xlarge": $f-dimension__img-dimensions--xlarge,
   "huge": $f-dimension__img-dimensions--huge
+);
+
+$f-dimensions__arrow: (
+  "tiny": $f-dimension__arrow-dimensions--tiny,
+  "xsmall": $f-dimension__arrow-dimensions--xsmall,
+  "small": $f-dimension__arrow-dimensions--small,
+  "medium": $f-dimension__arrow-dimensions--medium,
+  "large": $f-dimension__arrow-dimensions--large,
+  "xlarge": $f-dimension__arrow-dimensions--xlarge,
+  "huge": $f-dimension__arrow-dimensions--huge
 );
 
 ////////////////////////////////////////////////////////////////////////////////
