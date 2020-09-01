@@ -34,4 +34,9 @@ Thumbs.db
 # Files that might appear on external disks
 .Spotlight-V100
 .Trashes
+
+# timekeeping with git time metrics
 /.gtm/
+
+# outlines with universal ctags
+/tags
