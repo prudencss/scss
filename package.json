@@ -1,6 +1,6 @@
 {
   "name": "@prudencss/sass",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "ITCSS framework in SCSS dialect. Pixel exact custom design, extendable with components. Based on HaitiCSS",
   "repository": {
     "type": "git",
