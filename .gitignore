@@ -40,3 +40,7 @@ Thumbs.db
 
 # outlines with universal ctags
 /tags
+
+# Package Registry
+.npmrc
+
