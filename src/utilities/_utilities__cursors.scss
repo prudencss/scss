@@ -15,33 +15,43 @@ $u-cursors--enabled: true !default;
   .u-ui--initial {
     cursor: initial;
   }
+
   .u-ui--reset {
     cursor: inherit;
   }
+
   .u-ui--normal {
     cursor: pointer;
   }
+
   .u-ui--disabled {
     cursor: not-allowed;
   }
+
   .u-ui--help {
     cursor: help;
   }
+
   .u-ui--menu {
     cursor: context-menu;
   }
+
   .u-ui--copy {
     cursor: copy;
   }
+
   .u-ui--prohibited {
     cursor: not-allowed;
   }
+
   .u-ui--no-drop {
     cursor: no-drop;
   }
+
   .u-ui--progress {
     cursor: progress;
   }
+
   .u-ui--wait {
     cursor: wait;
   }
