@@ -1,0 +1,23 @@
+/* -------------------------------------------------------------------------
+ * POSITIONS
+ *
+ * Values should be expressed unit less
+ * The values here are for sample proposes, consider add your owns */
+
+// Main position vars
+// fractions are meant as percentages
+
+$f-positions__fractions: (
+  "start": 0,
+  "quarter": 25,
+  "third": 33,
+  "half": 50,
+  "2thirds": 67,
+  "3quarters": 75,
+  "end": 100
+);
+
+$f-positions__separator: $s-config__special-char--position-separator;
+
+$f-positions__compass--vertical: left, right;
+$f-positions__compass--horizontal: bottom, top;
