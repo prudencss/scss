@@ -13,16 +13,6 @@
 @import "foundations/foundations";
 @import "tools/tools";
 
-/* ------------------------------------------------------------------------
- * Third Party
- *
- * I'm including the popular font-awesome icon-lib ... and more to come?
- */
-
-@if $s-config__font-awesome {
-  @import "../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
-}
-
 @if $s-config__scoped {
   .#{$s-config__scope-selector} {
     /* -------------------------------------------------------------------------
