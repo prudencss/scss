@@ -1,11 +1,3 @@
-/* ------------------------------------------------------------------------
- * Third Party
- *
- * I'm including the popular font-awesome icon-lib ... and more to come?
- */
-
-@import "../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
-
 /* -------------------------------------------------------------------------
  * CONFIG
  *
@@ -21,54 +13,120 @@
 @import "foundations/foundations";
 @import "tools/tools";
 
-/* -------------------------------------------------------------------------
- * BASE
+/* ------------------------------------------------------------------------
+ * Third Party
  *
- * Main HTML elements reset and setup, and base material
- *
- * generic .................... Normalize browser behaviour
- * elements ................... HTML elements default appearance
- * material ................... Class based elements: headings, icons, ... */
+ * I'm including the popular font-awesome icon-lib ... and more to come?
+ */
 
-@import "generic/generic";
-@import "elements/elements";
-@import "material/material";
+@if $s-config__font-awesome {
+  @import "../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
+}
 
-/* -------------------------------------------------------------------------
- * ABSTRACTIONS
- *
- * Reusable design abstractions and patterns
- *
- * spacings ................... An abstraction about spaces
- * objects .................... Unstyled design patterns
- * animations ................. Movement and transition patterns
- * color-schemes .............. Color combination schemes */
+@if $s-config__scoped {
+  .#{$s-config__scope-selector} {
+    /* -------------------------------------------------------------------------
+     * BASE
+     *
+     * Main HTML elements reset and setup, and base material
+     *
+     * generic .................... Normalize browser behaviour
+     * elements ................... HTML elements default appearance
+     * material ................... Class based elements: headings, icons, ... */
 
-@import "spacings/spacings";
-@import "objects/objects";
-@import "animations/animations";
-@import "color-schemes/color-schemes";
+    @import "generic/generic";
+    @import "elements/elements";
+    @import "material/material";
 
-/* -------------------------------------------------------------------------
- * CONTENT
- *
- * Tangible content. Empty group on haiticss. Organize and put your
- * content here. A proposal on how to organize your content could be:
- *
- * components ................. Abstract named components
- * widgets .................... Data and business driven components
- * templates .................. Template layouts
- * renderings ................. Concrete use cases of components and widgets
- * pages ...................... Concrete use cases of templates */
+    /* -------------------------------------------------------------------------
+     * ABSTRACTIONS
+     *
+     * Reusable design abstractions and patterns
+     *
+     * spacings ................... An abstraction about spaces
+     * objects .................... Unstyled design patterns
+     * animations ................. Movement and transition patterns
+     * color-schemes .............. Color combination schemes */
 
-@import "components/components";
+    @import "spacings/spacings";
+    @import "objects/objects";
+    @import "animations/animations";
+    @import "color-schemes/color-schemes";
 
-/* -------------------------------------------------------------------------
- * OVERRIDES
- *
- * Safe belt scopes and utilities
- *
- * scopes ..................... Untrusted or corrupted sources under control
- * utilities .................. Helper classes with important statements */
+    /* -------------------------------------------------------------------------
+     * CONTENT
+     *
+     * Tangible content. Empty group on haiticss. Organize and put your
+     * content here. A proposal on how to organize your content could be:
+     *
+     * components ................. Abstract named components
+     * widgets .................... Data and business driven components
+     * templates .................. Template layouts
+     * renderings ................. Concrete use cases of components and widgets
+     * pages ...................... Concrete use cases of templates */
 
-@import "utilities/utilities";
+    @import "components/components";
+
+    /* -------------------------------------------------------------------------
+     * OVERRIDES
+     *
+     * Safe belt scopes and utilities
+     *
+     * scopes ..................... Untrusted or corrupted sources under control
+     * utilities .................. Helper classes with important statements */
+
+    @import "utilities/utilities";
+  }
+} @else {
+  /* -------------------------------------------------------------------------
+   * BASE
+   *
+   * Main HTML elements reset and setup, and base material
+   *
+   * generic .................... Normalize browser behaviour
+   * elements ................... HTML elements default appearance
+   * material ................... Class based elements: headings, icons, ... */
+
+  @import "generic/generic";
+  @import "elements/elements";
+  @import "material/material";
+
+  /* -------------------------------------------------------------------------
+   * ABSTRACTIONS
+   *
+   * Reusable design abstractions and patterns
+   *
+   * spacings ................... An abstraction about spaces
+   * objects .................... Unstyled design patterns
+   * animations ................. Movement and transition patterns
+   * color-schemes .............. Color combination schemes */
+
+  @import "spacings/spacings";
+  @import "objects/objects";
+  @import "animations/animations";
+  @import "color-schemes/color-schemes";
+
+  /* -------------------------------------------------------------------------
+   * CONTENT
+   *
+   * Tangible content. Empty group on haiticss. Organize and put your
+   * content here. A proposal on how to organize your content could be:
+   *
+   * components ................. Abstract named components
+   * widgets .................... Data and business driven components
+   * templates .................. Template layouts
+   * renderings ................. Concrete use cases of components and widgets
+   * pages ...................... Concrete use cases of templates */
+
+  @import "components/components";
+
+  /* -------------------------------------------------------------------------
+   * OVERRIDES
+   *
+   * Safe belt scopes and utilities
+   *
+   * scopes ..................... Untrusted or corrupted sources under control
+   * utilities .................. Helper classes with important statements */
+
+  @import "utilities/utilities";
+}

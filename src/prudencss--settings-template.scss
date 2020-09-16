@@ -10,6 +10,13 @@
  * ------------------------------------------------- */
 
 /* -------------------------------------------------------------------------
+ * FONT-AWESOME
+ * enable to import font-awesome automatically, disable if no need for it
+ * */
+
+$s-config__font-awesome: true;
+
+/* -------------------------------------------------------------------------
  * SCOPED
  * enable if you are scoping the output in a scope selector
  *

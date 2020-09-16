@@ -1,11 +1,3 @@
-/* ------------------------------------------------------------------------
- * Third Party
- *
- * I'm including the popular font-awesome icon-lib ... and more to come?
- */
-
-@import "../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
-
 /* -------------------------------------------------------------------------
  * CONFIG
  *
@@ -19,11 +11,20 @@
 
 // Enable scoped flag
 $s-config__scoped: true;
-$s-config__scope-selector: prudencss !default;
 
 @import "settings/settings";
 @import "foundations/foundations";
 @import "tools/tools";
+
+/* ------------------------------------------------------------------------
+ * Third Party
+ *
+ * I'm including the popular font-awesome icon-lib ... and more to come?
+ */
+
+@if $s-config__font-awesome {
+  @import "../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
+}
 
 /* -------------------------------------------------------------------------
  * SCOPED CLASS AND CONTENT */
