@@ -1,0 +1,110 @@
+@use "sass:map";
+
+/* -------------------------------------------------------------------------
+ * CSS ARROWS
+ */
+
+// Utility vars
+
+$u-arrows__sizes: $f-dimensions__arrow;
+$u-arrows__fractions: $f-positions__fractions;
+
+// Utility toggling
+
+$u-arrows--enabled: true !default;
+
+// Utility mixins
+// --------------------------------------------------
+
+@mixin u-arrow() {
+  %u-arrow {
+    &::before {
+      position: absolute;
+      content: "";
+      background-color: inherit;
+      background-image: none;
+      z-index: 2;
+      width: map.get($u-arrows__sizes, "medium");
+      height: map.get($u-arrows__sizes, "medium");
+      border-color: inherit;
+      border-style: solid;
+    }
+  }
+
+  @each $_fraction-name, $_fraction-val in $u-arrows__fractions {
+    %u-arrow--vertical-pos {
+      @extend %u-arrow;
+
+      &::before {
+        bottom: #{$_fraction-val + "%"};
+      }
+    }
+
+    %u-arrow--horizontal-pos {
+      @extend %u-arrow;
+
+      &::before {
+        left: #{$_fraction-val + "%"};
+      }
+    }
+
+    .u-arrow--left#{$f-positions--separator}#{$_fraction-name} {
+      @extend %u-arrow--vertical-pos;
+
+      left: 0;
+      bottom: $_fraction-val;
+      border-width: 0 0 1px 1px;
+      transform: translateX(-50%) translateY(-50%) rotate(45deg);
+    }
+
+    .u-arrow--right#{$f-positions--separator}#{$_fraction-name} {
+      @extend %u-arrow--vertical-pos;
+
+      right: 0;
+      bottom: $_fraction-val;
+      border-width: 1px 1px 0 0;
+      transform: translateX(50%) translateY(-50%) rotate(45deg);
+    }
+
+    .u-arrow--bottom#{$f-positions--separator}#{$_fraction-name} {
+      @extend %u-arrow--horizontal-pos;
+
+      bottom: 0;
+      left: $_fraction-val;
+      border-width: 0 0 1px 1px;
+      transform: translateX(-50%) translateY(-50%) rotate(45deg);
+    }
+
+    .u-arrow--top#{$f-positions--separator}#{$_fraction-name} {
+      @extend %u-arrow--horizontal-pos;
+
+      top: 0;
+      left: $_fraction-val;
+      border-width: 1px 1px 0 0;
+      transform: translateX(-50%) translateY(50%) rotate(45deg);
+    }
+
+  }
+}
+
+@mixin u-arrow__mod--size($_size-name) {
+  $_size-val: map.get($u-arrows__sizes, $_size-name);
+
+  .u-arrow--#{$_size-name} {
+    &::before {
+      width: $_size-val !important;
+      height: $_size-val !important;
+    }
+  }
+}
+
+// Utilities output
+// --------------------------------------------------
+
+@if $u-arrows--enabled {
+  @include u-arrow();
+
+  @each $_size-name, $_size-val in $u-arrows__sizes {
+    @include u-arrow__mod--size($_size-name);
+  }
+}
