@@ -35,7 +35,7 @@ $a-ripple__mod-durations: $f-durations !default;
 @mixin a-ripple--in {
   background-size: 100%;
   transition: background 0s;
-  background-color: color.scale($f-color__neutral-accent-bg, $lightness: if(color.lightness($f-color__neutral-accent-bg) > 50%, 50%, -50%));
+  background-color: color.scale($f-color__neutral--accent-bg, $lightness: if(color.lightness($f-color__neutral--accent-bg) > 50%, 50%, -50%));
 }
 
 @mixin a-ripple--in-colored($_color) {
@@ -59,7 +59,7 @@ $a-ripple__mod-durations: $f-durations !default;
 
     &:hover,
     &:focus {
-      @include a-ripple--hover(color.scale($f-color__neutral-accent-bg, $lightness: if(color.lightness($f-color__neutral-accent-bg) > 50%, 17%, -17%)));
+      @include a-ripple--hover(color.scale($f-color__neutral--accent-bg, $lightness: if(color.lightness($f-color__neutral--accent-bg) > 50%, 17%, -17%)));
     }
 
     &:active,

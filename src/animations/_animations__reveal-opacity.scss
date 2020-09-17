@@ -16,8 +16,8 @@ $a-reveal-opacity--enabled: true !default;
 // Animation Params
 
 $a-reveal-opacity__duration: $f-duration !default;
-$a-reveal-opacity__easing-in: $f-easing--in !default;
-$a-reveal-opacity__easing-out: $f-easing--out !default;
+$a-reveal-opacity__easing-in: $f-easing--anticipate !default;
+$a-reveal-opacity__easing-out: $f-easing--excite !default;
 
 // Modifiers durations
 
@@ -28,14 +28,15 @@ $a-reveal-opacity__mod-durations: $f-durations !default;
 // --------------------------------------------------
 
 @mixin a-reveal-opacity($_duration: $a-reveal-opacity__duration) {
-  opacity: 0;
+  opacity: 1;
   transition-property: opacity;
   transition-duration: $_duration;
   transition-timing-function: $a-reveal-opacity__easing-out;
 }
 
 @mixin a-reveal-opacity--in {
-  opacity: 1;
+  opacity: 0.3;
+  transition-duration: $f-duration--none !important;
   transition-timing-function: $a-reveal-opacity__easing-in;
 }
 
@@ -47,6 +48,7 @@ $a-reveal-opacity__mod-durations: $f-durations !default;
     @include a-reveal-opacity;
 
     &.in,
+    &:active,
     &.action-on-mouse:hover,
     &.action-on-mouse:focus {
       @include a-reveal-opacity--in;

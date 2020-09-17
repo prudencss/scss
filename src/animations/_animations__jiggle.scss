@@ -50,22 +50,38 @@ $a-jiggle__mod-directions: "horizontal", "vertical" !default;
 // Animation as a mixin
 // --------------------------------------------------
 
-@mixin a-jiggle($_duration: $a-jiggle__duration, $_direction: $a-jiggle__direction) {
-  transform: a-jiggle__direction-to-transform($_direction);
+@mixin a-jiggle($_duration: $a-jiggle__duration) {
+  transform: none;
   transition-property: transform;
   transition-duration: $_duration;
   transition-timing-function: $a-jiggle__easing-out;
 }
 
-@mixin a-jiggle--in {
-  transform: scale3d(1, 1, 1);
+@mixin a-jiggle--in($_direction: $a-jiggle__direction) {
+  transform: a-jiggle__direction-to-transform($_direction);
   transition-timing-function: $a-jiggle__easing-in;
+}
+
+@mixin a-jiggle--keyframes($_duration: $a-jiggle__duration) {
+  animation-name: a-jiggle__animation;
+  animation-duration: $_duration;
+  animation-timing-function: $a-jiggle__easing-out;
 }
 
 // Animation selector output
 // --------------------------------------------------
 
 @if $a-jiggle--enabled {
+  @keyframes a-jiggle__animation {
+    from {
+      transform: a-jiggle__direction-to-transform($a-jiggle__direction);
+    }
+
+    to {
+      transform: none;
+    }
+  }
+
   .a-jiggle {
     @include a-jiggle;
 
@@ -73,6 +89,13 @@ $a-jiggle__mod-directions: "horizontal", "vertical" !default;
     &.action-on-mouse:hover,
     &.action-on-mouse:focus {
       @include a-jiggle--in;
+    }
+  }
+
+  .a-jiggle--keyframes {
+    &:active,
+    &.in {
+      @include a-jiggle--keyframes;
     }
   }
 }
@@ -83,6 +106,7 @@ $a-jiggle__mod-directions: "horizontal", "vertical" !default;
 @mixin a-jiggle__mod-duration($_duration-name: "normal", $_duration-value: $f-duration--normal) {
   .a-jiggle--duration-#{$_duration-name} {
     transition-duration: $_duration-value;
+    animation-duration: $_duration-value;
   }
 }
 
@@ -115,4 +139,7 @@ $a-jiggle__mod-directions: "horizontal", "vertical" !default;
   transition-property: initial;
   transition-duration: initial;
   transition-timing-function: initial;
+  animation-name: initial;
+  animation-duration: initial;
+  animation-timing-function: initial;
 }

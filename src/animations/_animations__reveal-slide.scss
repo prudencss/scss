@@ -53,14 +53,15 @@ $a-reveal-slide__mod-directions: "left", "right", "top", "bottom" !default;
 // --------------------------------------------------
 
 @mixin a-reveal-slide($_duration: $a-reveal-slide__duration, $_direction: $a-reveal-slide__direction) {
-  transform: a-reveal-slide__direction-to-transform($_direction);
+  transform: none;
   transition-property: transform;
   transition-duration: $_duration;
   transition-timing-function: $a-reveal-slide__easing-out;
 }
 
-@mixin a-reveal-slide--in {
-  transform: translate(0, 0);
+@mixin a-reveal-slide--in($_direction: $a-reveal-slide__direction) {
+  transform: a-reveal-slide__direction-to-transform($_direction);
+  transition-duration: $f-duration--fast;
   transition-timing-function: $a-reveal-slide__easing-in;
 }
 

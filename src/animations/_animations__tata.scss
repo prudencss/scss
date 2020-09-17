@@ -36,8 +36,8 @@ $a-tata__mod-directions: "clockwise", "counter-clockwise" !default;
 
 @function a-tata__direction-to-transform($_direction: "clockwise") {
   $_directions-transforms: (
-    "clockwise": rotateZ(45deg) scale3d(1.618, 1.618, 1),
-    "counter-clockwise": rotateZ(-45deg) scale3d(1.618, 1.618, 1)
+    "clockwise": rotateZ(45deg) scaleX(1.618) scaleY(1.618),
+    "counter-clockwise": rotateZ(-45deg) scaleX(1.618) scaleY(1.618)
   );
 
   @if not map_has_key($_directions-transforms, $_direction) {
@@ -51,7 +51,7 @@ $a-tata__mod-directions: "clockwise", "counter-clockwise" !default;
 // --------------------------------------------------
 
 @mixin a-tata($_duration: $a-tata__duration, $_direction: $a-tata__direction) {
-  transform: rotateZ(0) scale3d(1, 1, 1);
+  transform: none;
   transition-property: transform;
   transition-duration: $_duration;
   transition-timing-function: $a-tata__easing-out;
@@ -60,6 +60,7 @@ $a-tata__mod-directions: "clockwise", "counter-clockwise" !default;
 @mixin a-tata--in {
   transform: a-tata__direction-to-transform();
   transition-timing-function: $a-tata__easing-in;
+  transition-duration: 0s !important;
 }
 
 // Animation selector output
