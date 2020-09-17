@@ -1,13 +1,15 @@
 @use "sass:color";
+@use "sass:map";
 
 .c-btn {
   display: inline-block;
+  position: relative;
   vertical-align: middle;
   font: inherit;
   text-align: center;
   margin: 0;
   padding: $f-space--small $f-space--medium;
-  background-color: $f-color__neutral-accent-bg;
+  background-color: $f-color__neutral--accent-bg;
   cursor: pointer;
   outline: none;
   border-style: solid;
@@ -15,11 +17,11 @@
 
   &:hover:not(.a-ripple),
   &:focus:not(.a-ripple) {
-    background-color: color.scale($f-color__neutral-accent-bg, $lightness: if(color.lightness($f-color__neutral-accent-bg) > 50%, 17%, -17%));
+    background-color: color.scale($f-color__neutral--accent-bg, $lightness: if(color.lightness($f-color__neutral--accent-bg) > 50%, 17%, -17%));
   }
 
   &:active:not(.a-ripple) {
-    background-color: color.scale($f-color__neutral-accent-bg, $lightness: if(color.lightness($f-color__neutral-accent-bg) > 50%, 33%, -33%));
+    background-color: color.scale($f-color__neutral--accent-bg, $lightness: if(color.lightness($f-color__neutral--accent-bg) > 50%, 33%, -33%));
   }
 
 
@@ -28,14 +30,14 @@
   @each $_name, $_val in $f-colors-brand {
     &.c-btn--#{$_name} {
       background-color: $_val;
-      color: map-get($f-colors-neutral, $_name);
+      color: map.get($f-colors-neutral, $_name);
       text-decoration: none;
 
       &:hover,
       &:focus,
       &:active {
         text-decoration: none;
-        color: color.scale(map-get($f-colors-neutral, $_name), $lightness: if(color.lightness(map-get($f-colors-neutral, $_name)) > 50%, -17%, 17%));
+        color: color.scale(map.get($f-colors-neutral, $_name), $lightness: if(color.lightness(map.get($f-colors-neutral, $_name)) > 50%, -17%, 17%));
       }
 
       &:hover,
@@ -51,19 +53,46 @@
     }
   }
 
-  // State Color Variants
+  @each $_name, $_val in $f-colors-neutral {
+    $_bg-pendant: map.get($f-colors-neutral--bg, $_name);
 
-  @each $_name, $_val in $f-colors-state {
-    &.c-btn--#{$_name} {
-      background-color: $_val;
-      color: $f-color__neutral-primary;
+    &.c-btn--neutral-#{$_name} {
+      background-color: $_bg-pendant;
+      color: map.get($f-colors-neutral, $_name);
       text-decoration: none;
 
       &:hover,
       &:focus,
       &:active {
         text-decoration: none;
-        color: color.scale($f-color__neutral-primary, $lightness: if(color.lightness($f-color__neutral-primary) > 50%, -17%, 17%));
+        color: color.scale($_val, $lightness: if(color.lightness($_val) > 50%, -17%, 17%));
+      }
+
+      &:hover,
+      &:focus {
+        &:not(.a-ripple) {
+          background-color: color.scale($_val, $lightness: if(color.lightness($_bg-pendant) > 50%, 33%, -33%));
+        }
+      }
+
+      &:active:not(.a-ripple) {
+        background-color: color.scale($_val, $lightness: if(color.lightness($_bg-pendant) > 50%, 33%, -33%));
+      }
+    }
+  }
+  // State Color Variants
+
+  @each $_name, $_val in $f-colors-state {
+    &.c-btn--#{$_name} {
+      background-color: $_val;
+      color: $f-color__neutral--primary;
+      text-decoration: none;
+
+      &:hover,
+      &:focus,
+      &:active {
+        text-decoration: none;
+        color: color.scale($f-color__neutral--primary, $lightness: if(color.lightness($f-color__neutral--primary) > 50%, -17%, 17%));
       }
 
       &:hover,
@@ -83,7 +112,7 @@
 
   @each $_name, $_val in s-core-map-diff(("none": $f-space--none), $f-spaces) {
     &.c-btn--#{$_name} {
-      padding: $_val ($_val * 1.618);
+      padding: calc(#{$_val} / 6) $_val;
       font-size: 1rem;
 
       &.c-btn--fab {
