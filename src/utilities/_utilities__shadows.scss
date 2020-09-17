@@ -1,4 +1,5 @@
 @use "sass:color";
+@use "sass:map";
 
 /* -------------------------------------------------------------------------
  * SHADOWS
@@ -15,6 +16,7 @@ $u-shadows--enabled: true !default;
 // Shadows maps
 
 $u-shadows__maps: $f-shadows !default;
+$u-shadows__maps--custom: $f-shadows--custom !default;
 
 // Utilities output
 // --------------------------------------------------
@@ -22,7 +24,34 @@ $u-shadows__maps: $f-shadows !default;
 @if $u-shadows--enabled {
   @each $_shadow-name, $_shadow-value in $u-shadows__maps {
     .u-shadow--#{$_shadow-name} {
-      box-shadow: $_shadow-value color.scale(map-get($f-colors-neutral, "secondary-bg"), $alpha: -50%) !important;
+      box-shadow: $_shadow-value color.scale(map.get($f-colors-neutral--bg, "secondary"), $alpha: -50%) !important;
+    }
+  }
+
+  @each $_custom-shadow, $_pseudoprops-map in $u-shadows__maps--custom {
+    .u-shadow--custom-#{$_custom-shadow} {
+      @if map.get($_pseudoprops-map, "before, after") {
+        &::before,
+        &::after {
+          @each $_prop, $_val in map.get($_pseudoprops-map, "before, after") {
+            #{$_prop}: $_val;
+          }
+        }
+      }
+      @if map.get($_pseudoprops-map, "before") {
+        &::before {
+          @each $_prop, $_val in map.get($_pseudoprops-map, "before") {
+            #{$_prop}: $_val;
+          }
+        }
+      }
+      @if map.get($_pseudoprops-map, "after") {
+        &::after {
+          @each $_prop, $_val in map.get($_pseudoprops-map, "after") {
+            #{$_prop}: $_val;
+          }
+        }
+      }
     }
   }
 }

@@ -6,25 +6,87 @@
 
 // Shadow variants
 
-$f-shadow--discrete: 2px 2px 2px 2px !default;
+$f-shadow--discrete: 2px 2px 1px 1px !default;
+$f-shadow--discrete-bottom: 0 2px 0 0 !default;
 $f-shadow--elevated: 0 4px 7px 0 !default;
 $f-shadow--elevated-bottom: 0 7px 5px -5px !default;
 $f-shadow--sunken: inset 0 0 7px 0 !default;
+$f-shadow--dreamy: 0 0 2px, 0 1px 4px, 0 2px 8px, 0 4px 16px, 0 8px 32px !default;
+$f-shadow--dreamy-extra: 0 1px 2px, 0 2px 4px, 0 4px 8px, 0 8px 16px, 0 16px 32px, 0 32px 64px !default;
+$f-shadow--smooth: 0 1.8px 1.2px, 0 2.7px 3.3px, 0 3.5px 5px, 0 5.3px 17.9px, 0 11.8px 26.4px !default;
 
 // Main shadow
 
 $f-shadow: $f-shadow--elevated-bottom;
 
-// Custom user defined shadows map
+// Effectful shadow variants/Custom
 
-$f-shadows--custom: () !default;
+$f-shadow--custom-fx1: (
+  "before, after": (
+    "z-index": -1,
+    "position": absolute,
+    "content": "",
+    "bottom": 0.67rem,
+    "left": 0,
+    "width": 50%,
+    "height": 0.5rem,
+    "background": none,
+    "box-shadow": 0 15px 10px $f-color__neutral--secondary-bg,
+  ),
+  "before": (
+    "transform": rotate(-3deg),
+    "left": 10px,
+    "right": auto,
+  ),
+  "after": (
+    "transform": rotate(3deg),
+    "right": 10px,
+    "left": auto,
+  )
+);
+
+$f-shadow--custom-fx2: (
+  "before, after": (
+    "z-index": -1,
+    "position": absolute,
+    "content": "",
+    "bottom": 0.67rem,
+    "left": 0,
+    "width": 50%,
+    "height": 0.5rem,
+    "background": none,
+    "box-shadow": 0 15px 10px $f-color__neutral--secondary-bg,
+  ),
+  "before": (
+    "transform": rotate(3deg),
+    "left": 10px,
+    "right": auto,
+  ),
+  "after": (
+    "transform": rotate(-3deg),
+    "right": 10px,
+    "left": auto,
+  )
+);
 
 // Shadows map
 
-$f-shadows: map_merge((
+$f-shadows: (
   "default": $f-shadow,
   "discrete": $f-shadow--discrete,
+  "discrete-bottom": $f-shadow--discrete-bottom,
   "elevated": $f-shadow--elevated,
   "elevated-bottom": $f-shadow--elevated-bottom,
-  "sunken": $f-shadow--sunken
-), $f-shadows--custom);
+  "sunken": $f-shadow--sunken,
+  "dreamy": $f-shadow--dreamy,
+  "dreamy-extra": $f-shadow--dreamy-extra,
+  "smooth": $f-shadow--smooth,
+);
+
+// Custom shadows map
+
+$f-shadows--custom: (
+  "fx1": $f-shadow--custom-fx1,
+  "fx2": $f-shadow--custom-fx2,
+);
+
