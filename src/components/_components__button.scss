@@ -12,8 +12,9 @@
   background-color: $f-color__neutral--accent-bg;
   cursor: pointer;
   outline: none;
+  border-color: inherit;
   border-style: solid;
-  border-radius: $f-radius--medium;
+  border-radius: $f-radius--small;
 
   &:hover:not(.a-ripple),
   &:focus:not(.a-ripple) {
@@ -30,6 +31,7 @@
   @each $_name, $_val in $f-colors-brand {
     &.c-btn--#{$_name} {
       background-color: $_val;
+      border-color: map.get($f-colors-neutral, $_name);
       color: map.get($f-colors-neutral, $_name);
       text-decoration: none;
 
@@ -37,6 +39,7 @@
       &:focus,
       &:active {
         text-decoration: none;
+        border-color: color.scale(map.get($f-colors-neutral, $_name), $lightness: if(color.lightness(map.get($f-colors-neutral, $_name)) > 50%, -17%, 17%));
         color: color.scale(map.get($f-colors-neutral, $_name), $lightness: if(color.lightness(map.get($f-colors-neutral, $_name)) > 50%, -17%, 17%));
       }
 
@@ -58,6 +61,7 @@
 
     &.c-btn--neutral-#{$_name} {
       background-color: $_bg-pendant;
+      border-color: map.get($f-colors-neutral, $_name);
       color: map.get($f-colors-neutral, $_name);
       text-decoration: none;
 
@@ -65,6 +69,7 @@
       &:focus,
       &:active {
         text-decoration: none;
+        border-color: color.scale($_val, $lightness: if(color.lightness($_val) > 50%, -17%, 17%));
         color: color.scale($_val, $lightness: if(color.lightness($_val) > 50%, -17%, 17%));
       }
 
@@ -85,6 +90,7 @@
   @each $_name, $_val in $f-colors-state {
     &.c-btn--#{$_name} {
       background-color: $_val;
+      border-color: $f-color__neutral--primary;
       color: $f-color__neutral--primary;
       text-decoration: none;
 
@@ -92,6 +98,7 @@
       &:focus,
       &:active {
         text-decoration: none;
+        border-color: color.scale($f-color__neutral--primary, $lightness: if(color.lightness($f-color__neutral--primary) > 50%, -17%, 17%));
         color: color.scale($f-color__neutral--primary, $lightness: if(color.lightness($f-color__neutral--primary) > 50%, -17%, 17%));
       }
 
@@ -122,6 +129,24 @@
         font-size: calc(1rem + $_val);
         line-height: 1;
         clip-path: circle(calc((3rem + #{$_val}) / 2));
+      }
+    }
+  }
+
+  // Pointing variants
+
+  @each $_pos-name in $f-positions__compass {
+    &.c-btn--arrow-#{$_pos-name} {
+      border-color: inherit;
+
+      @extend %u-arrow__mod--fraction--#{$_pos-name}#{$f-positions__separator}half;
+    }
+
+    @each $_fraction-name, $_fraction-val in $f-positions__fractions {
+      &.c-btn--arrow-#{$_pos-name}#{$f-positions__separator}#{$_f-fraction-name} {
+        border-color: inherit;
+
+        @extend %u-arrow__mod--fraction--#{$_pos-name}#{$f-positions__separator}#{$_fraction-name};
       }
     }
   }
