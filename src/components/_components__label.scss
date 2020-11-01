@@ -138,14 +138,14 @@
     &.c-label--arrow-#{$_pos-name} {
       border-color: inherit;
 
-      @extend %u-arrow__mod--fraction--#{$_pos-name}#{$f-positions__separator}half;
+      @extend %u-arrow--#{$_pos-name}#{$f-positions__separator}half;
     }
 
     @each $_fraction-name, $_fraction-val in $f-positions__fractions {
-      &.c-label--arrow-#{$_pos-name}#{$f-positions__separator}#{$_f-fraction-name} {
+      &.c-label--arrow-#{$_pos-name}#{$f-positions__separator}#{$_fraction-name} {
         border-color: inherit;
 
-        @extend %u-arrow__mod--fraction--#{$_pos-name}#{$f-positions__separator}#{$_fraction-name};
+        @extend %u-arrow--#{$_pos-name}#{$f-positions__separator}#{$_fraction-name};
       }
     }
   }

@@ -136,17 +136,18 @@
   // Pointing variants
 
   @each $_pos-name in $f-positions__compass {
+
     &.c-btn--arrow-#{$_pos-name} {
       border-color: inherit;
 
-      @extend %u-arrow__mod--fraction--#{$_pos-name}#{$f-positions__separator}half;
+      @extend %#{u-arrow--#{$_pos-name}#{$f-positions__separator}half};
     }
 
     @each $_fraction-name, $_fraction-val in $f-positions__fractions {
-      &.c-btn--arrow-#{$_pos-name}#{$f-positions__separator}#{$_f-fraction-name} {
+      &.c-btn--arrow-#{$_pos-name}#{$f-positions__separator}#{$_fraction-name} {
         border-color: inherit;
 
-        @extend %u-arrow__mod--fraction--#{$_pos-name}#{$f-positions__separator}#{$_fraction-name};
+        @extend %u-arrow--#{$_pos-name}#{$f-positions__separator}#{$_fraction-name};
       }
     }
   }

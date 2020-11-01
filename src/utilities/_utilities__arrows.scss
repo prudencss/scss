@@ -100,6 +100,8 @@ $u-arrows--enabled: true !default;
   $_size-val: map.get($u-arrows__sizes, $_size-name);
 
   .u-arrow--#{$_size-name} {
+    @extend %u-arrow;
+
     &::before {
       width: $_size-val !important;
       height: $_size-val !important;
@@ -111,8 +113,6 @@ $u-arrows--enabled: true !default;
 // --------------------------------------------------
 
 @if $u-arrows--enabled {
-  @include u-arrow();
-
   @each $_fraction-name, $_fraction-val in $u-arrows__fractions {
     @include u-arrow__mod--fraction($_fraction-name, $_fraction-val);
     @include u-arrow__mod--fraction--left($_fraction-name, $_fraction-val);
