@@ -41,6 +41,7 @@
   },
   "main": "src/prudencss.scss",
   "dependencies": {
-    "sass": "^1.26.10"
+    "sass": "^1.26.10",
+    "@prudencss/filters-svg": "../filters-svg"
   }
 }
