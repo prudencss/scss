@@ -1,0 +1,209 @@
+@use "sass:color";
+@use "sass:map";
+
+/**********************************************
+ * Nav Component
+ * ********************************************
+ * object toggling, params4mods, modifiers, mixin ... classes
+ *
+ * mods: alignment, spacing, color, border, size, positioning, screen-flow-direction (hor/vert)
+ * *******************************************/
+
+// Toggling
+
+$c-nav--enabled: true !default;
+
+// Default Params
+
+$c-nav__alignment: flex-start !default;
+$c-nav__alignment--vertical: center !default;
+$c-nav__spacing: map.get($f-spaces, "small") !default;
+$c-nav__line-heights: map.get($f-line-heights, "medium") !default;
+$c-nav__color: $f-color__neutral-accent !default;
+$c-nav__bg-color: $f-color__brand-accent !default;
+$c-nav__font-size--menu: "xl" !default;
+$c-nav__font-size--extra: "m" !default;
+
+// Modifiers
+
+$c-nav__mod-alignments--enabled: true !default;
+$c-nav__mod-alignments: flex-start, center, flex-end, space-between, space-around;
+$c-nav__mod-alignments--vertical: flex-start, flex-end, center, baseline, stretch;
+
+$c-nav__mod-reverse--enabled: true !default;
+
+$c-nav__mod-spacings--enabled: true !default;
+$c-nav__mod-spacings: $f-spaces;
+
+$c-nav__mod-colors--enabled: true !default;
+$c-nav__mod-colors: $f-colors-main;
+
+$c-nav__mod-borders--enabled: true !default;
+$c-nav__mod-borders: top, bottom, top-bottom;
+
+$c-nav__mod-sizes--enabled: true !default;
+$c-nav__mod_sizes: (
+  "s": (
+    "font-menu": map.get($f-font-sizes, "m"),
+    "font-extra": map.get($f-font-sizes, "s"),
+    "line-height": map.get($f-line-heights, "tiny")
+  ),
+  "m": (
+    "font-menu": map.get($f-font-sizes, "l"),
+    "font-extra": map.get($f-font-sizes, "m"),
+    "line-height": map.get($f-line-heights, "small")
+  ),
+  "l": (
+    "font-menu": map.get($f-font-sizes, "xl"),
+    "font-extra": map.get($f-font-sizes, "l"),
+    "line-height": map.get($f-line-heights, "medium")
+  ),
+  "xl": (
+    "font-menu": map.get($f-font-sizes, "xxl"),
+    "font-extra": map.get($f-font-sizes, "xl"),
+    "line-height": map.get($f-line-heights, "large")
+  )
+);
+
+$c-nav__mod-screen-flow-direction--enabled: true !default;
+
+// Component as a mixin
+// --------------------
+
+@mixin c-nav {
+  .c-nav {
+    @include o-flexbox(row);
+
+    position: relative;
+    justify-content: $c-nav__alignment;
+    align-items: $c-nav__alignment--vertical;
+    padding: 0 $c-nav__spacing;
+    background-color: $c-nav__bg-color;
+    backdrop-filter: blur(5px) grayscale(50%) opacity(50%);
+    color: $c-nav__color;
+
+    .c-nav__brand,
+    .c-nav__menu,
+    .c-nav__extra {
+      padding: 0 $c-nav__spacing;
+      line-height: $c-nav__line-heights;
+    }
+
+    .c-nav__menu {
+      justify-content: center;
+      align-items: stretch;
+      line-height: 100%;
+    }
+
+    .c-nav__extra {
+      @include o-flexbox(row);
+      @include o-flexbox__mod-display(inline, inline-flex);
+      @include o-flexbox__item();
+
+      justify-content: flex-end;
+      align-items: center;
+      position: absolute;
+      right: 0;
+    }
+  }
+}
+
+@if $c-nav--enabled {
+  @include c-nav();
+}
+
+// Modifiers
+// ---------
+
+@mixin c-nav__mod-alignment($_alignment: $c-nav__alignment) {
+  .c-nav__alignment--#{$_alignment} {
+    .c-nav__menu {
+      justify-content: $_alignment;
+    }
+  }
+}
+
+@mixin c-nav__mod-alignment--vertical($_alignment: $c-nav__alignment--vertical) {
+  .c-nav__v-alignment--#{$_alignment} {
+    .c-nav__menu {
+      align-items: $_alignment;
+    }
+  }
+}
+
+@if $c-nav--enabled and $c-nav__mod-alignments--enabled {
+  @each $_alignment in $c-nav__mod-alignments {
+    @include c-nav__mod-alignment($_alignment);
+  }
+
+  @each $_alignment in $c-nav__mod-alignments--vertical {
+    @include c-nav__mod-alignment($_alignment);
+  }
+}
+
+@mixin c-nav__mod-reverse() {
+  .c-nav__reverse {
+    flex-direction: row-reverse;
+
+    &.c-nav__screen-flow-direction--stacked {
+      flex-direction: column-reverse;
+    }
+  }
+}
+
+@if $c-nav--enabled and $c-nav__mod-reverse--enabled {
+  @include c-nav__mode-reverse();
+}
+
+@mixin c-nav__mod-spacing($_spacing-name, $_spacing-value) {
+  .c-nav__spacing--#{$_spacing-name} {
+    padding: 0 $_spacing-value;
+
+    .c-nav__brand,
+    .c-nav__menu,
+    .c-nav__extra {
+      padding: 0 $_spacing-value;
+    }
+  }
+}
+
+@mixin c-nav__mod-color($_color-name, $_color-value) {
+  .c-nav__color--#{$_color-name} {
+    background-color: $_color-value;
+  }
+}
+
+@mixin c-nav__mod-border($_border-name, $_border-value) {
+  .c-nav__border--#{$_border-name} {
+    .c-nav__menu > * {
+      border-#{$_border-name}: $_border-value;
+    }
+  }
+}
+
+@mixin c-nav__mod-size($_size-name, $_size-map) {
+  .c-nav__size--#{$_size-name} {
+    .c-nav__menu {
+      font-size: map.get($_size-map, "font-menu");
+    }
+
+    .c-nav__extra {
+      font-size: map.get($_size-map, "font-extra");
+      line-height: map.get($size-map, "line-height");
+    }
+  }
+}
+
+@mixin c-nav__mod-screen-flow-direction() {
+  .c-nav__screen-flow-direction--stacked {
+    flex-direction: column;
+  }
+
+  @each $_breakpoint-name, $_breakpoint-size in $f-breakpoints--landscape {
+    .c-nav__screen-flow-direction--stacked#{s-core-string-breakpoint($breakpoint-name)} {
+      @include t-mq($until: $_breakpoint-name) {
+        flex-direction: column;
+      }
+    }
+  }
+}
