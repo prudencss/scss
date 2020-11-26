@@ -1,3 +1,5 @@
+@use "sass:map";
+
 /* -------------------------------------------------------------------------
  * REVEAL SLIDE
  *
@@ -40,11 +42,11 @@ $a-tata__mod-directions: "clockwise", "counter-clockwise" !default;
     "counter-clockwise": rotateZ(-45deg) scaleX(1.618) scaleY(1.618)
   );
 
-  @if not map_has_key($_directions-transforms, $_direction) {
+  @if not map.has-key($_directions-transforms, $_direction) {
     @error "a-tata__direction-to-transform: `#{$_direction}` is not one of the allowed directions.";
   }
 
-  @return map_get($_directions-transforms, $_direction);
+  @return map.get($_directions-transforms, $_direction);
 }
 
 // Animation as a mixin
@@ -71,8 +73,7 @@ $a-tata__mod-directions: "clockwise", "counter-clockwise" !default;
     @include a-tata;
 
     &.in,
-    &.action-on-mouse:hover,
-    &.action-on-mouse:focus {
+    &.action-on-mouse:active {
       @include a-tata--in;
     }
   }

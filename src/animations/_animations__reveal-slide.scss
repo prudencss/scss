@@ -1,3 +1,5 @@
+@use "sass:map";
+
 /* -------------------------------------------------------------------------
  * REVEAL SLIDE
  *
@@ -42,11 +44,11 @@ $a-reveal-slide__mod-directions: "left", "right", "top", "bottom" !default;
     "bottom": translate(0, 100%)
   );
 
-  @if not map_has_key($_directions-transforms, $_direction) {
+  @if not map.has-key($_directions-transforms, $_direction) {
     @error "a-reveal-slide__direction-to-transform: `#{$_direction}` is not one of the allowed directions.";
   }
 
-  @return map_get($_directions-transforms, $_direction);
+  @return map.get($_directions-transforms, $_direction);
 }
 
 // Animation as a mixin
