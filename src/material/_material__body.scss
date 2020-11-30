@@ -83,7 +83,7 @@ $m-body__mod-sizes: (
 
 @if $m-body--enabled and $m-body__mod-sizes--enabled {
   @each $_mod-name, $_mod-properties in $m-body__mod-sizes {
-    .m-body--#{$_mod-name} {
+    .m-body__size--#{$_mod-name} {
       @each $_property, $_value in s-core-map-diff($m-body__properties, $_mod-properties) {
         @if type_of($_value) == "number" and unit($_value) == "px" {
           $_value: s-core-px-to-rem($_value);
