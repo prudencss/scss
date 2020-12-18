@@ -6,16 +6,16 @@
 
 // Main line heights
 
-$f-line-height--tiny: 1 !default;
-$f-line-height--small: 1.25 !default;
-$f-line-height--medium: 1.618 !default;
-$f-line-height--large: 2 !default;
+$f-line-height--xs: 1 !default;
+$f-line-height--s: 1.25 !default;
+$f-line-height--m: 1.618 !default;
+$f-line-height--l: 2 !default;
 
 // Line heights map
 
 $f-line-heights: (
-  "tiny": $f-line-height--tiny,
-  "small": $f-line-height--small,
-  "medium": $f-line-height--medium,
-  "large": $f-line-height--large
+  "xs": $f-line-height--xs,
+  "xs": $f-line-height--s,
+  "m": $f-line-height--m,
+  "l": $f-line-height--l
 );

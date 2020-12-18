@@ -29,11 +29,11 @@ $f-space--huge: round($f-space * $f-space__factor * ($f-space__factor * 2)) !def
 
 $f-spaces: (
   "none": $f-space--none,
-  "tiny": $f-space--tiny,
-  "small": $f-space--small,
-  "medium": $f-space--medium,
-  "large": $f-space--large,
-  "huge": $f-space--huge
+  "xs": $f-space--tiny,
+  "s": $f-space--small,
+  "m": $f-space--medium,
+  "l": $f-space--large,
+  "xl": $f-space--huge
 );
 
 ////////////////////////////////////////////////////////////////////////////////

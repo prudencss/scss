@@ -6,60 +6,60 @@
 
 // Main dimension
 
-$f-dimension__icon-dimensions--tiny: 16px !default;
-$f-dimension__icon-dimensions--xsmall: 24px !default;
-$f-dimension__icon-dimensions--small: 32px !default;
-$f-dimension__icon-dimensions--medium: 48px !default;
-$f-dimension__icon-dimensions--large: 64px !default;
-$f-dimension__icon-dimensions--xlarge: 96px !default;
-$f-dimension__icon-dimensions--huge: 128px !default;
+$f-dimension__icon-dimensions--xxs: 16px !default;
+$f-dimension__icon-dimensions--xs: 24px !default;
+$f-dimension__icon-dimensions--s: 32px !default;
+$f-dimension__icon-dimensions--m: 48px !default;
+$f-dimension__icon-dimensions--l: 64px !default;
+$f-dimension__icon-dimensions--xl: 96px !default;
+$f-dimension__icon-dimensions--xxl: 128px !default;
 
-$f-dimension__img-dimensions--tiny: 48px !default;
-$f-dimension__img-dimensions--xsmall: 68px !default;
-$f-dimension__img-dimensions--small: 96px !default;
-$f-dimension__img-dimensions--medium: 128px !default;
-$f-dimension__img-dimensions--large: 256px !default;
-$f-dimension__img-dimensions--xlarge: 512px !default;
-$f-dimension__img-dimensions--huge: 1024px !default;
+$f-dimension__img-dimensions--xxs: 48px !default;
+$f-dimension__img-dimensions--xs: 68px !default;
+$f-dimension__img-dimensions--s: 96px !default;
+$f-dimension__img-dimensions--m: 128px !default;
+$f-dimension__img-dimensions--l: 256px !default;
+$f-dimension__img-dimensions--xl: 512px !default;
+$f-dimension__img-dimensions--xxl: 1024px !default;
 
-$f-dimension__arrow-dimensions--tiny: 3px !default;
-$f-dimension__arrow-dimensions--xsmall: 7px !default;
-$f-dimension__arrow-dimensions--small: 9px !default;
-$f-dimension__arrow-dimensions--medium: 13px !default;
-$f-dimension__arrow-dimensions--large: 15px !default;
-$f-dimension__arrow-dimensions--xlarge: 25 !default;
-$f-dimension__arrow-dimensions--huge: 49px !default;
+$f-dimension__arrow-dimensions--xxs: 3px !default;
+$f-dimension__arrow-dimensions--xs: 7px !default;
+$f-dimension__arrow-dimensions--s: 9px !default;
+$f-dimension__arrow-dimensions--m: 13px !default;
+$f-dimension__arrow-dimensions--l: 15px !default;
+$f-dimension__arrow-dimensions--xl: 25 !default;
+$f-dimension__arrow-dimensions--xxl: 49px !default;
 
 // Spaces map
 
 $f-dimensions__icon: (
-  "tiny": $f-dimension__icon-dimensions--tiny,
-  "xsmall": $f-dimension__icon-dimensions--xsmall,
-  "small": $f-dimension__icon-dimensions--small,
-  "medium": $f-dimension__icon-dimensions--medium,
-  "large": $f-dimension__icon-dimensions--large,
-  "xlarge": $f-dimension__icon-dimensions--xlarge,
-  "huge": $f-dimension__icon-dimensions--huge
+  "xxs": $f-dimension__icon-dimensions--xxs,
+  "xs": $f-dimension__icon-dimensions--xs,
+  "s": $f-dimension__icon-dimensions--s,
+  "m": $f-dimension__icon-dimensions--m,
+  "l": $f-dimension__icon-dimensions--l,
+  "xl": $f-dimension__icon-dimensions--xl,
+  "xxl": $f-dimension__icon-dimensions--xxl
 );
 
 $f-dimensions__img: (
-  "tiny": $f-dimension__img-dimensions--tiny,
-  "xsmall": $f-dimension__img-dimensions--xsmall,
-  "small": $f-dimension__img-dimensions--small,
-  "medium": $f-dimension__img-dimensions--medium,
-  "large": $f-dimension__img-dimensions--large,
-  "xlarge": $f-dimension__img-dimensions--xlarge,
-  "huge": $f-dimension__img-dimensions--huge
+  "xxs": $f-dimension__img-dimensions--xxs,
+  "xs": $f-dimension__img-dimensions--xs,
+  "s": $f-dimension__img-dimensions--s,
+  "m": $f-dimension__img-dimensions--m,
+  "l": $f-dimension__img-dimensions--l,
+  "xl": $f-dimension__img-dimensions--xl,
+  "xxl": $f-dimension__img-dimensions--xxl
 );
 
 $f-dimensions__arrow: (
-  "tiny": $f-dimension__arrow-dimensions--tiny,
-  "xsmall": $f-dimension__arrow-dimensions--xsmall,
-  "small": $f-dimension__arrow-dimensions--small,
-  "medium": $f-dimension__arrow-dimensions--medium,
-  "large": $f-dimension__arrow-dimensions--large,
-  "xlarge": $f-dimension__arrow-dimensions--xlarge,
-  "huge": $f-dimension__arrow-dimensions--huge
+  "xxs": $f-dimension__arrow-dimensions--xxs,
+  "xs": $f-dimension__arrow-dimensions--xs,
+  "s": $f-dimension__arrow-dimensions--s,
+  "m": $f-dimension__arrow-dimensions--m,
+  "l": $f-dimension__arrow-dimensions--l,
+  "xl": $f-dimension__arrow-dimensions--xl,
+  "xxl": $f-dimension__arrow-dimensions--xxl
 );
 
 ////////////////////////////////////////////////////////////////////////////////

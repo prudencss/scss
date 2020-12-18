@@ -22,23 +22,23 @@ $m-body__properties: (
 
 $m-body__mod-sizes--enabled: true !default;
 $m-body__mod-sizes: (
-  "tiny": (
+  "xs": (
     "font-family": $e-document__body--font-family,
     "font-size": $f-font-size--xs,
     "line-height": $e-document__body--line-height
   ),
-  "small": (
+  "s": (
     "font-family": $e-document__body--font-family,
     "font-size": $f-font-size--s,
     "line-height": $e-document__body--line-height
   ),
-  "medium": $m-body__properties,
-  "large": (
+  "m": $m-body__properties,
+  "l": (
     "font-family": $e-document__body--font-family,
     "font-size": $f-font-size--l,
     "line-height": $e-document__body--line-height
   ),
-  "huge": (
+  "xl": (
     "font-family": $e-document__body--font-family,
     "font-size": $f-font-size--xl,
     "line-height": $e-document__body--line-height

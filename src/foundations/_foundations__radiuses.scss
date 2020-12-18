@@ -20,7 +20,7 @@ $f-radius--full: 50% !default;
 
 $f-radiuses: (
   "none": $f-radius--none,
-  "small": $f-radius--small,
-  "medium": $f-radius--medium,
-  "large": $f-radius--large
+  "s": $f-radius--small,
+  "m": $f-radius--medium,
+  "l": $f-radius--large
 );
