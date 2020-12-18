@@ -15,7 +15,7 @@
  *    navigating between pages that do/do not have enough content to produce
  *    scrollbars naturally.
  * 3. Ensure the page always fills at least the entire height of the viewport. */
-
+;
 // Document variables
 
 $e-document__body--font-family: $f-font-family__primary !default;
@@ -40,7 +40,7 @@ $e-document__body--bgcolor: color.scale($f-color__neutral--primary-bg, $lightnes
 @else {
   // Otherwise, apply box sizing from root html tag
 
-  html, .e-document {
+  html {
     font-family: $e-document__body--font-family;
     color: $e-document__body--color;
     background-color: $e-document__body--bgcolor;
