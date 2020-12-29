@@ -34,12 +34,16 @@
  * spacings ................... An abstraction about spaces
  * objects .................... Unstyled design patterns
  * animations ................. Movement and transition patterns
- * color-schemes .............. Color combination schemes */
+ * color-schemes .............. Color combination schemes
+ * icons ...................... prudencss "3rd party" icons-library (fa, ...) integration
+ * filters/svg-fx ............. prudencss "3rd party" svg-filters integration/collection */
 
 @import "spacings/spacings";
 @import "objects/objects";
 @import "animations/animations";
 @import "color-schemes/color-schemes";
+@import "~@prudencss/icons-svg";
+@import "~@prudencss/filters-svg";
 
 /* -------------------------------------------------------------------------
  * CONTENT
