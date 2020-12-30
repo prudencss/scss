@@ -1,3 +1,9 @@
+@use "sass:map";
+@use "../foundations/foundations__aspect-ratios";
+@use "../foundations/foundations__breakpoints";
+@use "../settings/core-functions/string-breakpoint";
+@use "../tools/tools__sass-mq";
+
 /* -------------------------------------------------------------------------
  * RATIO
  *
@@ -13,10 +19,10 @@ $o-ratio--enabled: true !default;
 // Modifiers Ratios
 
 $o-ratio__mod-ratios--enabled: true !default;
-$o-ratio__mod-ratios: $f-aspect-ratios !default;
+$o-ratio__mod-ratios: foundations__aspect-ratios.$f-aspect-ratios !default;
 
 $o-ratio__mod-bp--enabled: true !default;
-$o-ratio__mod-bp: map_remove($f-breakpoints, "xxs") !default;
+$o-ratio__mod-bp: map.remove(foundations__breakpoints.$f-breakpoints, "xxs") !default;
 
 // Object as a mixin
 // -------------------------------------------
@@ -81,8 +87,8 @@ $o-ratio__mod-bp: map_remove($f-breakpoints, "xxs") !default;
 @if $o-ratio--enabled and $o-ratio__mod-ratios--enabled and $o-ratio__mod-bp--enabled {
   @each $_bp-name, $_bp-value in $o-ratio__mod-bp {
     @each $_name, $_ratio in $o-ratio__mod-ratios {
-      @include t-mq($from: $_bp-name) {
-        .o-ratio--#{$_name}#{s-core-string-breakpoint($_bp-name)} {
+      @include tools__sass-mq.t-mq($from: $_bp-name) {
+        .o-ratio--#{$_name}#{string-breakpoint.s-core-string-breakpoint($_bp-name)} {
           @include o-ratio--override($_ratio);
         }
       }

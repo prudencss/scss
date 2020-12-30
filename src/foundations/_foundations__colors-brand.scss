@@ -6,14 +6,14 @@
 
 // Main brand colors
 
-$f-color__brand-primary: #f25f5c !default;
-$f-color__brand-secondary: #69b7a4 !default;
-$f-color__brand-accent: #ffe066 !default;
+$f-color__brand--primary: #f25f5c !default;
+$f-color__brand--secondary: #69b7a4 !default;
+$f-color__brand--accent: #ffe066 !default;
 
 // Brand color map
 
 $f-colors-brand: (
-  "primary": $f-color__brand-primary,
-  "secondary": $f-color__brand-secondary,
-  "accent": $f-color__brand-accent
+  "primary": $f-color__brand--primary,
+  "secondary": $f-color__brand--secondary,
+  "accent": $f-color__brand--accent
 );

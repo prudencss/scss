@@ -1,3 +1,6 @@
+@use "sass:string";
+@use "../settings__config";
+
 /* -------------------------------------------------------------------------
  * STRING RATIO
  *
@@ -7,7 +10,7 @@
  * s-core-string-ratio-separation(16, 9) == 16\:9 */
 
 @function s-core-string-ratio($_width, $_height) {
-  @return unquote("#{$s-config__special-char--ratio-separator}#{$_width}\\/#{$_height}");
+  @return string.unquote("#{settings__config.$s-config__special-char--ratio-separator}#{$_width}\\/#{$_height}");
 }
 
 @function s-core-string-ratio-separation($_width, $_height) {

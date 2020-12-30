@@ -7,5 +7,5 @@
  *
  * brand primary ............... Color scheme based on brand primary colors */
 
-@import "color-schemes__default";
-@import "color-schemes__inverted";
+@use "color-schemes__default";
+@use "color-schemes__inverted";

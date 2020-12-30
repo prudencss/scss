@@ -1,3 +1,5 @@
+@use "sass:meta";
+
 /* -------------------------------------------------------------------------
  * CONFIG
  *
@@ -9,29 +11,32 @@
  * foundations ................ Visual language expressed into SASS vars
  * tools ...................... Helper mixins for mq, quantities, ... */
 
+@use "settings/settings__core";
+@use "settings/settings__config";
+@use "settings/settings__core-functions";
+@use "foundations/foundations";
+@use "tools/tools";
+
 // Enable scoped flag
 $s-config__scoped: true;
 
-@import "settings/settings";
-@import "foundations/foundations";
-@import "tools/tools";
+/* -------------------------------------------------------------------------
+ * BASE
+ *
+ * Main HTML elements reset and setup, and base material
+ *
+ * generic .................... Normalize browser behaviour
+ * elements ................... HTML elements default appearance
+ * material ................... Class based elements: headings, icons, ... */
+
+@use "generic/generic";
+@use "elements/elements";
+@use "material/material";
 
 /* -------------------------------------------------------------------------
  * SCOPED CLASS AND CONTENT */
 
-.s-#{$s-config__scope-selector} {
-  /* -------------------------------------------------------------------------
-   * BASE
-   *
-   * Main HTML elements reset and setup, and base material
-   *
-   * generic .................... Normalize browser behaviour
-   * elements ................... HTML elements default appearance
-   * material ................... Class based elements: headings, icons, ... */
-
-  @import "generic/generic";
-  @import "elements/elements";
-  @import "material/material";
+.s-#{settings__config.$s-config__scope-selector} {
 
   /* -------------------------------------------------------------------------
    * ABSTRACTIONS
@@ -45,12 +50,12 @@ $s-config__scoped: true;
    * icons ...................... prudencss "3rd party" icons-library (fa, ...) integration
    * filters/svg-fx ............. prudencss "3rd party" svg-filters integration/collection */
 
-  @import "spacings/spacings";
-  @import "objects/objects";
-  @import "animations/animations";
-  @import "color-schemes/color-schemes";
-  @import "~@prudencss/icons-svg";
-  @import "~@prudencss/filters-svg";
+  @include meta.load-css("spacings/spacings");
+  @include meta.load-css("objects/objects");
+  @include meta.load-css("animations/animations");
+  @include meta.load-css("color-schemes/color-schemes");
+  @include meta.load-css("../node_modules/@prudencss/icons-svg/src/index.scss");
+  @include meta.load-css("../node_modules/@prudencss/filters-svg/src/index.scss");
 
   /* -------------------------------------------------------------------------
    * CONTENT
@@ -61,10 +66,10 @@ $s-config__scoped: true;
    * components ................. Abstract named components
    * widgets .................... Data and business driven components
    * templates .................. Template layouts
-   * renderings ................. Concrete use cases of components and widgets
-   * pages ...................... Concrete use cases of templates */
+   * renderings ................. Concrete include meta.load-css( cases of components and widgets
+   * pages ...................... Concrete include meta.load-css( cases of templates */
 
-  @import "components/components";
+  @include meta.load-css("components/components");
 
   /* -------------------------------------------------------------------------
    * OVERRIDES
@@ -72,7 +77,7 @@ $s-config__scoped: true;
    * Safe belt scopes and utilities
    *
    * scopes ..................... Untrusted or corrupted sources under control
-   * utilities .................. Helper classes with important statements */
+   * utilities .................. Helper classes with include meta.load-css(ant statements */
 
-  @import "utilities/utilities";
+  @include meta.load-css("utilities/utilities");
 }

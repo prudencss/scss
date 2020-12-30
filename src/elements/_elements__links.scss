@@ -1,3 +1,5 @@
+@use "../foundations/foundations__colors-other";
+
 /* -------------------------------------------------------------------------
  * LINKS
  *
@@ -5,8 +7,8 @@
 
 // Links variables
 
-$e-links__color: $f-color__digital-blue !default;
-$e-links__hover-color: $f-color__digital-blue !default;
+$e-links__color: foundations__colors-other.$f-color__digital-blue !default;
+$e-links__hover-color: foundations__colors-other.$f-color__digital-blue !default;
 
 $e-links__decoration: none !default;
 $e-links__hover-decoration: underline !default;

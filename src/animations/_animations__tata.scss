@@ -1,3 +1,6 @@
+@use "../foundations/foundations__durations";
+@use "../foundations/foundations__easings";
+
 @use "sass:map";
 
 /* -------------------------------------------------------------------------
@@ -18,15 +21,15 @@ $a-tata--enabled: true !default;
 
 // Animation Params
 
-$a-tata__duration: $f-duration !default;
+$a-tata__duration: foundations__durations.$f-duration !default;
 $a-tata__direction: "clockwise" !default;
-$a-tata__easing-in: $f-easing--excite !default;
-$a-tata__easing-out: $f-easing--out !default;
+$a-tata__easing-in: foundations__easings.$f-easing--excite !default;
+$a-tata__easing-out: foundations__easings.$f-easing--out !default;
 
 // Modifiers durations
 
 $a-tata__mod-durations--enabled: true !default;
-$a-tata__mod-durations: $f-durations !default;
+$a-tata__mod-durations: foundations__durations.$f-durations !default;
 
 // Modifiers directions
 
@@ -82,7 +85,7 @@ $a-tata__mod-directions: "clockwise", "counter-clockwise" !default;
 // Duration modifiers output
 // --------------------------------------------------
 
-@mixin a-tata__mod-duration($_duration-name: "normal", $_duration-value: $f-duration--normal) {
+@mixin a-tata__mod-duration($_duration-name: "normal", $_duration-value: foundations__durations.$f-duration--normal) {
   .a-tata--duration-#{$_duration-name} {
     transition-duration: $_duration-value;
   }

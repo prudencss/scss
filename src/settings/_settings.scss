@@ -7,6 +7,6 @@
  * config ..................... Global configuration: env, paths, scoped, ...
  * core-functions ............. Functions related to units, math, ... */
 
-@import "settings__core";
-@import "settings__config";
-@import "settings__core-functions";
+@use "settings__core";
+@use "settings__config";
+@use "settings__core-functions";

@@ -1,3 +1,5 @@
+@use "../tools/tools__clearfix";
+
 /* -------------------------------------------------------------------------
  * BOX
  *
@@ -17,7 +19,7 @@ $o-box--enabled: true !default;
 @mixin o-box {
   display: block;
 
-  @include t-clearfix;
+  @include tools__clearfix.t-clearfix;
 }
 
 // Object selector output
@@ -35,5 +37,5 @@ $o-box--enabled: true !default;
 @mixin o-box--unset {
   display: inherit;
 
-  @include t-clearfix--unset;
+  @include tools__clearfix.t-clearfix--unset;
 }

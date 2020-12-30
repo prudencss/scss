@@ -9,9 +9,9 @@
 * foundations ................ Visual language expressed into SASS vars
 * tools ...................... Helper mixins for mq, quantities, ... */
 
-@import "settings/settings";
-@import "foundations/foundations";
-@import "tools/tools";
+@use "settings/settings";
+@use "foundations/foundations";
+@use "tools/tools";
 
 /* -------------------------------------------------------------------------
  * BASE
@@ -22,9 +22,9 @@
  * elements ................... HTML elements default appearance
  * material ................... Class based elements: headings, icons, ... */
 
-@import "generic/generic";
-@import "elements/elements";
-@import "material/material";
+@use "generic/generic";
+@use "elements/elements";
+@use "material/material";
 
 /* -------------------------------------------------------------------------
  * ABSTRACTIONS
@@ -38,12 +38,10 @@
  * icons ...................... prudencss "3rd party" icons-library (fa, ...) integration
  * filters/svg-fx ............. prudencss "3rd party" svg-filters integration/collection */
 
-@import "spacings/spacings";
-@import "objects/objects";
-@import "animations/animations";
-@import "color-schemes/color-schemes";
-@import "~@prudencss/icons-svg";
-@import "~@prudencss/filters-svg";
+@use "spacings/spacings";
+@use "objects/objects";
+@use "animations/animations";
+@use "color-schemes/color-schemes";
 
 /* -------------------------------------------------------------------------
  * CONTENT
@@ -57,7 +55,7 @@
  * renderings ................. Concrete use cases of components and widgets
  * pages ...................... Concrete use cases of templates */
 
-@import "components/components";
+@use "components/components";
 
 /* -------------------------------------------------------------------------
  * OVERRIDES
@@ -67,4 +65,4 @@
  * scopes ..................... Untrusted or corrupted sources under control
  * utilities .................. Helper classes with important statements */
 
-@import "utilities/utilities";
+@use "utilities/utilities";

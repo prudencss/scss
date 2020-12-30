@@ -1,3 +1,6 @@
+@use "sass:meta";
+@use "../settings/core-functions/string-ratio";
+
 /* -------------------------------------------------------------------------
  * ASPECT RATIOS
  *
@@ -15,11 +18,11 @@ $f-aspect-ratio--2-1: 1 / 2 !default;
 // Aspect ratios map
 
 $f-aspect-ratios: (
-  s-core-string-ratio-separation(1, 1): $f-aspect-ratio--1-1,
-  s-core-string-ratio-separation(4, 3): $f-aspect-ratio--4-3,
-  s-core-string-ratio-separation(3, 2): $f-aspect-ratio--3-2,
-  s-core-string-ratio-separation(16, 9): $f-aspect-ratio--16-9,
-  s-core-string-ratio-separation(2, 1): $f-aspect-ratio--2-1
+  string-ratio.s-core-string-ratio-separation(1, 1): $f-aspect-ratio--1-1,
+  string-ratio.s-core-string-ratio-separation(4, 3): $f-aspect-ratio--4-3,
+  string-ratio.s-core-string-ratio-separation(3, 2): $f-aspect-ratio--3-2,
+  string-ratio.s-core-string-ratio-separation(16, 9): $f-aspect-ratio--16-9,
+  string-ratio.s-core-string-ratio-separation(2, 1): $f-aspect-ratio--2-1
 ) !default;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -31,7 +34,7 @@ $f-aspect-ratios: (
  * Check that the chosen ratios are numbers. */
 
 @each $_name, $_ratio in $f-aspect-ratios {
-  @if type-of($_ratio) != number {
+  @if meta.type-of($_ratio) != number {
     @error "`$f-aspect-ratios: #{$_ratio}` needs to be a number.";
   }
 }

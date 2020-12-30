@@ -1,3 +1,12 @@
+@use "../foundations/foundations__colors-brand";
+@use "../foundations/foundations__colors-neutral";
+@use "../foundations/foundations__colors-state";
+@use "../foundations/foundations__positions";
+@use "../foundations/foundations__radiuses";
+@use "../foundations/foundations__spaces";
+@use "../settings/core-functions/map-diff";
+@forward "../utilities/utilities__arrows";
+
 @use "sass:color";
 @use "sass:map";
 
@@ -8,39 +17,39 @@
   font: inherit;
   text-align: center;
   margin: 0;
-  padding: $f-space--small $f-space--medium;
-  background-color: $f-color__neutral--accent-bg;
+  padding: foundations__spaces.$f-space--s foundations__spaces.$f-space--m;
+  background-color: foundations__colors-neutral.$f-color__neutral--accent-bg;
   cursor: pointer;
   outline: none;
   border-color: inherit;
   border-style: solid;
-  border-radius: $f-radius--small;
+  border-radius: foundations__radiuses.$f-radius--s;
 
   &:hover:not(.a-ripple),
   &:focus:not(.a-ripple) {
-    background-color: color.scale($f-color__neutral--accent-bg, $lightness: if(color.lightness($f-color__neutral--accent-bg) > 50%, 17%, -17%));
+    background-color: color.scale(foundations__colors-neutral.$f-color__neutral--accent-bg, $lightness: if(color.lightness(foundations__colors-neutral.$f-color__neutral--accent-bg) > 50%, 17%, -17%));
   }
 
   &:active:not(.a-ripple) {
-    background-color: color.scale($f-color__neutral--accent-bg, $lightness: if(color.lightness($f-color__neutral--accent-bg) > 50%, 33%, -33%));
+    background-color: color.scale(foundations__colors-neutral.$f-color__neutral--accent-bg, $lightness: if(color.lightness(foundations__colors-neutral.$f-color__neutral--accent-bg) > 50%, 33%, -33%));
   }
 
 
   // Branding Color Variants
 
-  @each $_name, $_val in $f-colors-brand {
+  @each $_name, $_val in foundations__colors-brand.$f-colors-brand {
     &.c-btn--#{$_name} {
       background-color: $_val;
-      border-color: map.get($f-colors-neutral, $_name);
-      color: map.get($f-colors-neutral, $_name);
+      border-color: map.get(foundations__colors-neutral.$f-colors-neutral, $_name);
+      color: map.get(foundations__colors-neutral.$f-colors-neutral, $_name);
       text-decoration: none;
 
       &:hover,
       &:focus,
       &:active {
         text-decoration: none;
-        border-color: color.scale(map.get($f-colors-neutral, $_name), $lightness: if(color.lightness(map.get($f-colors-neutral, $_name)) > 50%, -17%, 17%));
-        color: color.scale(map.get($f-colors-neutral, $_name), $lightness: if(color.lightness(map.get($f-colors-neutral, $_name)) > 50%, -17%, 17%));
+        border-color: color.scale(map.get(foundations__colors-neutral.$f-colors-neutral, $_name), $lightness: if(color.lightness(map.get(foundations__colors-neutral.$f-colors-neutral, $_name)) > 50%, -17%, 17%));
+        color: color.scale(map.get(foundations__colors-neutral.$f-colors-neutral, $_name), $lightness: if(color.lightness(map.get(foundations__colors-neutral.$f-colors-neutral, $_name)) > 50%, -17%, 17%));
       }
 
       &:hover,
@@ -56,13 +65,13 @@
     }
   }
 
-  @each $_name, $_val in $f-colors-neutral {
-    $_bg-pendant: map.get($f-colors-neutral--bg, $_name);
+  @each $_name, $_val in foundations__colors-neutral.$f-colors-neutral {
+    $_bg-pendant: map.get(foundations__colors-neutral.$f-colors-neutral--bg, $_name);
 
     &.c-btn--neutral-#{$_name} {
       background-color: $_bg-pendant;
-      border-color: map.get($f-colors-neutral, $_name);
-      color: map.get($f-colors-neutral, $_name);
+      border-color: map.get(foundations__colors-neutral.$f-colors-neutral, $_name);
+      color: map.get(foundations__colors-neutral.$f-colors-neutral, $_name);
       text-decoration: none;
 
       &:hover,
@@ -87,19 +96,19 @@
   }
   // State Color Variants
 
-  @each $_name, $_val in $f-colors-state {
+  @each $_name, $_val in foundations__colors-state.$f-colors-state {
     &.c-btn--#{$_name} {
       background-color: $_val;
-      border-color: $f-color__neutral--primary;
-      color: $f-color__neutral--primary;
+      border-color: foundations__colors-neutral.$f-color__neutral--primary;
+      color: foundations__colors-neutral.$f-color__neutral--primary;
       text-decoration: none;
 
       &:hover,
       &:focus,
       &:active {
         text-decoration: none;
-        border-color: color.scale($f-color__neutral--primary, $lightness: if(color.lightness($f-color__neutral--primary) > 50%, -17%, 17%));
-        color: color.scale($f-color__neutral--primary, $lightness: if(color.lightness($f-color__neutral--primary) > 50%, -17%, 17%));
+        border-color: color.scale(foundations__colors-neutral.$f-color__neutral--primary, $lightness: if(color.lightness(foundations__colors-neutral.$f-color__neutral--primary) > 50%, -17%, 17%));
+        color: color.scale(foundations__colors-neutral.$f-color__neutral--primary, $lightness: if(color.lightness(foundations__colors-neutral.$f-color__neutral--primary) > 50%, -17%, 17%));
       }
 
       &:hover,
@@ -117,7 +126,7 @@
 
   // Size variants
 
-  @each $_name, $_val in s-core-map-diff(("none": $f-space--none), $f-spaces) {
+  @each $_name, $_val in map-diff.s-core-map-diff(("none": foundations__spaces.$f-space--none), foundations__spaces.$f-spaces) {
     &.c-btn--#{$_name} {
       padding: calc(#{$_val} / 6) $_val;
       font-size: 1rem;
@@ -135,19 +144,19 @@
 
   // Pointing variants
 
-  @each $_pos-name in $f-positions__compass {
+  @each $_pos-name in foundations__positions.$f-positions__compass {
 
     &.c-btn--arrow-#{$_pos-name} {
       border-color: inherit;
 
-      @extend %#{u-arrow--#{$_pos-name}#{$f-positions__separator}half};
+      @extend %#{u-arrow--#{$_pos-name}#{foundations__positions.$f-positions__separator}half};
     }
 
-    @each $_fraction-name, $_fraction-val in $f-positions__fractions {
-      &.c-btn--arrow-#{$_pos-name}#{$f-positions__separator}#{$_fraction-name} {
+    @each $_fraction-name, $_fraction-val in foundations__positions.$f-positions__fractions {
+      &.c-btn--arrow-#{$_pos-name}#{foundations__positions.$f-positions__separator}#{$_fraction-name} {
         border-color: inherit;
 
-        @extend %u-arrow--#{$_pos-name}#{$f-positions__separator}#{$_fraction-name};
+        @extend %#{u-arrow--#{$_pos-name}#{foundations__positions.$f-positions__separator}#{$_fraction-name}};
       }
     }
   }

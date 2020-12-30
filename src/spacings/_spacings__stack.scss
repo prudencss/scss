@@ -1,3 +1,5 @@
+@use "../foundations/foundations__spaces";
+
 /* -------------------------------------------------------------------------
  * STACK
  *
@@ -15,7 +17,7 @@ $sp-stack__enabled: true !default;
 
 // Spaces
 
-$sp-stack__spaces: $f-spaces !default;
+$sp-stack__spaces: foundations__spaces.$f-spaces !default;
 
 // Space as a mixin
 // --------------------------------------------------

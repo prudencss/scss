@@ -1,3 +1,9 @@
+@use "sass:map";
+@use "../foundations/foundations__spaces";
+@use "../generic/generic__reset";
+@use "../settings/core-functions/px-to-rem";
+@use "../settings/settings__core";
+
 /* -------------------------------------------------------------------------
  * LAYOUT
  *
@@ -65,12 +71,12 @@ $o-layout--enabled: true !default;
 
 // Object Params
 
-$o-layout__space: $g-reset__spacing--horizontal !default;
+$o-layout__space: generic__reset.$g-reset__spacing--horizontal !default;
 
 // Modifiers spaces
 
 $o-layout__mod-spaces--enabled: true !default;
-$o-layout__mod-spaces: map_remove($f-spaces, "large", "huge") !default;
+$o-layout__mod-spaces: map.remove(foundations__spaces.$f-spaces, "large", "huge") !default;
 
 // Modifiers Alignments
 
@@ -90,7 +96,7 @@ $o-layout__mod-reverse--enabled: true !default;
 @mixin o-layout($_space-value: $o-layout__space) {
   display: block;
   margin: 0;
-  margin-left: -1 * s-core-px-to-rem($_space-value);
+  margin-left: -1 * px-to-rem.s-core-px-to-rem($_space-value);
   padding: 0;
   list-style: none;
   font-size: 0;
@@ -101,8 +107,8 @@ $o-layout__mod-reverse--enabled: true !default;
   display: inline-block;
   vertical-align: top;
   width: 100%;
-  padding-left: s-core-px-to-rem($_space-value);
-  font-size: s-core-px-to-rem($s-core__font-size);
+  padding-left: px-to-rem.s-core-px-to-rem($_space-value);
+  font-size: px-to-rem.s-core-px-to-rem(settings__core.$s-core__font-size);
 }
 
 // Object selector output
@@ -123,10 +129,10 @@ $o-layout__mod-reverse--enabled: true !default;
 
 @mixin o-layout__mod-space($_space-name: none, $_space-value: 0) {
   .o-layout--space-#{$_space-name} {
-    margin-left: -1 * s-core-px-to-rem($_space-value);
+    margin-left: -1 * px-to-rem.s-core-px-to-rem($_space-value);
 
     > .o-layout__item {
-      padding-left: s-core-px-to-rem($_space-value);
+      padding-left: px-to-rem.s-core-px-to-rem($_space-value);
     }
   }
 }

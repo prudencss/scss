@@ -1,3 +1,6 @@
+@use "../settings/core-functions/px-to-rem";
+@use "../settings/settings__core";
+
 /* -------------------------------------------------------------------------
  * LIST IN-LINE
  *
@@ -17,7 +20,7 @@ $o-list-inline--enabled: true !default;
   font-size: 0;
 
   > * {
-    font-size: s-core-px-to-rem($s-core__font-size);
+    font-size: px-to-rem.s-core-px-to-rem(settings__core.$s-core__font-size);
     display: inline-block;
   }
 }

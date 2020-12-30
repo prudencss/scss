@@ -11,11 +11,11 @@
  * string-ratio .......... returns a ratio string with its escaped separator of a given width and height
  * strip-units ........... returns the unitless number of a given value */
 
-@import "core-functions/map-diff";
-@import "core-functions/px-to-em";
-@import "core-functions/px-to-rem";
-@import "core-functions/rem-to-px";
-@import "core-functions/string-dimension";
-@import "core-functions/string-breakpoint";
-@import "core-functions/string-ratio";
-@import "core-functions/strip-units";
+@use "core-functions/map-diff";
+@use "core-functions/px-to-em";
+@use "core-functions/px-to-rem";
+@use "core-functions/rem-to-px";
+@use "core-functions/string-dimension";
+@use "core-functions/string-breakpoint";
+@use "core-functions/string-ratio";
+@use "core-functions/strip-units";

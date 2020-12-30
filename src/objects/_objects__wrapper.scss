@@ -1,3 +1,10 @@
+@use "sass:map";
+@use "../foundations/foundations__breakpoints";
+@use "../settings/core-functions/px-to-rem";
+@use "../settings/core-functions/string-breakpoint";
+@use "../tools/tools__clearfix";
+@use "../tools/tools__sass-mq";
+
 /* -------------------------------------------------------------------------
  * WRAPPER
  *
@@ -14,7 +21,7 @@ $o-wrapper--enabled: true !default;
 
 $o-wrapper__mod-bp-from--enabled: true !default;
 $o-wrapper__mod-bp-to--enabled: true !default;
-$o-wrapper__mod-bp: map-remove($f-breakpoints, "xxs") !default;
+$o-wrapper__mod-bp: map.remove(foundations__breakpoints.$f-breakpoints, "xxs") !default;
 
 // Object selector output
 // --------------------------------------------------
@@ -25,7 +32,7 @@ $o-wrapper__mod-bp: map-remove($f-breakpoints, "xxs") !default;
     margin-left: auto;
     width: 100%;
 
-    @include t-clearfix;
+    @include tools__clearfix.t-clearfix;
   }
 }
 
@@ -33,11 +40,11 @@ $o-wrapper__mod-bp: map-remove($f-breakpoints, "xxs") !default;
 // --------------------------------------------------
 
 @mixin o-wrapper--from($_bp-name: "xs") {
-  .o-wrapper--from#{s-core-string-breakpoint($_bp-name)} {
+  .o-wrapper--from#{string-breakpoint.s-core-string-breakpoint($_bp-name)} {
     @each $_s-bp-name, $_s-bp-size in $o-wrapper__mod-bp {
-      @if $_s-bp-size >= map-get($o-wrapper__mod-bp, $_bp-name) {
-        @include t-mq($from: $_s-bp-name) {
-          max-width: s-core-px-to-rem(map-get($o-wrapper__mod-bp, $_s-bp-name));
+      @if $_s-bp-size >= map.get($o-wrapper__mod-bp, $_bp-name) {
+        @include tools__sass-mq.t-mq($from: $_s-bp-name) {
+          max-width: px-to-rem.s-core-px-to-rem(map.get($o-wrapper__mod-bp, $_s-bp-name));
         }
       }
     }
@@ -54,11 +61,11 @@ $o-wrapper__mod-bp: map-remove($f-breakpoints, "xxs") !default;
 // --------------------------------------------------
 
 @mixin o-wrapper--to($_bp-name: "xs") {
-  .o-wrapper--to#{s-core-string-breakpoint($_bp-name)} {
+  .o-wrapper--to#{string-breakpoint.s-core-string-breakpoint($_bp-name)} {
     @each $_s-bp-name, $_s-bp-size in $o-wrapper__mod-bp {
-      @if $_s-bp-size >= map-get($o-wrapper__mod-bp, $_bp-name) {
-        @include t-mq($from: $_s-bp-name) {
-          max-width: s-core-px-to-rem(map-get($o-wrapper__mod-bp, $_bp-name));
+      @if $_s-bp-size >= map.get($o-wrapper__mod-bp, $_bp-name) {
+        @include tools__sass-mq.t-mq($from: $_s-bp-name) {
+          max-width: px-to-rem.s-core-px-to-rem(map.get($o-wrapper__mod-bp, $_bp-name));
         }
       }
     }

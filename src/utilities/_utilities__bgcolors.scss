@@ -1,3 +1,6 @@
+@use "sass:string";
+@use "../foundations/foundations__colors";
+
 /* -------------------------------------------------------------------------
  * COLORS
  *
@@ -12,7 +15,7 @@ $u-bg-colors--enabled: true !default;
 
 // Colors maps
 
-$u-bg-colors__maps: $f-colors !default;
+$u-bg-colors__maps: foundations__colors.$f-colors !default;
 
 // Utilities output
 // --------------------------------------------------
@@ -21,7 +24,7 @@ $u-bg-colors__maps: $f-colors !default;
   @each $_bg-color-group__name, $_bg-color-group__map in $u-bg-colors__maps {
     @each $_bg-color-name, $_bg-color-value in $_bg-color-group__map {
       @if $_bg-color-group__name != "others" {
-        $_bg-color-name: unquote("#{$_bg-color-group__name}-#{$_bg-color-name}");
+        $_bg-color-name: string.unquote("#{$_bg-color-group__name}-#{$_bg-color-name}");
       }
 
       .u-bg-color--#{$_bg-color-name} {

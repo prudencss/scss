@@ -1,3 +1,5 @@
+@use "sass:math";
+@use "sass:meta";
 @use "sass:map";
 
 /* -------------------------------------------------------------------------
@@ -70,11 +72,11 @@ $f-breakpoints: map.merge($f-breakpoints--portrait, $f-breakpoints--landscape);
  * Check that the chosen breakpoints are pixels. */
 
 @each $_name, $_size in $f-breakpoints {
-  @if type-of($_size) != number {
+  @if meta.type-of($_size) != number {
     @error "`$f-breakpoints: #{$_name}` needs to be a number.";
   }
 
-  @if unit($_size) != "px" {
+  @if math.unit($_size) != "px" {
     @error "`$f-breakpoints: #{$_name}` needs to be a pixel value.";
   }
 }

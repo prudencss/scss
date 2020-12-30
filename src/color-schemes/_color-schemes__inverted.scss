@@ -1,3 +1,8 @@
+@use "../elements/elements__document";
+@use "../elements/elements__links";
+@use "../foundations/foundations__colors-brand";
+@use "../foundations/foundations__colors-neutral";
+
 @use "sass:color";
 
 /* -------------------------------------------------------------------------
@@ -8,15 +13,15 @@
 
 $cs-inverted--enabled: true !default;
 
-$cs-inverted__bg-color: color.invert($e-document__body--bgcolor) !default;
-$cs-inverted__color: color.invert($e-document__body--color) !default;
-$cs-inverted__selection-bgcolor: color.invert($f-color__brand-primary) !default;
-$cs-inverted__selection-color: color.invert($f-color__neutral--primary) !default;
-$cs-inverted__border-color: color.invert($f-color__neutral--accent) !default;
-$cs-inverted__hr-color: color.invert($f-color__neutral--accent) !default;
-$cs-inverted__link-color: color.invert($e-links__color) !default;
-$cs-inverted__link-hovercolor: color.invert($e-links__hover-color) !default;
-$cs-inverted__heading-color: color.invert($f-color__brand-primary) !default;
+$cs-inverted__bg-color: color.invert(elements__document.$e-document__body--bgcolor) !default;
+$cs-inverted__color: color.invert(elements__document.$e-document__body--color) !default;
+$cs-inverted__selection-bgcolor: color.invert(foundations__colors-brand.$f-color__brand--primary) !default;
+$cs-inverted__selection-color: color.invert(foundations__colors-neutral.$f-color__neutral--primary) !default;
+$cs-inverted__border-color: color.invert(foundations__colors-neutral.$f-color__neutral--accent) !default;
+$cs-inverted__hr-color: color.invert(foundations__colors-neutral.$f-color__neutral--accent) !default;
+$cs-inverted__link-color: color.invert(elements__links.$e-links__color) !default;
+$cs-inverted__link-hovercolor: color.invert(elements__links.$e-links__hover-color) !default;
+$cs-inverted__heading-color: color.invert(foundations__colors-brand.$f-color__brand--primary) !default;
 
 // Scheme mixin
 // --------------------------------------------------

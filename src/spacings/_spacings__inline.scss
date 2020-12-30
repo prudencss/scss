@@ -1,3 +1,5 @@
+@use "../foundations/foundations__spaces";
+
 /* -------------------------------------------------------------------------
  * INLINE
  *
@@ -15,7 +17,7 @@ $sp-inline__enabled: true !default;
 
 // Spaces
 
-$sp-inline__spaces: $f-spaces !default;
+$sp-inline__spaces: foundations__spaces.$f-spaces !default;
 
 // Space as a mixin
 // --------------------------------------------------

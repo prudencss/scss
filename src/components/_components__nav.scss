@@ -1,3 +1,14 @@
+@use "../foundations/foundations__breakpoints";
+@use "../foundations/foundations__colors";
+@use "../foundations/foundations__colors-brand";
+@use "../foundations/foundations__colors-neutral";
+@use "../foundations/foundations__font-sizes";
+@use "../foundations/foundations__line-heights";
+@use "../foundations/foundations__spaces";
+@use "../objects/objects__flexbox";
+@use "../settings/core-functions/string-breakpoint";
+@use "../tools/tools__sass-mq";
+
 @use "sass:color";
 @use "sass:map";
 
@@ -17,10 +28,10 @@ $c-nav--enabled: true !default;
 
 $c-nav__alignment: flex-start !default;
 $c-nav__alignment--vertical: center !default;
-$c-nav__spacing: map.get($f-spaces, "small") !default;
-$c-nav__line-heights: map.get($f-line-heights, "medium") !default;
-$c-nav__color: $f-color__neutral-accent !default;
-$c-nav__bg-color: $f-color__brand-accent !default;
+$c-nav__spacing: map.get(foundations__spaces.$f-spaces, "small") !default;
+$c-nav__line-heights: map.get(foundations__line-heights.$f-line-heights, "medium") !default;
+$c-nav__color: foundations__colors-neutral.$f-color__neutral--accent !default;
+$c-nav__bg-color: foundations__colors-brand.$f-color__brand--accent !default;
 $c-nav__font-size--menu: "xl" !default;
 $c-nav__font-size--extra: "m" !default;
 
@@ -33,10 +44,10 @@ $c-nav__mod-alignments--vertical: flex-start, flex-end, center, baseline, stretc
 $c-nav__mod-reverse--enabled: true !default;
 
 $c-nav__mod-spacings--enabled: true !default;
-$c-nav__mod-spacings: $f-spaces;
+$c-nav__mod-spacings: foundations__spaces.$f-spaces;
 
 $c-nav__mod-colors--enabled: true !default;
-$c-nav__mod-colors: $f-colors-main;
+$c-nav__mod-colors: foundations__colors.$f-colors-main;
 
 $c-nav__mod-borders--enabled: true !default;
 $c-nav__mod-borders: top, bottom, top-bottom;
@@ -44,24 +55,24 @@ $c-nav__mod-borders: top, bottom, top-bottom;
 $c-nav__mod-sizes--enabled: true !default;
 $c-nav__mod_sizes: (
   "s": (
-    "font-menu": map.get($f-font-sizes, "m"),
-    "font-extra": map.get($f-font-sizes, "s"),
-    "line-height": map.get($f-line-heights, "tiny")
+    "font-menu": map.get(foundations__font-sizes.$f-font-sizes, "m"),
+    "font-extra": map.get(foundations__font-sizes.$f-font-sizes, "s"),
+    "line-height": map.get(foundations__line-heights.$f-line-heights, "tiny")
   ),
   "m": (
-    "font-menu": map.get($f-font-sizes, "l"),
-    "font-extra": map.get($f-font-sizes, "m"),
-    "line-height": map.get($f-line-heights, "small")
+    "font-menu": map.get(foundations__font-sizes.$f-font-sizes, "l"),
+    "font-extra": map.get(foundations__font-sizes.$f-font-sizes, "m"),
+    "line-height": map.get(foundations__line-heights.$f-line-heights, "small")
   ),
   "l": (
-    "font-menu": map.get($f-font-sizes, "xl"),
-    "font-extra": map.get($f-font-sizes, "l"),
-    "line-height": map.get($f-line-heights, "medium")
+    "font-menu": map.get(foundations__font-sizes.$f-font-sizes, "xl"),
+    "font-extra": map.get(foundations__font-sizes.$f-font-sizes, "l"),
+    "line-height": map.get(foundations__line-heights.$f-line-heights, "medium")
   ),
   "xl": (
-    "font-menu": map.get($f-font-sizes, "xxl"),
-    "font-extra": map.get($f-font-sizes, "xl"),
-    "line-height": map.get($f-line-heights, "large")
+    "font-menu": map.get(foundations__font-sizes.$f-font-sizes, "xxl"),
+    "font-extra": map.get(foundations__font-sizes.$f-font-sizes, "xl"),
+    "line-height": map.get(foundations__line-heights.$f-line-heights, "large")
   )
 );
 
@@ -72,7 +83,7 @@ $c-nav__mod-screen-flow-direction--enabled: true !default;
 
 @mixin c-nav {
   .c-nav {
-    @include o-flexbox(row);
+    @include objects__flexbox.o-flexbox(row);
 
     position: relative;
     justify-content: $c-nav__alignment;
@@ -96,9 +107,9 @@ $c-nav__mod-screen-flow-direction--enabled: true !default;
     }
 
     .c-nav__extra {
-      @include o-flexbox(row);
-      @include o-flexbox__mod-display(inline, inline-flex);
-      @include o-flexbox__item();
+      @include objects__flexbox.o-flexbox(row);
+      @include objects__flexbox.o-flexbox__mod-display(inline, inline-flex);
+      @include objects__flexbox.o-flexbox__item();
 
       justify-content: flex-end;
       align-items: center;
@@ -152,7 +163,7 @@ $c-nav__mod-screen-flow-direction--enabled: true !default;
 }
 
 @if $c-nav--enabled and $c-nav__mod-reverse--enabled {
-  @include c-nav__mode-reverse();
+  @include c-nav__mod-reverse();
 }
 
 @mixin c-nav__mod-spacing($_spacing-name, $_spacing-value) {
@@ -199,9 +210,9 @@ $c-nav__mod-screen-flow-direction--enabled: true !default;
     flex-direction: column;
   }
 
-  @each $_breakpoint-name, $_breakpoint-size in $f-breakpoints--landscape {
-    .c-nav__screen-flow-direction--stacked#{s-core-string-breakpoint($breakpoint-name)} {
-      @include t-mq($until: $_breakpoint-name) {
+  @each $_breakpoint-name, $_breakpoint-size in foundations__breakpoints.$f-breakpoints--landscape {
+    .c-nav__screen-flow-direction--stacked#{string-breakpoint.s-core-string-breakpoint($breakpoint-name)} {
+      @include tools__sass-mq.t-mq($until: $_breakpoint-name) {
         flex-direction: column;
       }
     }

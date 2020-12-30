@@ -6,21 +6,21 @@
  * Import all color groups and build the main color map
  * The values here are for sample proposes, consider add your owns */
 
-@import "foundations__colors-brand";
-@import "foundations__colors-neutral";
-@import "foundations__colors-state";
-@import "foundations__colors-vendor";
-@import "foundations__colors-other";
+@use "foundations__colors-brand";
+@use "foundations__colors-neutral";
+@use "foundations__colors-state";
+@use "foundations__colors-vendor";
+@use "foundations__colors-other";
 
 // Color groups map
 
 $f-colors-main: (
-  "brand": $f-colors-brand,
-  "neutral": $f-colors-neutral,
-  "state": $f-colors-state
+  "brand": foundations__colors-brand.$f-colors-brand,
+  "neutral": foundations__colors-neutral.$f-colors-neutral,
+  "state": foundations__colors-state.$f-colors-state
 );
 
 $f-colors: map.merge($f-colors-main, (
-  "vendor": $f-colors-vendor,
-  "other": $f-colors-other
+  "vendor": foundations__colors-vendor.$f-colors-vendor,
+  "other": foundations__colors-other.$f-colors-other
 )) !default;

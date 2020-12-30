@@ -1,3 +1,6 @@
+@use "sass:string";
+@use "../settings__config";
+
 /* -------------------------------------------------------------------------
  * STRING BREAKPOINT
  *
@@ -7,5 +10,5 @@
  * s-core-string-breakpoint(md) == \@md */
 
 @function s-core-string-breakpoint($_bp-name) {
-  @return unquote("#{$s-config__special-char--breakpoint-separator}#{$_bp-name}");
+  @return string.unquote("#{settings__config.$s-config__special-char--breakpoint-separator}#{$_bp-name}");
 }

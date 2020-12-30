@@ -7,7 +7,11 @@ console.log(chalk.bgBlue.bold('Check SASS compile'), '\n');
 
 function compileFile(filePath) {
     sass.render({
-        file: filePath
+      file: filePath,
+      includePaths: [
+        filePath,
+        'node_modules'
+      ]
     }, (error, result) => {
         if (error) {
             console.log(chalk.red.bold.underline('SASS COMPILE ERROR!'));

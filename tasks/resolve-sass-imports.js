@@ -10,7 +10,7 @@ let importResolve = require('import-resolve'),
         'src/elements/_elements',
         'src/objects/_objects',
         'src/animations/_animations',
-        'src/utilities/_utilities'
+        'src/utilities/_utilities',
     ],
     file;
 

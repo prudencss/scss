@@ -1,3 +1,4 @@
+@use "sass:map";
 /* -------------------------------------------------------------------------
  * EASINGS
  *
@@ -26,7 +27,7 @@ $f-easings--user: () !default;
 
 // Easings map
 
-$f-easings: map_merge((
+$f-easings: map.merge((
   "base": $f-easing--base,
   "in": $f-easing--in,
   "out": $f-easing--out,

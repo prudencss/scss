@@ -10,9 +10,9 @@
  * Inset Stretch ........ To give space between container and content emphasizing right and left spaces
  * Stack ................ To separate stacked elements */
 
-@import "spacings__inline";
-@import "spacings__inset";
-@import "spacings__inset-slender";
-@import "spacings__inset-squish";
-@import "spacings__inset-stretch";
-@import "spacings__stack";
+@use "spacings__inline";
+@use "spacings__inset";
+@use "spacings__inset-slender";
+@use "spacings__inset-squish";
+@use "spacings__inset-stretch";
+@use "spacings__stack";

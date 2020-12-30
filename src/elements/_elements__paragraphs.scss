@@ -1,3 +1,6 @@
+@use "../foundations/foundations__spaces";
+@use "../generic/generic__reset";
+
 /* -------------------------------------------------------------------------
  * PARAGRAPHS
  *
@@ -5,8 +8,8 @@
 
 // Paragraphs variables
 
-$e-paragraphs__spacing-vertical: $g-reset__spacing--vertical !default;
-$e-paragraphs__space-within: $f-space--small !default;
+$e-paragraphs__spacing-vertical: generic__reset.$g-reset__spacing--vertical !default;
+$e-paragraphs__space-within: foundations__spaces.$f-space--s !default;
 
 // Paragraphs output
 

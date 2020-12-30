@@ -1,3 +1,8 @@
+@use "sass:map";
+@use "../foundations/foundations__spaces";
+@use "../generic/generic__reset";
+@use "../settings/core-functions/px-to-rem";
+
 /* -------------------------------------------------------------------------
  * PACK
  *
@@ -17,12 +22,12 @@ $o-pack--enabled: true !default;
 
 // Object Params
 
-$o-pack__space: $g-reset__spacing--horizontal !default;
+$o-pack__space: generic__reset.$g-reset__spacing--horizontal !default;
 
 // Modifiers Spaces
 
 $o-pack__mod-spaces--enabled: true !default;
-$o-pack-spaces: map_remove($f-spaces, "large", "huge") !default;
+$o-pack-spaces: map.remove(foundations__spaces.$f-spaces, "large", "huge") !default;
 
 // Modifiers Alignments
 
@@ -46,7 +51,7 @@ $o-pack__mod-auto--enabled: true !default;
   display: table;
   table-layout: fixed;
   border-collapse: separate;
-  border-spacing: s-core-px-to-rem($_space-value);
+  border-spacing: px-to-rem.s-core-px-to-rem($_space-value);
 }
 
 @mixin o-pack__item {
@@ -72,7 +77,7 @@ $o-pack__mod-auto--enabled: true !default;
 
 @mixin o-pack--space($_space-name: "none", $_space-value: 0) {
   .o-pack--space-#{$_space-name} {
-    border-spacing: s-core-px-to-rem($_space-value);
+    border-spacing: px-to-rem.s-core-px-to-rem($_space-value);
   }
 }
 

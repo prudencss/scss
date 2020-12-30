@@ -1,3 +1,9 @@
+@use "sass:map";
+@use "sass:meta";
+@use "../foundations/foundations__breakpoints";
+@use "../settings/settings__config";
+@use "../settings/settings__core";
+
 /* -------------------------------------------------------------------------
  * SASS-MQ
  *
@@ -7,13 +13,13 @@
 // SASS-MQ variables
 // --------------------------------------------------
 
-$t-sass-mq__base-font-size: $s-core__font-size !default;
-$t-sass-mq__breakpoints: $f-breakpoints !default;
-$t-sass-mq__breakpoints--portrait: $f-breakpoints--portrait !default;
-$t-sass-mq__brekapoints--landscape: $f-breakpoints--landscape !default;
+$t-sass-mq__base-font-size: settings__core.$s-core__font-size !default;
+$t-sass-mq__breakpoints: foundations__breakpoints.$f-breakpoints !default;
+$t-sass-mq__breakpoints--portrait: foundations__breakpoints.$f-breakpoints--portrait !default;
+$t-sass-mq__brekapoints--landscape: foundations__breakpoints.$f-breakpoints--landscape !default;
 $t-sass-mq__media-type: all !default;
 
-$t-sass-mq__debug: $s-config__debug !default;
+$t-sass-mq__debug: settings__config.$s-config__debug !default;
 $t-sass-mq__debug--color: rgb(255, 0, 0) !default;
 $t-sass-mq__debug--bg-color: rgba(255, 0, 0, 0.1) !default;
 $t-sass-mq__debug--border-color: rgb(255, 0, 0) !default;
@@ -22,8 +28,8 @@ $t-sass-mq__debug--border-color: rgb(255, 0, 0) !default;
 // --------------------------------------------------
 
 @function t-sass-mq__get-breakpoint-width($_bp-name, $_breakpoints: $t-sass-mq__breakpoints) {
-  @if map-has-key($_breakpoints, $_bp-name) {
-    @return map-get($_breakpoints, $_bp-name);
+  @if map.has-key($_breakpoints, $_bp-name) {
+    @return map.get($_breakpoints, $_bp-name);
   }
   @else {
     @warn "Breakpoint #{$_bp-name} wasn't found in $_breakpoints.";
@@ -31,7 +37,7 @@ $t-sass-mq__debug--border-color: rgb(255, 0, 0) !default;
 }
 
 @function t-sass-mq__get-breakpoint-orientation($_bp-name) {
-  @if map-has-key($t-sass-mq__breakpoints--portrait, $_bp-name) {
+  @if map.has-key($t-sass-mq__breakpoints--portrait, $_bp-name) {
     @return "(orientation: landscape)";
   }
   @else {
@@ -51,7 +57,7 @@ $t-sass-mq__debug--border-color: rgb(255, 0, 0) !default;
   // From: this breakpoint (inclusive)
 
   @if $from {
-    @if type-of($from) == number {
+    @if meta.type-of($from) == number {
       $min-width: $from;
     }
     @else {
@@ -63,7 +69,7 @@ $t-sass-mq__debug--border-color: rgb(255, 0, 0) !default;
   // Until: that breakpoint (exclusive)
 
   @if $until {
-    @if type-of($until) == number {
+    @if meta.type-of($until) == number {
       $max-width: $until;
     }
     @else {

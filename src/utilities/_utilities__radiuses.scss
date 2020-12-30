@@ -1,3 +1,5 @@
+@use "../foundations/foundations__radiuses";
+
 /* -------------------------------------------------------------------------
  * RADIUSES
  *
@@ -12,7 +14,7 @@ $u-radiuses--enabled: true !default;
 
 // Font-families maps
 
-$u-radiuses__maps: $f-radiuses !default;
+$u-radiuses__maps: foundations__radiuses.$f-radiuses !default;
 
 // Utilities output
 // --------------------------------------------------

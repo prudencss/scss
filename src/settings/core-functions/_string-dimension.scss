@@ -1,3 +1,6 @@
+@use "sass:string";
+@use "../settings__config";
+
 /* -------------------------------------------------------------------------
  * STRING BREAKPOINT
  *
@@ -7,5 +10,5 @@
  * s-core-string-dimension(md) == \@md */
 
 @function s-core-string-dimension($_dim-name) {
-  @return unquote("#{$s-config__special-char--dimension-separator}#{$_dim-name}");
+  @return string.unquote("#{settings__config.$s-config__special-char--dimension-separator}#{$_dim-name}");
 }

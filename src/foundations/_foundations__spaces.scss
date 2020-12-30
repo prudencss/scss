@@ -1,3 +1,5 @@
+@use "sass:math";
+@use "sass:meta";
 /* -------------------------------------------------------------------------
  * SPACES
  *
@@ -19,13 +21,13 @@ $f-space__factor: 1.618 !default;
 // Space variants
 
 $f-space--none: 0 !default;
-$f-space--xxs: round($f-space / $f-space__factor / ($f-space__factor * 2)) !default;
-$f-space--xs: round($f-space / $f-space__factor / ($f-space__factor * 2)) !default;
-$f-space--s: round($f-space / $f-space__factor) !default;
-$f-space--m: round($f-space * 1) !default;
-$f-space--l: round($f-space * $f-space__factor) !default;
-$f-space--xl: round($f-space * $f-space__factor * ($f-space__factor * 2)) !default;
-$f-space--xxl: round($f-space * $f-space__factor * ($f-space__factor * 2)) !default;
+$f-space--xxs: math.round($f-space / $f-space__factor / ($f-space__factor * 2)) !default;
+$f-space--xs: math.round($f-space / $f-space__factor / ($f-space__factor * 2)) !default;
+$f-space--s: math.round($f-space / $f-space__factor) !default;
+$f-space--m: math.round($f-space * 1) !default;
+$f-space--l: math.round($f-space * $f-space__factor) !default;
+$f-space--xl: math.round($f-space * $f-space__factor * ($f-space__factor * 2)) !default;
+$f-space--xxl: math.round($f-space * $f-space__factor * ($f-space__factor * 2)) !default;
 
 // Spaces map
 
@@ -36,7 +38,7 @@ $f-spaces: (
   "s": $f-space--s,
   "m": $f-space--m,
   "l": $f-space--l,
-  "xl": $f-space--xl
+  "xl": $f-space--xl,
   "xxl": $f-space--xl
 );
 
@@ -49,9 +51,9 @@ $f-spaces: (
  * Check that the chosen values are pixel numbers. */
 
 @each $_space__name, $_space__value in $f-spaces {
-  @if type-of($_space__value) == number {
+  @if meta.type-of($_space__value) == number {
     @if $_space__name != "none" {
-      @if unit($_space__value) != "px" {
+      @if math.unit($_space__value) != "px" {
         @error "$f-spaces: `#{$_space__name}` needs to be a pixel value.";
       }
     }

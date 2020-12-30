@@ -1,3 +1,6 @@
+@use "../foundations/foundations__colors-neutral";
+@use "../foundations/foundations__shadows";
+
 @use "sass:color";
 @use "sass:map";
 
@@ -15,8 +18,8 @@ $u-shadows--enabled: true !default;
 
 // Shadows maps
 
-$u-shadows__maps: $f-shadows !default;
-$u-shadows__maps--custom: $f-shadows--custom !default;
+$u-shadows__maps: foundations__shadows.$f-shadows !default;
+$u-shadows__maps--custom: foundations__shadows.$f-shadows--custom !default;
 
 // Utilities output
 // --------------------------------------------------
@@ -24,7 +27,7 @@ $u-shadows__maps--custom: $f-shadows--custom !default;
 @if $u-shadows--enabled {
   @each $_shadow-name, $_shadow-value in $u-shadows__maps {
     .u-shadow--#{$_shadow-name} {
-      box-shadow: $_shadow-value color.scale(map.get($f-colors-neutral--bg, "secondary"), $alpha: -50%) !important;
+      box-shadow: $_shadow-value color.scale(map.get(foundations__colors-neutral.$f-colors-neutral--bg, "secondary"), $alpha: -50%) !important;
     }
   }
 

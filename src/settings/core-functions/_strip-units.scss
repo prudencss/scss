@@ -1,3 +1,5 @@
+@use "sass:math";
+@use "sass:meta";
 /* -------------------------------------------------------------------------
  * STRIP UNITS
  *
@@ -7,11 +9,11 @@
  * s-core-strip-units(16px) == 16 */
 
 @function s-core-strip-units($_value) {
-  @if type-of($_value) != number {
+  @if meta.type-of($_value) != number {
     @error "s-core-strip-units: `#{$_value}` needs to be a number.";
   }
 
-  @if not unitless($_value) {
+  @if not math.is-unitless($_value) {
     @return $_value / ($_value * 0 + 1);
   }
 

@@ -1,3 +1,10 @@
+@use "sass:map";
+@use "../foundations/foundations__colors-brand";
+@use "../foundations/foundations__colors-neutral";
+@use "../foundations/foundations__colors-state";
+@use "../foundations/foundations__durations";
+@use "../foundations/foundations__easings";
+
 @use "sass:color";
 
 /* -------------------------------------------------------------------------
@@ -15,13 +22,13 @@ $a-ripple--enabled: true !default;
 
 // Animation Params
 
-$a-ripple__duration: $f-duration--slow !default;
-$a-ripple__timing: $f-easing--out !default;
+$a-ripple__duration: foundations__durations.$f-duration--slow !default;
+$a-ripple__timing: foundations__easings.$f-easing--out !default;
 
 // Modifiers durations
 
 $a-ripple__mod-durations--enabled: true !default;
-$a-ripple__mod-durations: $f-durations !default;
+$a-ripple__mod-durations: foundations__durations.$f-durations !default;
 
 @mixin a-ripple {
   background-position: center;
@@ -35,7 +42,7 @@ $a-ripple__mod-durations: $f-durations !default;
 @mixin a-ripple--in {
   background-size: 100%;
   transition: background 0s;
-  background-color: color.scale($f-color__neutral--accent-bg, $lightness: if(color.lightness($f-color__neutral--accent-bg) > 50%, 50%, -50%));
+  background-color: color.scale(foundations__colors-neutral.$f-color__neutral--accent-bg, $lightness: if(color.lightness(foundations__colors-neutral.$f-color__neutral--accent-bg) > 50%, 50%, -50%));
 }
 
 @mixin a-ripple--in-colored($_color) {
@@ -43,7 +50,7 @@ $a-ripple__mod-durations: $f-durations !default;
   background-color: $_color;
 }
 
-@mixin a-ripple__mod-duration($_duration-value: $f-duration--normal) {
+@mixin a-ripple__mod-duration($_duration-value: foundations__durations.$f-duration--normal) {
   transition-duration: $_duration-value;
 }
 
@@ -59,7 +66,7 @@ $a-ripple__mod-durations: $f-durations !default;
 
     &:hover,
     &:focus {
-      @include a-ripple--hover(color.scale($f-color__neutral--accent-bg, $lightness: if(color.lightness($f-color__neutral--accent-bg) > 50%, 17%, -17%)));
+      @include a-ripple--hover(color.scale(foundations__colors-neutral.$f-color__neutral--accent-bg, $lightness: if(color.lightness(foundations__colors-neutral.$f-color__neutral--accent-bg) > 50%, 17%, -17%)));
     }
 
     &:active,
@@ -67,7 +74,7 @@ $a-ripple__mod-durations: $f-durations !default;
       @include a-ripple--in;
     }
 
-    @each $_color-name, $_color-val in map-merge($f-colors-brand, $f-colors-state) {
+    @each $_color-name, $_color-val in map.merge(foundations__colors-brand.$f-colors-brand, foundations__colors-state.$f-colors-state) {
       &:hover[class*="--#{$_color-name}"],
       &:focus[class*="--#{$_color-name}"] {
         @include a-ripple--hover(color.scale($_color-val, $lightness: if(color.lightness($_color-val) > 50%, 17%, -17%)));

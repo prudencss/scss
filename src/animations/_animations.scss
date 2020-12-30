@@ -7,8 +7,8 @@
  * reveal-opacity ......... Reveal from transparent to opaque
  * reveal-slide ........... Reveal from translated to untranslated position */
 
-@import "animations__jiggle";
-@import "animations__reveal-opacity";
-@import "animations__reveal-slide";
-@import "animations__ripple";
-@import "animations__tata";
+@use "animations__jiggle";
+@use "animations__reveal-opacity";
+@use "animations__reveal-slide";
+@use "animations__ripple";
+@use "animations__tata";

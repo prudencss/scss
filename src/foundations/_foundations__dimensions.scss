@@ -1,3 +1,5 @@
+@use "sass:math";
+@use "sass:meta";
 /* -------------------------------------------------------------------------
  * DIMENSIONS
  *
@@ -71,9 +73,9 @@ $f-dimensions__arrow: (
  * Check that the chosen values are pixel numbers. */
 
 @each $_dimension__name, $_dimension__value in $f-dimensions__icon {
-  @if type-of($_dimension__value) == number {
+  @if meta.type-of($_dimension__value) == number {
     @if $_dimension__name != "none" {
-      @if unit($_dimension__value) != "px" {
+      @if math.unit($_dimension__value) != "px" {
         @error "$f-dimensions: `#{$_dimension__name}` needs to be a pixel value.";
       }
     }
@@ -84,9 +86,9 @@ $f-dimensions__arrow: (
 }
 
 @each $_dimension__name, $_dimension__value in $f-dimensions__img {
-  @if type-of($_dimension__value) == number {
+  @if meta.type-of($_dimension__value) == number {
     @if $_dimension__name != "none" {
-      @if unit($_dimension__value) != "px" {
+      @if math.unit($_dimension__value) != "px" {
         @error "$f-dimensions: `#{$_dimension__name}` needs to be a pixel value.";
       }
     }

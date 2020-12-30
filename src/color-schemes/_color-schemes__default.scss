@@ -1,3 +1,8 @@
+@use "../elements/elements__document";
+@use "../elements/elements__links";
+@use "../foundations/foundations__colors-brand";
+@use "../foundations/foundations__colors-neutral";
+
 @use "sass:color";
 
 /* -------------------------------------------------------------------------
@@ -8,15 +13,15 @@
 
 $cs-default--enabled: true !default;
 
-$cs-default__bg-color: $e-document__body--bgcolor !default;
-$cs-default__color: $e-document__body--color !default;
-$cs-default__selection-bgcolor: $f-color__brand-primary !default;
-$cs-default__selection-color: $f-color__neutral--primary !default;
-$cs-default__border-color: color.scale($f-color__neutral--accent, $lightness: 50%) !default;
-$cs-default__hr-color: color.scale($f-color__neutral--accent, $lightness: 17%) !default;
-$cs-default__link-color: $e-links__color !default;
-$cs-default__link-hovercolor: $e-links__hover-color !default;
-$cs-default__heading-color: $f-color__brand-primary !default;
+$cs-default__bg-color: elements__document.$e-document__body--bgcolor !default;
+$cs-default__color: elements__document.$e-document__body--color !default;
+$cs-default__selection-bgcolor: foundations__colors-brand.$f-color__brand--primary !default;
+$cs-default__selection-color: foundations__colors-neutral.$f-color__neutral--primary !default;
+$cs-default__border-color: color.scale(foundations__colors-neutral.$f-color__neutral--accent, $lightness: 50%) !default;
+$cs-default__hr-color: color.scale(foundations__colors-neutral.$f-color__neutral--accent, $lightness: 17%) !default;
+$cs-default__link-color: elements__links.$e-links__color !default;
+$cs-default__link-hovercolor: elements__links.$e-links__hover-color !default;
+$cs-default__heading-color: foundations__colors-brand.$f-color__brand--primary !default;
 
 // Scheme mixin
 // --------------------------------------------------

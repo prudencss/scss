@@ -1,3 +1,13 @@
+@use "../foundations/foundations__breakpoints";
+@use "../foundations/foundations__dimensions";
+@use "../foundations/foundations__spaces";
+@use "../generic/generic__reset";
+@use "../settings/core-functions/px-to-rem";
+@use "../settings/core-functions/string-breakpoint";
+@use "../settings/core-functions/string-dimension";
+@use "../settings/settings__core";
+@use "../tools/tools__sass-mq";
+
 @use "sass:string";
 
 /* -------------------------------------------------------------------------
@@ -55,7 +65,7 @@ $o-grid--template: repeat(auto-fill, auto) !default;
 
 // Grid mediaquery breakpoint and orientation maps
 
-$o-grid__mediaquery--breakpoints: $f-breakpoints;
+$o-grid__mediaquery--breakpoints: foundations__breakpoints.$f-breakpoints;
 $o-grid__mediaquery--orientation: (
   "portrait": "(orientation: portrait)",
   "landscape": "(orientation: landscape)"
@@ -93,24 +103,24 @@ $o-grid__mod-flow-directions: "row", "row dense", "column", "column dense" !defa
 
 // Object Params
 
-$o-grid__space--horizontal: $g-reset__spacing--horizontal !default;
-$o-grid__space--vertical: $g-reset__spacing--vertical !default;
+$o-grid__space--horizontal: generic__reset.$g-reset__spacing--horizontal !default;
+$o-grid__space--vertical: generic__reset.$g-reset__spacing--vertical !default;
 
 // Modifiers spaces
 
 $o-grid__mod-spaces--enabled: true !default;
-$o-grid__mod-spaces: $f-spaces !default;
+$o-grid__mod-spaces: foundations__spaces.$f-spaces !default;
 
 // Modifiers autoitem-widths
 
 $o-grid__mod-autoitem-widths--enabled: true !default;
-$o-grid__mod-autoitem-widths--img: $f-dimensions__img;
+$o-grid__mod-autoitem-widths--img: foundations__dimensions.$f-dimensions__img;
 $o-grid__mod-autoitem-widths--fractions: $o-grid__fractions;
 
 // Modifiers autoitem-heights
 
 $o-grid__mod-autoitem-heights--enabled: true !default;
-$o-grid__mod-autoitem-heights--img: $f-dimensions__img;
+$o-grid__mod-autoitem-heights--img: foundations__dimensions.$f-dimensions__img;
 $o-grid__mod-autoitem-heights--fractions: $o-grid__fractions;
 
 // Modifiers alignments items
@@ -154,7 +164,7 @@ $o-grid__mod-alignments-item-cross: start, end, center, stretch !default;
 }
 
 @mixin o-grid__item() {
-  font-size: s-core-px-to-rem($s-core__font-size);
+  font-size: px-to-rem.s-core-px-to-rem(settings__core.$s-core__font-size);
 }
 
 @if $o-grid--enabled {
@@ -199,7 +209,7 @@ $o-grid__mod-alignments-item-cross: start, end, center, stretch !default;
   }
 
   @if $_breakpoint {
-    .o-grid.o-grid__flow-direction--#{$_escaped-value}#{s-core-string-breakpoint($_breakpoint)} {
+    .o-grid.o-grid__flow-direction--#{$_escaped-value}#{string-breakpoint.s-core-string-breakpoint($_breakpoint)} {
       grid-auto-flow: string.unquote($_flow-direction-value);
     }
   }
@@ -215,12 +225,12 @@ $o-grid__mod-alignments-item-cross: start, end, center, stretch !default;
     @include o-grid__mod-flow-direction($_flow-direction-value);
 
     @each $_bp-name, $_bp-value in $o-grid__mediaquery--breakpoints {
-      @include t-mq($from: $_bp-name) {
+      @include tools__sass-mq.t-mq($from: $_bp-name) {
         @include o-grid__mod-flow-direction($_flow-direction-value, $_bp-name);
       }
     }
     @each $_orientation-name, $_orientation-value in $o-grid__mediaquery--orientation {
-      @include t-mq($from: 1, $and: $_orientation-value) {
+      @include tools__sass-mq.t-mq($from: 1, $and: $_orientation-value) {
         @include o-grid__mod-flow-direction($_flow-direction-value, $_orientation-name);
       }
     }
@@ -232,11 +242,11 @@ $o-grid__mod-alignments-item-cross: start, end, center, stretch !default;
 
 @mixin o-grid__mod-space($_space-name: none, $_space-value: 0) {
   .o-grid.o-grid-row__space--#{$_space-name} {
-    row-gap: s-core-px-to-rem($_space-value);
+    row-gap: px-to-rem.s-core-px-to-rem($_space-value);
   }
 
   .o-grid.o-grid-column__space--#{$_space-name} {
-    column-gap: s-core-px-to-rem($_space-value);
+    column-gap: px-to-rem.s-core-px-to-rem($_space-value);
   }
 }
 
@@ -335,12 +345,12 @@ $o-grid__mod-alignments-item-cross: start, end, center, stretch !default;
 
 @mixin o-grid__mod-autoitem-width($_min-width-name, $_min-width-value, $_breakpoint: false) {
   @if $_breakpoint {
-    .o-grid.o-grid-items__row--minmax-width#{s-core-string-dimension($_min-width-name)}#{s-core-string-breakpoint($_breakpoint)} {
+    .o-grid.o-grid-items__row--minmax-width#{string-dimension.s-core-string-dimension($_min-width-name)}#{string-breakpoint.s-core-string-breakpoint($_breakpoint)} {
       grid-template-rows: repeat(autofill, minmax($_min-width-value, auto));
     }
   }
   @else {
-    .o-grid.o-grid-items__row--minmax-width#{s-core-string-dimension($_min-width-name)} {
+    .o-grid.o-grid-items__row--minmax-width#{string-dimension.s-core-string-dimension($_min-width-name)} {
       grid-template-rows: repeat(autofill, minmax($_min-width-value, auto));
     }
   }
@@ -351,12 +361,12 @@ $o-grid__mod-alignments-item-cross: start, end, center, stretch !default;
   }
   @each $_min-width-name, $_min-width-value in $o-grid__mod-autoitem-widths--fractions {
     @each $_bp-name, $_bp-value in $o-grid__mediaquery--breakpoints {
-      @include t-mq($from: $_bp-name) {
+      @include tools__sass-mq.t-mq($from: $_bp-name) {
         @include o-grid__mod-autoitem-width($_min-width-name, $_min-width-value, $_bp-name);
       }
     }
     @each $_orientation-name, $_orientation-value in $o-grid__mediaquery--orientation {
-      @include t-mq($from: 1, $and: $_orientation-value) {
+      @include tools__sass-mq.t-mq($from: 1, $and: $_orientation-value) {
         @include o-grid__mod-autoitem-width($_min-width-name, $_min-width-value, $_orientation-name);
       }
     }
@@ -368,12 +378,12 @@ $o-grid__mod-alignments-item-cross: start, end, center, stretch !default;
 
 @mixin o-grid__mod-autoitem-height($_min-height-name, $_min-height-value, $_breakpoint: false) {
   @if $_breakpoint {
-    .o-grid.o-grid-items__column--minmax-height#{s-core-string-dimension($_min-height-name)}#{s-core-string-breakpoint($_breakpoint)} {
+    .o-grid.o-grid-items__column--minmax-height#{string-dimension.s-core-string-dimension($_min-height-name)}#{string-breakpoint.s-core-string-breakpoint($_breakpoint)} {
       grid-template-columns: repeat(autofill, minmax($_min-height-value, auto));
     }
   }
   @else {
-    .o-grid.o-grid-items__column--minmax-height#{s-core-string-dimension($_min-height-name)} {
+    .o-grid.o-grid-items__column--minmax-height#{string-dimension.s-core-string-dimension($_min-height-name)} {
       grid-template-columns: repeat(autofill, minmax($_min-height-value, auto));
     }
   }
@@ -384,12 +394,12 @@ $o-grid__mod-alignments-item-cross: start, end, center, stretch !default;
   }
   @each $_min-height-name, $_min-height-value in $o-grid__mod-autoitem-heights--fractions {
     @each $_bp-name, $_bp-value in $o-grid__mediaquery--breakpoints {
-      @include t-mq($from: $_bp-name) {
+      @include tools__sass-mq.t-mq($from: $_bp-name) {
         @include o-grid__mod-autoitem-height($_min-height-name, $_min-height-name, $_bp-name);
       }
     }
     @each $_orientation-name, $_orientation-value in $o-grid__mediaquery--orientation {
-      @include t-mq($from: 1, $and: $_orientation-value) {
+      @include tools__sass-mq.t-mq($from: 1, $and: $_orientation-value) {
         @include o-grid__mod-autoitem-height($_min-height-name, $_min-height-name, $_orientation-name);
       }
     }
