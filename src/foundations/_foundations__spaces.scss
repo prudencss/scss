@@ -19,21 +19,25 @@ $f-space__factor: 1.618 !default;
 // Space variants
 
 $f-space--none: 0 !default;
-$f-space--tiny: round($f-space / $f-space__factor / ($f-space__factor * 2)) !default;
-$f-space--small: round($f-space / $f-space__factor) !default;
-$f-space--medium: round($f-space * 1) !default;
-$f-space--large: round($f-space * $f-space__factor) !default;
-$f-space--huge: round($f-space * $f-space__factor * ($f-space__factor * 2)) !default;
+$f-space--xxs: round($f-space / $f-space__factor / ($f-space__factor * 2)) !default;
+$f-space--xs: round($f-space / $f-space__factor / ($f-space__factor * 2)) !default;
+$f-space--s: round($f-space / $f-space__factor) !default;
+$f-space--m: round($f-space * 1) !default;
+$f-space--l: round($f-space * $f-space__factor) !default;
+$f-space--xl: round($f-space * $f-space__factor * ($f-space__factor * 2)) !default;
+$f-space--xxl: round($f-space * $f-space__factor * ($f-space__factor * 2)) !default;
 
 // Spaces map
 
 $f-spaces: (
   "none": $f-space--none,
-  "xs": $f-space--tiny,
-  "s": $f-space--small,
-  "m": $f-space--medium,
-  "l": $f-space--large,
-  "xl": $f-space--huge
+  "xxs": $f-space--xxs,
+  "xs": $f-space--xs,
+  "s": $f-space--s,
+  "m": $f-space--m,
+  "l": $f-space--l,
+  "xl": $f-space--xl
+  "xxl": $f-space--xl
 );
 
 ////////////////////////////////////////////////////////////////////////////////
