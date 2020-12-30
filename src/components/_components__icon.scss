@@ -1,0 +1,130 @@
+@use "sass:color";
+@use "sass:map";
+
+.c-icon {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  text-align: center;
+  margin: 0;
+  padding: $f-space--small $f-space--medium;
+  background-color: $f-color__neutral--accent-bg;
+  outline: none;
+  border: none;
+  color: inherit;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: color.scale(currentColor, $lightness: if(color.lightness($f-color__neutral--accent-bg) > 50%, 17%, -17%));
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: color.scale($f-color__neutral--accent-bg, $lightness: if(color.lightness($f-color__neutral--accent-bg) > 50%, 33%, -33%));
+  }
+
+
+  // Branding Color Variants
+
+  @each $_name, $_val in $f-colors-brand {
+    &.c-icon--#{$_name} {
+      // background-color: $_val;
+      color: $_val;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: color.scale($_val, $lightness: if(color.lightness($_val) > 50%, -17%, 17%));
+      }
+
+      &:hover,
+      &:focus,
+      &:active {
+        background-color: color.scale($_val, $lightness: if(color.lightness($_val) > 50%, 33%, -33%));
+      }
+    }
+  }
+
+  @each $_name, $_val in $f-colors-neutral {
+    &.c-icon--neutral-#{$_name} {
+      background-color: map.get($f-colors-neutral--bg, $_name);
+      color: $_val;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: color.scale($_val, $lightness: if(color.lightness($_val) > 50%, -17%, 17%));
+      }
+
+      &:hover,
+      &:focus,
+      &:active {
+        background-color: color.scale($_val, $lightness: if(color.lightness(map.get($f-colors-neutral--bg, $_name)) > 50%, 33%, -33%));
+      }
+    }
+  }
+
+  // State Color Variants
+
+  @each $_name, $_val in $f-colors-state {
+    &.c-icon--#{$_name} {
+      background-color: $f-color__neutral--primary;
+      color: $_val;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: color.scale($_val, $lightness: if(color.lightness($f-color__neutral--primary) > 50%, -17%, 17%));
+      }
+
+      &:hover,
+      &:focus,
+      &:active, {
+        background-color: color.scale($f-color__neutral--primary, $lightness: if(color.lightness($_val) > 50%, 33%, -33%));
+      }
+    }
+  }
+
+  // Size variants
+
+  @each $_denominator in ("xxs", "xs", "s", "m", "l", "xl", "xxl") {
+    $_padding: map.get($f-spaces, $_denominator);
+    $_dimension: map.get($f-dimensions__icon, $_denominator);
+
+    &.c-icon--#{$_name} {
+      padding: calc(#{$_padding} / 1.618) $_padding;
+      width: $_dimension;
+      height: $_dimension;
+    }
+  }
+
+  // Pointing variants
+
+  @each $_pos-name in $f-positions__compass {
+
+    &.c-icon--arrow-#{$_pos-name} {
+      border-width: 1px;
+      border-style: solid;
+      border-color: inherit;
+
+      @extend %#{u-arrow--#{$_pos-name}#{$f-positions__separator}half};
+
+      &.c-icon--arrow-#{$_pos-name}-only {
+        border: none;
+        border-#{$_pos-name}: 1px solid inherit;
+      }
+    }
+
+    @each $_fraction-name, $_fraction-val in $f-positions__fractions {
+      &.c-icon--arrow-#{$_pos-name}#{$f-positions__separator}#{$_fraction-name} {
+        border-color: inherit;
+
+        @extend %u-arrow--#{$_pos-name}#{$f-positions__separator}#{$_fraction-name};
+      }
+    }
+  }
+}
