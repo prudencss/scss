@@ -1,6 +1,6 @@
 {
   "name": "@prudencss/scss",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "ITCSS framework in SCSS dialect. Pixel exact custom design, extendable with components. Based on HaitiCSS",
   "repository": {
     "type": "git",
@@ -43,7 +43,7 @@
   "main": "src/prudencss.scss",
   "dependencies": {
     "@prudencss/filters-svg": "0.1.1",
-    "@prudencss/icons-svg": "0.1.0",
+    "@prudencss/icons-svg": "0.1.1",
     "sass": "^1.32.0"
   }
 }

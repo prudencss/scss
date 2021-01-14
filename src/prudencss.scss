@@ -42,6 +42,8 @@
 @use "objects/objects";
 @use "animations/animations";
 @use "color-schemes/color-schemes";
+@use "../node_modules/@prudencss/icons-svg/src/index.scss" as *;
+@use "../node_modules/@prudencss/filters-svg/src/index.scss" as *;
 
 /* -------------------------------------------------------------------------
  * CONTENT
