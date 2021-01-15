@@ -54,8 +54,6 @@ $s-config__scoped: true;
   @include meta.load-css("objects/objects");
   @include meta.load-css("animations/animations");
   @include meta.load-css("color-schemes/color-schemes");
-  @include meta.load-css("../node_modules/@prudencss/icons-svg/src/index.scss");
-  @include meta.load-css("../node_modules/@prudencss/filters-svg/src/index.scss");
 
   /* -------------------------------------------------------------------------
    * CONTENT

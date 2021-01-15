@@ -10,6 +10,7 @@
     "order/order": null,
     "order/properties-alphabetical-order": null,
     "declaration-property-value-blacklist": null,
+    "declaration-property-value-disallowed-list": null,
     "max-nesting-depth": null,
     "property-no-vendor-prefix": null,
     "selector-class-pattern": null,
