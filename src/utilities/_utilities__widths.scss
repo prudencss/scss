@@ -47,8 +47,8 @@ $u-widths__bp: foundations__breakpoints.$f-breakpoints;
 
 // Pull and push options
 
-$u-widths__offset-push--enabled: false !default;
-$u-widths__offset-pull--enabled: false !default;
+$u-widths__offset-push--enabled: true !default;
+$u-widths__offset-pull--enabled: true !default;
 
 // Utility mixin
 // --------------------------------------------------
@@ -57,7 +57,7 @@ $u-widths__offset-pull--enabled: false !default;
   @each $_denominator in $_columns {
     @for $_numerator from 1 through $_denominator {
       @if $_numerator != $_denominator or $_denominator == 1 {
-        .u-#{$_numerator}\/#{$_denominator}#{$_bp-suffix} {
+        .u-width--#{$_numerator}\/#{$_denominator}#{$_bp-suffix} {
           width: ($_numerator / $_denominator * 100%) !important;
         }
 

@@ -23,7 +23,9 @@ $m-body--enabled: true !default;
 $m-body__properties: (
   "font-family": elements__document.$e-document__body--font-family,
   "font-size": elements__document.$e-document__body--font-size,
-  "line-height": elements__document.$e-document__body--line-height
+  "line-height": elements__document.$e-document__body--line-height,
+  "width": 100vw,
+  "height": 100vh
 ) !default;
 
 // Material Size Modifiers

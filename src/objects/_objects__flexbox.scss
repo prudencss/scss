@@ -88,7 +88,7 @@ $o-flexbox__mod-directions: row, row-reverse, column, column-reverse;
 // Modifiers multiline/wrapping
 
 $o-flexbox__mod-multilines--enabled: true !default;
-$o-flexbox__mod-multilines: wrap, nowrap;
+$o-flexbox__mod-multilines: wrap, nowrap, wrap-reverse, inherit, initial, revert, revert-layer, unset;
 
 // Object Params
 
@@ -111,11 +111,17 @@ $o-flexbox__mod-alignments-cross: stretch, flex-start, flex-end, center !default
 // Modifiers flex
 
 $o-flexbox__mod-flex--enabled: true !default;
-$o-flexbox__mod-flex: initial, auto, none, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
+$o-flexbox__mod-flex: initial, inherit, auto, revert, revert-layer, none, unset;
 
 $o-flexbox__mod-flex-basis--enabled: true !default;
+$o-flexbox__mod-flex-basis: inherit, initial, revert, revert-layer, unset, content, max-content, min-content, fit-content, auto;
+$o-flexbox__mod-flex-basis__width--px: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20;
+$o-flexbox__mod-flex-basis__width--em: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
+$o-flexbox__mod-flex-basis__width--percentage: 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100;
 $o-flexbox__mod-flex-grow--enabled: true !default;
+$o-flexbox__mod-flex-grow: inherit, initial, revert, revert-layer, unset;
 $o-flexbox__mod-flex-shrink--enabled: true !default;
+$o-flexbox__mod-flex-shrink: inherit, initial, revert, revert-layer, unset;
 
 // Object as a mixin
 // --------------------------------------------------
@@ -127,7 +133,6 @@ $o-flexbox__mod-flex-shrink--enabled: true !default;
   margin: 0;
   padding: 0;
   list-style: none;
-  font-size: 0;
 }
 
 @mixin o-flexbox__item() {
@@ -218,21 +223,20 @@ $o-flexbox__mod-flex-shrink--enabled: true !default;
   .o-flexbox.o-flexbox-row__space--#{$_space-name} {
     padding-left: px-to-rem.s-core-px-to-rem($_space-value);
     padding-right: px-to-rem.s-core-px-to-rem($_space-value);
+  }
 
-    > .o-flexbox__item {
-      padding-left: px-to-rem.s-core-px-to-rem($_space-value);
-      padding-right: px-to-rem.s-core-px-to-rem($_space-value);
-    }
+  .o-flexbox > .o-flexbox__item.o-flexbox-row__space--#{$_space-name} {
+    padding-left: px-to-rem.s-core-px-to-rem($_space-value);
+    padding-right: px-to-rem.s-core-px-to-rem($_space-value);
   }
 
   .o-flexbox.o-flexbox-column__space--#{$_space-name} {
     padding-top: px-to-rem.s-core-px-to-rem($_space-value);
     padding-bottom: px-to-rem.s-core-px-to-rem($_space-value);
 
-    > .o-flexbox__item {
-      padding-top: px-to-rem.s-core-px-to-rem($_space-value);
-      padding-bottom: px-to-rem.s-core-px-to-rem($_space-value);
-    }
+  .o-flexbox > .o-flexbox__item.o-flexbox-column__space--#{$_space-name} {
+    padding-top: px-to-rem.s-core-px-to-rem($_space-value);
+    padding-bottom: px-to-rem.s-core-px-to-rem($_space-value);
   }
 }
 
@@ -284,7 +288,7 @@ $o-flexbox__mod-flex-shrink--enabled: true !default;
 // --------------------------------------------------
 
 @mixin o-flexbox__mod-flex($_flex-valueset: initial) {
-  .o-flexbox.o-flexbox__flex--#{$_flex-valueset} > .o-flexbox__item {
+  .o-flexbox.o-flexbox__flex--#{$_flex-valueset} {
     flex: $_flex-valueset;
   }
 
@@ -303,7 +307,7 @@ $o-flexbox__mod-flex-shrink--enabled: true !default;
 // --------------------------------------------------
 
 @mixin o-flexbox__mod-flex-grow($_flex-value: 1) {
-  .o-flexbox.o-flexbox__flex-grow--#{$_flex-value} > .o-flexbox__item {
+  .o-flexbox.o-flexbox__flex-grow--#{$_flex-value} {
     flex-grow: $_flex-value;
   }
 
@@ -316,13 +320,16 @@ $o-flexbox__mod-flex-shrink--enabled: true !default;
   @each $_flex-value in $o-flexbox__fractions {
     @include o-flexbox__mod-flex-grow($_flex-value);
   }
+  @each $_flex-value in $o-flexbox__mod-flex-grow {
+    @include o-flexbox__mod-flex-grow($_flex-value)
+  }
 }
 
 // Flex Property shrink modifiers
 // --------------------------------------------------
 
 @mixin o-flexbox__mod-flex-shrink($_flex-value: 1) {
-  .o-flexbox.o-flexbox__flex-shrink--#{$_flex-value} > .o-flexbox__item {
+  .o-flexbox.o-flexbox__flex-shrink--#{$_flex-value} {
     flex-shrink: $_flex-value;
   }
 
@@ -335,12 +342,15 @@ $o-flexbox__mod-flex-shrink--enabled: true !default;
   @each $_flex-value in $o-flexbox__fractions {
     @include o-flexbox__mod-flex-shrink($_flex-value);
   }
+  @each $_flex-value in $o-flexbox__mod-flex-shrink {
+    @include o-flexbox__mod-flex-shrink($_flex-value)
+  }
 }
 
 // Flex Property flex-basis modifiers
 // --------------------------------------------------
 
-@mixin o-flexbox__mod-flex-basis() {
+@mixin o-flexbox__mod-flex-basis--fractions() {
   @each $_denominator in $o-flexbox__fractions {
     @if $_denominator != 0 {
       @for $_numerator from 1 through $_denominator {
@@ -358,8 +368,45 @@ $o-flexbox__mod-flex-shrink--enabled: true !default;
   }
 }
 
+@mixin o-flexbox__mod-flex-basis($_flex-value: content) {
+  .o-flexbox.o-flexbox__flex-basis--#{$_flex-value} {
+    flex-basis: $_flex-value;
+  }
+}
+
+@mixin o-flexbox__mod-flex-basis__width--px($_flex-value: 0) {
+  .o-flexbox.o-flexbox__flex-width--#{$_flex-value}-px {
+    flex-basis: #{$_flex-value}px;
+  }
+}
+
+@mixin o-flexbox__mod-flex-basis__width--rem($_flex-value: 0) {
+  .o-flexbox.o-flexbox__flex-width--#{$_flex-value}-rem {
+    flex-basis: #{$_flex-value}rem;
+  }
+}
+
+@mixin o-flexbox__mod-flex-basis__width--percentage($_flex-value: 0) {
+  .o-flexbox.o-flexbox__flex-width--#{$_flex-value}-percent{
+    flex-basis: $_flex-value * 100%;
+  }
+}
+
 @if $o-flexbox--enabled and $o-flexbox__mod-flex-basis--enabled {
-  @include o-flexbox__mod-flex-basis();
+  @include o-flexbox__mod-flex-basis--fractions();
+
+  @each $_flex-value in $o-flexbox__mod-flex-basis {
+    @include o-flexbox__mod-flex-basis($_flex-value)
+  }
+  @each $_flex-value in $o-flexbox__mod-flex-basis__width--px {
+    @include o-flexbox__mod-flex-basis__width--px($_flex-value)
+  }
+  @each $_flex-value in $o-flexbox__mod-flex-basis__width--em {
+    @include o-flexbox__mod-flex-basis__width--rem($_flex-value)
+  }
+  @each $_flex-value in $o-flexbox__mod-flex-basis__width--percentage {
+    @include o-flexbox__mod-flex-basis__width--percentage($_flex-value)
+  }
 }
 
 // Unset as mixin

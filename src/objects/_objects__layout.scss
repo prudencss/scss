@@ -23,13 +23,13 @@
  * The above will create a two-column structure in which each column will
  * fluidly fill half of the width of the parent. We can have more complex
  * systems:
- *
+  *
  *   <div class="o-layout">
- *     <div class="o-layout__item  u-1/1  u-1/3@md">
+ *     <div class="o-layout__item  u-1/1  u-1/3@m">
  *     </div>
- *     <div class="o-layout__item  u-1/2  u-1/3@md">
+ *     <div class="o-layout__item  u-1/2  u-1/3@m">
  *     </div>
- *     <div class="o-layout__item  u-1/2  u-1/3@md">
+ *     <div class="o-layout__item  u-1/2  u-1/3@m">
  *     </div>
  *   </div>
  *
@@ -76,7 +76,7 @@ $o-layout__space: generic__reset.$g-reset__spacing--horizontal !default;
 // Modifiers spaces
 
 $o-layout__mod-spaces--enabled: true !default;
-$o-layout__mod-spaces: map.remove(foundations__spaces.$f-spaces, "large", "huge") !default;
+$o-layout__mod-spaces: map.remove(foundations__spaces.$f-spaces, "none") !default;
 
 // Modifiers Alignments
 
