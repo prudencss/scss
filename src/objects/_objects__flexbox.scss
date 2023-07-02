@@ -249,7 +249,7 @@ $o-flexbox__mod-flex-shrink: inherit, initial, revert, revert-layer, unset;
 // Inline alignment modifiers
 // --------------------------------------------------
 
-@mixin o-flexbox__mod-alignment-inline($_inline-alignment: flex-start) {
+@mixin o-flexbox__mod-alignment-inline($_inline-alignment: center) {
   .o-flexbox.o-flexbox__inline--#{$_inline-alignment} {
     justify-content: $_inline-alignment;
   }
