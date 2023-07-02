@@ -233,6 +233,7 @@ $o-flexbox__mod-flex-shrink: inherit, initial, revert, revert-layer, unset;
   .o-flexbox.o-flexbox-column__space--#{$_space-name} {
     padding-top: px-to-rem.s-core-px-to-rem($_space-value);
     padding-bottom: px-to-rem.s-core-px-to-rem($_space-value);
+  }
 
   .o-flexbox > .o-flexbox__item.o-flexbox-column__space--#{$_space-name} {
     padding-top: px-to-rem.s-core-px-to-rem($_space-value);
@@ -249,7 +250,7 @@ $o-flexbox__mod-flex-shrink: inherit, initial, revert, revert-layer, unset;
 // Inline alignment modifiers
 // --------------------------------------------------
 
-@mixin o-flexbox__mod-alignment-inline($_inline-alignment: center) {
+@mixin o-flexbox__mod-alignment-inline($_inline-alignment: flex-start) {
   .o-flexbox.o-flexbox__inline--#{$_inline-alignment} {
     justify-content: $_inline-alignment;
   }
