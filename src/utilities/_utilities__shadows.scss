@@ -26,8 +26,22 @@ $u-shadows__maps--custom: foundations__shadows.$f-shadows--custom !default;
 
 @if $u-shadows--enabled {
   @each $_shadow-name, $_shadow-value in $u-shadows__maps {
-    .u-shadow--#{$_shadow-name} {
+    .u-shadow--#{$_shadow-name}:not(.u-shadow__pseudo) {
       box-shadow: $_shadow-value color.scale(map.get(foundations__colors-neutral.$f-colors-neutral--bg, "secondary"), $alpha: -50%) !important;
+    }
+    .u-shadow--#{$_shadow-name}.u-shadow__pseudo {
+      &::before {
+        display: block;
+        position: absolute;
+        z-index: 0;
+        border-radius: inherit;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        content: "";
+        box-shadow: $_shadow-value color.scale(map.get(foundations__colors-neutral.$f-colors-neutral--bg, "secondary"), $alpha: -50%) !important;
+      }
     }
   }
 
