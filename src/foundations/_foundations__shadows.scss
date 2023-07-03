@@ -1,4 +1,4 @@
-@use "foundations__colors-neutral";
+@import "foundations__colors-neutral";
 
 /* -------------------------------------------------------------------------
  * SHADOWS
@@ -33,7 +33,7 @@ $f-shadow--custom-fx1: (
     "width": 50%,
     "height": 0.5rem,
     "background": none,
-    "box-shadow": 0 15px 10px foundations__colors-neutral.$f-color__neutral--secondary-bg,
+    "box-shadow": 0 15px 10px $f-color__neutral--secondary-bg,
   ),
   "before": (
     "transform": rotate(-3deg),
@@ -57,7 +57,7 @@ $f-shadow--custom-fx2: (
     "width": 50%,
     "height": 0.5rem,
     "background": none,
-    "box-shadow": 0 15px 10px foundations__colors-neutral.$f-color__neutral--secondary-bg,
+    "box-shadow": 0 15px 10px $f-color__neutral--secondary-bg,
   ),
   "before": (
     "transform": rotate(3deg),

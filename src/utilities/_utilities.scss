@@ -16,18 +16,18 @@
  * shadows ................ Foundation shadows
  * widths ................. Fraction widths */
 
-@use "utilities__alignments";
-@use "utilities__arrows";
-@use "utilities__bgcolors";
-@use "utilities__colors";
-@use "utilities__cursors";
-@use "utilities__effects";
-@use "utilities__font-families";
-@use "utilities__font-sizes";
-@use "utilities__hidden";
-@use "utilities__line-heights";
-@use "utilities__margins";
-@use "utilities__paddings";
-@use "utilities__radiuses";
-@use "utilities__shadows";
-@use "utilities__widths";
+@import "utilities__alignments";
+@import "utilities__arrows";
+@import "utilities__bgcolors";
+@import "utilities__colors";
+@import "utilities__cursors";
+@import "utilities__effects";
+@import "utilities__font-families";
+@import "utilities__font-sizes";
+@import "utilities__hidden";
+@import "utilities__line-heights";
+@import "utilities__margins";
+@import "utilities__paddings";
+@import "utilities__radiuses";
+@import "utilities__shadows";
+@import "utilities__widths";

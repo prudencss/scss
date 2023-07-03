@@ -1,12 +1,12 @@
-@use "../foundations/foundations__colors-neutral";
-@use "../foundations/foundations__font-families";
-@use "../foundations/foundations__line-heights";
-@use "../settings/core-functions/px-to-rem";
-@use "../settings/core-functions/strip-units";
-@use "../settings/settings__config";
-@use "../settings/settings__core";
-
 @use "sass:color";
+
+@import "../foundations/foundations__colors-neutral";
+@import "../foundations/foundations__font-families";
+@import "../foundations/foundations__line-heights";
+@import "../settings/core-functions/px-to-rem";
+@import "../settings/core-functions/strip-units";
+@import "../settings/settings__config";
+@import "../settings/settings__core";
 
 /* -------------------------------------------------------------------------
  * DOCUMENT
@@ -26,18 +26,18 @@
 ;
 // Document variables
 
-$e-document__body--font-family: foundations__font-families.$f-font-family__primary !default;
-$e-document__body--font-size: settings__core.$s-core__font-size !default;
-$e-document__body--line-height: foundations__line-heights.$f-line-height--m !default;
-$e-document__body--color: color.scale(foundations__colors-neutral.$f-color__neutral--primary, $lightness: -50%) !default;
-$e-document__body--bgcolor: color.scale(foundations__colors-neutral.$f-color__neutral--primary-bg, $lightness: 50%) !default;
+$e-document__body--font-family: $f-font-family__primary !default;
+$e-document__body--font-size: $s-core__font-size !default;
+$e-document__body--line-height: $f-line-height--m !default;
+$e-document__body--color: color.scale($f-color__neutral--primary, $lightness: -50%) !default;
+$e-document__body--bgcolor: color.scale($f-color__neutral--primary-bg, $lightness: 50%) !default;
 
 // Apply document defaults according SETTINGS > CONFIG > SCOPED
 
-@if settings__config.$s-config__scoped {
+@if $s-config__scoped {
   // If the output is scoped into a selector, apply box sizing on all elements
 
-  :root & {
+  :root {
     font-family: $e-document__body--font-family;
     color: $e-document__body--color;
     background-color: $e-document__body--bgcolor;
@@ -52,7 +52,7 @@ $e-document__body--bgcolor: color.scale(foundations__colors-neutral.$f-color__ne
     font-family: $e-document__body--font-family;
     color: $e-document__body--color;
     background-color: $e-document__body--bgcolor;
-    font-size: strip-units.s-core-strip-units(px-to-rem.s-core-px-to-rem($e-document__body--font-size, 16px)) * 1em;
+    font-size: s-core-strip-units(s-core-px-to-rem($e-document__body--font-size, 16px)) * 1em;
 
     /* [1] */
     line-height: $e-document__body--line-height;

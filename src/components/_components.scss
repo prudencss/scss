@@ -4,7 +4,7 @@
  *
  * buttons ................. Button Variations */
 
-@use "components__button";
-@use "components__label";
-@use "components__nav";
-@use "components__icon";
+@import "components__button";
+@import "components__label";
+@import "components__nav";
+@import "components__icon";

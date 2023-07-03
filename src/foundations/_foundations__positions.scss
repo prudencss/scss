@@ -1,4 +1,4 @@
-@use "../settings/settings__config";
+@import "../settings/settings__config";
 
 /* -------------------------------------------------------------------------
  * POSITIONS
@@ -19,6 +19,6 @@ $f-positions__fractions: (
   "end": 100
 );
 
-$f-positions__separator: settings__config.$s-config__special-char--position-separator;
+$f-positions__separator: $s-config__special-char--position-separator;
 
 $f-positions__compass: top, right, bottom, left;

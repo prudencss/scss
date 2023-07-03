@@ -11,8 +11,8 @@
 
 @use "sass:math";
 @use "sass:meta";
-@use "strip-units";
-@use "../settings__core";
+@import "strip-units";
+@import "../settings__core";
 
 // Function definition and code
 

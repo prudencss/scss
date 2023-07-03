@@ -1,7 +1,8 @@
 @use "sass:map";
-@use "../foundations/foundations__breakpoints";
-@use "../settings/core-functions/string-breakpoint";
-@use "../tools/tools__sass-mq";
+
+@import "../foundations/foundations__breakpoints";
+@import "../settings/core-functions/string-breakpoint";
+@import "../tools/tools__sass-mq";
 
 /* -------------------------------------------------------------------------
  * HIDDEN
@@ -18,10 +19,10 @@ $u-hidden--enabled: true !default;
 // Options Breakpoints
 
 $u-hidden__bp-from--enabled: true !default;
-$u-hidden__bp-from: map.remove(foundations__breakpoints.$f-breakpoints, "xxs") !default;
+$u-hidden__bp-from: map.remove($f-breakpoints, "xxs") !default;
 
 $u-hidden__bp-until--enabled: true !default;
-$u-hidden__bp-until: map.remove(foundations__breakpoints.$f-breakpoints, "xxs") !default;
+$u-hidden__bp-until: map.remove($f-breakpoints, "xxs") !default;
 
 // Utility Selector output
 // --------------------------------------------------
@@ -36,15 +37,15 @@ $u-hidden__bp-until: map.remove(foundations__breakpoints.$f-breakpoints, "xxs") 
 // --------------------------------------------------
 
 @mixin u-hidden--bp($_direction: "from", $_breakpoint: null) {
-  .u-hidden--#{$_direction}#{string-breakpoint.s-core-string-breakpoint($_breakpoint)} {
+  .u-hidden--#{$_direction}#{s-core-string-breakpoint($_breakpoint)} {
     @if $_direction == "from" and $_breakpoint != null {
-      @include tools__sass-mq.t-mq($from: $_breakpoint) {
+      @include t-mq($from: $_breakpoint) {
         display: none !important;
       }
     }
 
     @if $_direction == "until" and $_breakpoint != null {
-      @include tools__sass-mq.t-mq($until: $_breakpoint) {
+      @include t-mq($until: $_breakpoint) {
         display: none !important;
       }
     }

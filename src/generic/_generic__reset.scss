@@ -1,5 +1,5 @@
-@use "../foundations/foundations__spaces";
-@use "../settings/core-functions/px-to-rem";
+@import "../foundations/foundations__spaces";
+@import "../settings/core-functions/px-to-rem";
 
 /* -------------------------------------------------------------------------
  * RESET
@@ -8,8 +8,8 @@
 
 // Reset variables
 
-$g-reset__spacing--vertical: foundations__spaces.$f-space !default;
-$g-reset__spacing--horizontal: foundations__spaces.$f-space !default;
+$g-reset__spacing--vertical: $f-space !default;
+$g-reset__spacing--horizontal: $f-space !default;
 
 // Reset content
 
@@ -70,7 +70,7 @@ figure,
 hr,
 table,
 fieldset {
-  margin-bottom: px-to-rem.s-core-px-to-rem($g-reset__spacing--vertical);
+  margin-bottom: s-core-px-to-rem($g-reset__spacing--vertical);
 }
 
 // Consistent indentation for lists.
@@ -78,5 +78,5 @@ fieldset {
 dd,
 ol,
 ul {
-  margin-left: px-to-rem.s-core-px-to-rem($g-reset__spacing--horizontal);
+  margin-left: s-core-px-to-rem($g-reset__spacing--horizontal);
 }

@@ -1,4 +1,4 @@
-@use "../foundations/foundations__font-sizes";
+@import "../foundations/foundations__font-sizes";
 
 /* -------------------------------------------------------------------------
  * FONT-SIZES
@@ -14,7 +14,7 @@ $u-font-sizes--enabled: true !default;
 
 // Font-sizes maps
 
-$u-font-sizes__maps: foundations__font-sizes.$f-font-sizes !default;
+$u-font-sizes__maps: $f-font-sizes !default;
 
 // Utilities output
 // --------------------------------------------------

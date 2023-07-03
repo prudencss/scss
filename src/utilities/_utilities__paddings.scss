@@ -1,5 +1,5 @@
-@use "../foundations/foundations__spaces";
-@use "../settings/core-functions/px-to-rem";
+@import "../foundations/foundations__spaces";
+@import "../settings/core-functions/px-to-rem";
 
 /* -------------------------------------------------------------------------
  * Paddings
@@ -15,7 +15,7 @@ $u-padding--enabled: true !default;
 
 // Utility spaces
 
-$u-padding__spaces: foundations__spaces.$f-spaces !default;
+$u-padding__spaces: $f-spaces !default;
 $u-padding__classes: ("pt": "padding-top", "pr": "padding-right", "pb": "padding-bottom", "pl": "padding-left", "pv": ("padding-top", "padding-bottom"), "ph": ("padding-left", "padding-right"), "p": ("padding-top", "padding-right", "padding-bottom", "padding-left"));
 
 // Utilities output
@@ -26,7 +26,7 @@ $u-padding__classes: ("pt": "padding-top", "pr": "padding-right", "pb": "padding
     @each $_class-name, $_class-properties in $u-padding__classes {
       .u-#{$_class-name}--#{$_space-name} {
         @each $_property-name in $_class-properties {
-          #{$_property-name}: px-to-rem.s-core-px-to-rem($_space-value) !important;
+          #{$_property-name}: s-core-px-to-rem($_space-value) !important;
         }
       }
     }

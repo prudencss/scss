@@ -18,18 +18,18 @@
  * table .................. For manipulating the structure of HTML tables
  * wrapper ................ Page-level constraining and wrapping elements */
 
-@use "objects__block";
-@use "objects__box";
-@use "objects__bullet";
-@use "objects__crop";
-@use "objects__flag";
-@use "objects__flexbox";
-@use "objects__grid";
-@use "objects__layout";
-@use "objects__list-bare";
-@use "objects__list-inline";
-@use "objects__media";
-@use "objects__pack";
-@use "objects__ratio";
-@use "objects__table";
-@use "objects__wrapper";
+@import "objects__block";
+@import "objects__box";
+@import "objects__bullet";
+@import "objects__crop";
+@import "objects__flag";
+@import "objects__flexbox";
+@import "objects__grid";
+@import "objects__layout";
+@import "objects__list-bare";
+@import "objects__list-inline";
+@import "objects__media";
+@import "objects__pack";
+@import "objects__ratio";
+@import "objects__table";
+@import "objects__wrapper";

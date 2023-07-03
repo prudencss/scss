@@ -1,5 +1,5 @@
-@use "../foundations/foundations__durations";
-@use "../foundations/foundations__easings";
+@import "../foundations/foundations__durations";
+@import "../foundations/foundations__easings";
 
 /* -------------------------------------------------------------------------
  * REVEAL OPACITY
@@ -18,14 +18,14 @@ $a-reveal-opacity--enabled: true !default;
 
 // Animation Params
 
-$a-reveal-opacity__duration: foundations__durations.$f-duration !default;
-$a-reveal-opacity__easing-in: foundations__easings.$f-easing--anticipate !default;
-$a-reveal-opacity__easing-out: foundations__easings.$f-easing--excite !default;
+$a-reveal-opacity__duration: $f-duration !default;
+$a-reveal-opacity__easing-in: $f-easing--anticipate !default;
+$a-reveal-opacity__easing-out: $f-easing--excite !default;
 
 // Modifiers durations
 
 $a-reveal-opacity__mod-durations--enabled: true !default;
-$a-reveal-opacity__mod-durations: foundations__durations.$f-durations !default;
+$a-reveal-opacity__mod-durations: $f-durations !default;
 
 // Animation as a mixin
 // --------------------------------------------------
@@ -39,7 +39,7 @@ $a-reveal-opacity__mod-durations: foundations__durations.$f-durations !default;
 
 @mixin a-reveal-opacity--in {
   opacity: 0.3;
-  transition-duration: foundations__durations.$f-duration--none !important;
+  transition-duration: $f-duration--none !important;
   transition-timing-function: $a-reveal-opacity__easing-in;
 }
 
@@ -62,7 +62,7 @@ $a-reveal-opacity__mod-durations: foundations__durations.$f-durations !default;
 // Duration modifiers output
 // --------------------------------------------------
 
-@mixin a-reveal-opacity__mod-duration($_duration-name: "normal", $_duration-value: foundations__durations.$f-duration--normal) {
+@mixin a-reveal-opacity__mod-duration($_duration-name: "normal", $_duration-value: $f-duration--normal) {
   .a-reveal-opacity--duration-#{$_duration-name} {
     transition-duration: $_duration-value;
   }

@@ -1,13 +1,13 @@
-@use "../foundations/foundations__colors-brand";
-@use "../foundations/foundations__colors-neutral";
-@use "../foundations/foundations__colors-state";
-@use "../foundations/foundations__dimensions";
-@use "../foundations/foundations__positions";
-@use "../foundations/foundations__spaces";
-@forward "../utilities/utilities__arrows";
-
 @use "sass:color";
 @use "sass:map";
+
+@import "../foundations/foundations__colors-brand";
+@import "../foundations/foundations__colors-neutral";
+@import "../foundations/foundations__colors-state";
+@import "../foundations/foundations__dimensions";
+@import "../foundations/foundations__positions";
+@import "../foundations/foundations__spaces";
+@import "../utilities/utilities__arrows";
 
 .c-icon {
   -moz-osx-font-smoothing: grayscale;
@@ -17,8 +17,8 @@
   vertical-align: middle;
   text-align: center;
   margin: 0;
-  padding: foundations__spaces.$f-space--s foundations__spaces.$f-space--m;
-  background-color: foundations__colors-neutral.$f-color__neutral--accent-bg;
+  padding: $f-space--s $f-space--m;
+  background-color: $f-color__neutral--accent-bg;
   outline: none;
   border: none;
   color: inherit;
@@ -26,13 +26,13 @@
   &:hover,
   &:focus,
   &:active {
-    background-color: color.scale(foundations__colors-neutral.$f-color__neutral--accent-bg, $lightness: if(color.lightness(foundations__colors-neutral.$f-color__neutral--accent-bg) > 50%, 33%, -33%));
+    background-color: color.scale($f-color__neutral--accent-bg, $lightness: if(color.lightness($f-color__neutral--accent-bg) > 50%, 33%, -33%));
   }
 
 
   // Branding Color Variants
 
-  @each $_name, $_val in foundations__colors-brand.$f-colors-brand {
+  @each $_name, $_val in $f-colors-brand {
     &.c-icon--#{$_name} {
       // background-color: $_val;
       color: $_val;
@@ -51,9 +51,9 @@
     }
   }
 
-  @each $_name, $_val in foundations__colors-neutral.$f-colors-neutral {
+  @each $_name, $_val in $f-colors-neutral {
     &.c-icon--neutral-#{$_name} {
-      background-color: map.get(foundations__colors-neutral.$f-colors-neutral--bg, $_name);
+      background-color: map.get($f-colors-neutral--bg, $_name);
       color: $_val;
 
       &:hover,
@@ -65,28 +65,28 @@
       &:hover,
       &:focus,
       &:active {
-        background-color: color.scale($_val, $lightness: if(color.lightness(map.get(foundations__colors-neutral.$f-colors-neutral--bg, $_name)) > 50%, 33%, -33%));
+        background-color: color.scale($_val, $lightness: if(color.lightness(map.get($f-colors-neutral--bg, $_name)) > 50%, 33%, -33%));
       }
     }
   }
 
   // State Color Variants
 
-  @each $_name, $_val in foundations__colors-state.$f-colors-state {
+  @each $_name, $_val in $f-colors-state {
     &.c-icon--#{$_name} {
-      background-color: foundations__colors-neutral.$f-color__neutral--primary;
+      background-color: $f-color__neutral--primary;
       color: $_val;
 
       &:hover,
       &:focus,
       &:active {
-        color: color.scale($_val, $lightness: if(color.lightness(foundations__colors-neutral.$f-color__neutral--primary) > 50%, -17%, 17%));
+        color: color.scale($_val, $lightness: if(color.lightness($f-color__neutral--primary) > 50%, -17%, 17%));
       }
 
       &:hover,
       &:focus,
-      &:active, {
-        background-color: color.scale(foundations__colors-neutral.$f-color__neutral--primary, $lightness: if(color.lightness($_val) > 50%, 33%, -33%));
+      &:active {
+        background-color: color.scale($f-color__neutral--primary, $lightness: if(color.lightness($_val) > 50%, 33%, -33%));
       }
     }
   }
@@ -94,8 +94,8 @@
   // Size variants
 
   @each $_denominator in ("xxs", "xs", "s", "m", "l", "xl", "xxl") {
-    $_padding: map.get(foundations__spaces.$f-spaces, $_denominator);
-    $_dimension: map.get(foundations__dimensions.$f-dimensions__icon, $_denominator);
+    $_padding: map.get($f-spaces, $_denominator);
+    $_dimension: map.get($f-dimensions__icon, $_denominator);
 
     &.c-icon--#{$_denominator} {
       padding: calc(#{$_padding} / 1.618) $_padding;
@@ -106,8 +106,8 @@
 
   // Pointing variants
 
-  @each $_pos-name in foundations__positions.$f-positions__compass {
-    $_separator: foundations__positions.$f-positions__separator;
+  @each $_pos-name in $f-positions__compass {
+    $_separator: $f-positions__separator;
 
     &.c-icon--arrow-#{$_pos-name} {
       border-width: 1px;
@@ -122,7 +122,7 @@
       border-#{$_pos-name}: 1px solid inherit;
     }
 
-    @each $_fraction-name, $_fraction-val in foundations__positions.$f-positions__fractions {
+    @each $_fraction-name, $_fraction-val in $f-positions__fractions {
       &.c-icon--arrow-#{$_pos-name}#{$_separator}#{$_fraction-name} {
         border-color: inherit;
 

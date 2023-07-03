@@ -10,10 +10,10 @@
  * paragraphs ............. Minimal paragraphs styles
  * tables ................. Ensure tables fill up as much space as possible. */
 
-@use "elements__document";
-@use "elements__headings";
-@use "elements__hr";
-@use "elements__images";
-@use "elements__links";
-@use "elements__paragraphs";
-@use "elements__tables";
+@import "elements__document";
+@import "elements__headings";
+@import "elements__hr";
+@import "elements__images";
+@import "elements__links";
+@import "elements__paragraphs";
+@import "elements__tables";

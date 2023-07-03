@@ -1,8 +1,8 @@
 @use "sass:map";
 @use "sass:meta";
-@use "../foundations/foundations__breakpoints";
-@use "../settings/settings__config";
-@use "../settings/settings__core";
+@import "../foundations/foundations__breakpoints";
+@import "../settings/settings__config";
+@import "../settings/settings__core";
 
 /* -------------------------------------------------------------------------
  * SASS-MQ
@@ -13,13 +13,13 @@
 // SASS-MQ variables
 // --------------------------------------------------
 
-$t-sass-mq__base-font-size: settings__core.$s-core__font-size !default;
-$t-sass-mq__breakpoints: foundations__breakpoints.$f-breakpoints !default;
-$t-sass-mq__breakpoints--portrait: foundations__breakpoints.$f-breakpoints--portrait !default;
-$t-sass-mq__brekapoints--landscape: foundations__breakpoints.$f-breakpoints--landscape !default;
+$t-sass-mq__base-font-size: $s-core__font-size !default;
+$t-sass-mq__breakpoints: $f-breakpoints !default;
+$t-sass-mq__breakpoints--portrait: $f-breakpoints--portrait !default;
+$t-sass-mq__brekapoints--landscape: $f-breakpoints--landscape !default;
 $t-sass-mq__media-type: all !default;
 
-$t-sass-mq__debug: settings__config.$s-config__debug !default;
+$t-sass-mq__debug: $s-config__debug !default;
 $t-sass-mq__debug--color: rgb(255, 0, 0) !default;
 $t-sass-mq__debug--bg-color: rgba(255, 0, 0, 0.1) !default;
 $t-sass-mq__debug--border-color: rgb(255, 0, 0) !default;

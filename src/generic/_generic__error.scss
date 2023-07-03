@@ -1,4 +1,4 @@
-@use "../settings/settings__config";
+@import "../settings/settings__config";
 
 /* -------------------------------------------------------------------------
  * ERROR Hinting
@@ -6,7 +6,7 @@
  * React componentDidCatch motivated/inspired basic error boundary hinting
  * available in debug mode only */
 
-@if settings__config.$s-config__debug {
+@if $s-config__debug {
   .debug--warning {
     border: 3px solid rgb(255, 0, 0) !important;
     background-color: rgba(255, 0, 0, 0.1) !important;

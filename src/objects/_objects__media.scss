@@ -1,4 +1,4 @@
-@use "../tools/tools__clearfix";
+@import "../tools/tools__clearfix";
 
 /* -------------------------------------------------------------------------
  * MEDIA
@@ -23,7 +23,7 @@ $o-media__mod-reverse--enabled: true !default;
 @mixin o-media {
   display: block;
 
-  @include tools__clearfix.t-clearfix;
+  @include t-clearfix;
 }
 
 @mixin o-media__img {

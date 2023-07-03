@@ -1,4 +1,4 @@
-@use "../foundations/foundations__spaces";
+@import "../foundations/foundations__spaces";
 
 /* -------------------------------------------------------------------------
  * INSET STRETCH
@@ -17,7 +17,7 @@ $sp-inset-stretch__enabled: true !default;
 
 // Spaces
 
-$sp-inset-stretch__spaces: foundations__spaces.$f-spaces !default;
+$sp-inset-stretch__spaces: $f-spaces !default;
 
 // Space as a mixin
 // --------------------------------------------------

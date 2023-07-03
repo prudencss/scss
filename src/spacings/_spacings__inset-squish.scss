@@ -1,4 +1,4 @@
-@use "../foundations/foundations__spaces";
+@import "../foundations/foundations__spaces";
 
 /* -------------------------------------------------------------------------
  * INSET SQUISH
@@ -17,7 +17,7 @@ $sp-inset-squish__enabled: true !default;
 
 // Spaces
 
-$sp-inset-squish__spaces: foundations__spaces.$f-spaces !default;
+$sp-inset-squish__spaces: $f-spaces !default;
 
 // Space as a mixin
 // --------------------------------------------------

@@ -1,5 +1,5 @@
 @use "sass:string";
-@use "../foundations/foundations__colors";
+@import "../foundations/foundations__colors";
 
 /* -------------------------------------------------------------------------
  * COLORS
@@ -15,7 +15,7 @@ $u-colors--enabled: true !default;
 
 // Colors maps
 
-$u-colors__maps: foundations__colors.$f-colors !default;
+$u-colors__maps: $f-colors !default;
 
 // Utilities output
 // --------------------------------------------------

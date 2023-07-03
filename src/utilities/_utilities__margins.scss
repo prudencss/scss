@@ -1,5 +1,5 @@
-@use "../foundations/foundations__spaces";
-@use "../settings/core-functions/px-to-rem";
+@import "../foundations/foundations__spaces";
+@import "../settings/core-functions/px-to-rem";
 
 /* -------------------------------------------------------------------------
  * Margins
@@ -15,7 +15,7 @@ $u-margin--enabled: true !default;
 
 // Utility spaces
 
-$u-margin__spaces: foundations__spaces.$f-spaces !default;
+$u-margin__spaces: $f-spaces !default;
 $u-margin__classes: ("mt": "margin-top", "mr": "margin-right", "mb": "margin-bottom", "ml": "margin-left", "mv": ("margin-top", "margin-bottom"), "mh": ("margin-left", "margin-right"), "m": ("margin-top", "margin-right", "margin-bottom", "margin-left"));
 
 // Utilities output
@@ -26,7 +26,7 @@ $u-margin__classes: ("mt": "margin-top", "mr": "margin-right", "mb": "margin-bot
     @each $_class-name, $_class-properties in $u-margin__classes {
       .u-#{$_class-name}--#{$_space-name} {
         @each $_property-name in $_class-properties {
-          #{$_property-name}: px-to-rem.s-core-px-to-rem($_space-value) !important;
+          #{$_property-name}: s-core-px-to-rem($_space-value) !important;
         }
       }
     }

@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "../foundations/foundations__durations";
-@use "../foundations/foundations__easings";
+@import "../foundations/foundations__durations";
+@import "../foundations/foundations__easings";
 
 /* -------------------------------------------------------------------------
  * REVEAL SLIDE
@@ -20,15 +20,15 @@ $a-jiggle--enabled: true !default;
 
 // Animation Params
 
-$a-jiggle__duration: foundations__durations.$f-duration !default;
+$a-jiggle__duration: $f-duration !default;
 $a-jiggle__direction: "horizontal" !default;
-$a-jiggle__easing-in: foundations__easings.$f-easing--anticipate !default;
-$a-jiggle__easing-out: foundations__easings.$f-easing--excite !default;
+$a-jiggle__easing-in: $f-easing--anticipate !default;
+$a-jiggle__easing-out: $f-easing--excite !default;
 
 // Modifiers durations
 
 $a-jiggle__mod-durations--enabled: true !default;
-$a-jiggle__mod-durations: foundations__durations.$f-durations !default;
+$a-jiggle__mod-durations: $f-durations !default;
 
 // Modifiers directions
 
@@ -107,7 +107,7 @@ $a-jiggle__mod-directions: "horizontal", "vertical" !default;
 // Duration modifiers output
 // --------------------------------------------------
 
-@mixin a-jiggle__mod-duration($_duration-name: "normal", $_duration-value: foundations__durations.$f-duration--normal) {
+@mixin a-jiggle__mod-duration($_duration-name: "normal", $_duration-value: $f-duration--normal) {
   .a-jiggle--duration-#{$_duration-name} {
     transition-duration: $_duration-value;
     animation-duration: $_duration-value;

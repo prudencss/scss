@@ -1,4 +1,4 @@
-@use "../foundations/foundations__line-heights";
+@import "../foundations/foundations__line-heights";
 
 /* -------------------------------------------------------------------------
  * LINE-HEIGHTS
@@ -14,7 +14,7 @@ $u-line-height--enabled: true !default;
 
 // Line-heights maps
 
-$u-line-height__maps: foundations__line-heights.$f-line-heights !default;
+$u-line-height__maps: $f-line-heights !default;
 
 // Utilities output
 // --------------------------------------------------

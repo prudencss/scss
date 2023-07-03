@@ -1,7 +1,7 @@
-@use "../foundations/foundations__durations";
-@use "../foundations/foundations__easings";
-
 @use "sass:map";
+
+@import "../foundations/foundations__durations";
+@import "../foundations/foundations__easings";
 
 /* -------------------------------------------------------------------------
  * REVEAL SLIDE
@@ -21,15 +21,15 @@ $a-reveal-slide--enabled: true !default;
 
 // Animation Params
 
-$a-reveal-slide__duration: foundations__durations.$f-duration !default;
+$a-reveal-slide__duration: $f-duration !default;
 $a-reveal-slide__direction: "top" !default;
-$a-reveal-slide__easing-in: foundations__easings.$f-easing--in !default;
-$a-reveal-slide__easing-out: foundations__easings.$f-easing--out !default;
+$a-reveal-slide__easing-in: $f-easing--in !default;
+$a-reveal-slide__easing-out: $f-easing--out !default;
 
 // Modifiers durations
 
 $a-reveal-slide__mod-durations--enabled: true !default;
-$a-reveal-slide__mod-durations: foundations__durations.$f-durations !default;
+$a-reveal-slide__mod-durations: $f-durations !default;
 
 // Modifiers directions
 
@@ -66,7 +66,7 @@ $a-reveal-slide__mod-directions: "left", "right", "top", "bottom" !default;
 
 @mixin a-reveal-slide--in($_direction: $a-reveal-slide__direction) {
   transform: a-reveal-slide__direction-to-transform($_direction);
-  transition-duration: foundations__durations.$f-duration--fast;
+  transition-duration: $f-duration--fast;
   transition-timing-function: $a-reveal-slide__easing-in;
 }
 
@@ -89,7 +89,7 @@ $a-reveal-slide__mod-directions: "left", "right", "top", "bottom" !default;
 // Duration modifiers output
 // --------------------------------------------------
 
-@mixin a-reveal-slide__mod-duration($_duration-name: "normal", $_duration-value: foundations__durations.$f-duration--normal) {
+@mixin a-reveal-slide__mod-duration($_duration-name: "normal", $_duration-value: $f-duration--normal) {
   .a-reveal-slide--duration-#{$_duration-name} {
     transition-duration: $_duration-value;
   }

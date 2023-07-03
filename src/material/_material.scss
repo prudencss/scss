@@ -8,5 +8,5 @@
  * Body  .................. Element agnostic body variants
  * Heading ................ Element agnostic heading variants */
 
-@use "material__body";
-@use "material__heading";
+@import "material__body";
+@import "material__heading";

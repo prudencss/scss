@@ -1,13 +1,13 @@
-@use "../foundations/foundations__breakpoints";
-@use "../foundations/foundations__spaces";
-@use "../generic/generic__reset";
-@use "../settings/core-functions/px-to-rem";
-@use "../settings/core-functions/string-breakpoint";
-@use "../settings/core-functions/string-ratio";
-@use "../settings/settings__core";
-@use "../tools/tools__sass-mq";
-
 @use "sass:string";
+
+@import "../foundations/foundations__breakpoints";
+@import "../foundations/foundations__spaces";
+@import "../generic/generic__reset";
+@import "../settings/core-functions/px-to-rem";
+@import "../settings/core-functions/string-breakpoint";
+@import "../settings/core-functions/string-ratio";
+@import "../settings/settings__core";
+@import "../tools/tools__sass-mq";
 
 /* -------------------------------------------------------------------------
  * FLEXBOX
@@ -66,7 +66,7 @@ $o-flexbox__fractions: 0 1 2 3 4 5 6 7 8 9 10 11 12 !default;
 
 // Breakpoints
 
-$o-flexbox__mediaquery--breakpoints: foundations__breakpoints.$f-breakpoints;
+$o-flexbox__mediaquery--breakpoints: $f-breakpoints;
 $o-flexbox__mediaquery--orientation: (
   "portrait": "(orientation: portrait)",
   "landscape": "(orientation: landscape)"
@@ -92,13 +92,13 @@ $o-flexbox__mod-multilines: wrap, nowrap, wrap-reverse, inherit, initial, revert
 
 // Object Params
 
-$o-flexbox__space--horizontal: generic__reset.$g-reset__spacing--horizontal !default;
-$o-flexbox__space--vertical: generic__reset.$g-reset__spacing--vertical !default;
+$o-flexbox__space--horizontal: $g-reset__spacing--horizontal !default;
+$o-flexbox__space--vertical: $g-reset__spacing--vertical !default;
 
 // Modifiers spaces
 
 $o-flexbox__mod-spaces--enabled: true !default;
-$o-flexbox__mod-spaces: foundations__spaces.$f-spaces !default;
+$o-flexbox__mod-spaces: $f-spaces !default;
 
 // Modifiers alignments
 
@@ -136,7 +136,7 @@ $o-flexbox__mod-flex-shrink: inherit, initial, revert, revert-layer, unset;
 }
 
 @mixin o-flexbox__item() {
-  font-size: px-to-rem.s-core-px-to-rem(settings__core.$s-core__font-size);
+  font-size: s-core-px-to-rem($s-core__font-size);
 }
 
 @if $o-flexbox--enabled {
@@ -171,7 +171,7 @@ $o-flexbox__mod-flex-shrink: inherit, initial, revert, revert-layer, unset;
 
 @mixin o-flexbox__mod-direction($_direction-value: row, $_breakpoint: false) {
   @if $_breakpoint {
-    .o-flexbox.o-flexbox__direction--#{$_direction-value}#{string-breakpoint.s-core-string-breakpoint($_breakpoint)} {
+    .o-flexbox.o-flexbox__direction--#{$_direction-value}#{s-core-string-breakpoint($_breakpoint)} {
       flex-direction: $_direction-value;
       padding: if(string.index($_direction-value, "column") != null, $o-flexbox__space--vertical, 0) if(string.index($_direction-value, "row") != null, $o-flexbox__space--horizontal, 0);
     }
@@ -189,12 +189,12 @@ $o-flexbox__mod-flex-shrink: inherit, initial, revert, revert-layer, unset;
     @include o-flexbox__mod-direction($_direction-value);
 
     @each $_bp-name, $_bp-value in $o-flexbox__mediaquery--breakpoints {
-      @include tools__sass-mq.t-mq($from: $_bp-name) {
+      @include t-mq($from: $_bp-name) {
         @include o-flexbox__mod-direction($_direction-value, $_bp-name);
       }
     }
     @each $_orientation-name, $_orientation-value in $o-flexbox__mediaquery--orientation {
-      @include tools__sass-mq.t-mq($from: 1, $and: $_orientation-value) {
+      @include t-mq($from: 1, $and: $_orientation-value) {
         @include o-flexbox__mod-direction($_direction-value, $_orientation-name);
       }
     }
@@ -221,23 +221,23 @@ $o-flexbox__mod-flex-shrink: inherit, initial, revert, revert-layer, unset;
 
 @mixin o-flexbox__mod-space($_space-name: none, $_space-value: 0) {
   .o-flexbox.o-flexbox-row__space--#{$_space-name} {
-    padding-left: px-to-rem.s-core-px-to-rem($_space-value);
-    padding-right: px-to-rem.s-core-px-to-rem($_space-value);
+    padding-left: s-core-px-to-rem($_space-value);
+    padding-right: s-core-px-to-rem($_space-value);
   }
 
   .o-flexbox > .o-flexbox__item.o-flexbox-row__space--#{$_space-name} {
-    padding-left: px-to-rem.s-core-px-to-rem($_space-value);
-    padding-right: px-to-rem.s-core-px-to-rem($_space-value);
+    padding-left: s-core-px-to-rem($_space-value);
+    padding-right: s-core-px-to-rem($_space-value);
   }
 
   .o-flexbox.o-flexbox-column__space--#{$_space-name} {
-    padding-top: px-to-rem.s-core-px-to-rem($_space-value);
-    padding-bottom: px-to-rem.s-core-px-to-rem($_space-value);
+    padding-top: s-core-px-to-rem($_space-value);
+    padding-bottom: s-core-px-to-rem($_space-value);
   }
 
   .o-flexbox > .o-flexbox__item.o-flexbox-column__space--#{$_space-name} {
-    padding-top: px-to-rem.s-core-px-to-rem($_space-value);
-    padding-bottom: px-to-rem.s-core-px-to-rem($_space-value);
+    padding-top: s-core-px-to-rem($_space-value);
+    padding-bottom: s-core-px-to-rem($_space-value);
   }
 }
 
@@ -322,7 +322,7 @@ $o-flexbox__mod-flex-shrink: inherit, initial, revert, revert-layer, unset;
     @include o-flexbox__mod-flex-grow($_flex-value);
   }
   @each $_flex-value in $o-flexbox__mod-flex-grow {
-    @include o-flexbox__mod-flex-grow($_flex-value)
+    @include o-flexbox__mod-flex-grow($_flex-value);
   }
 }
 
@@ -344,7 +344,7 @@ $o-flexbox__mod-flex-shrink: inherit, initial, revert, revert-layer, unset;
     @include o-flexbox__mod-flex-shrink($_flex-value);
   }
   @each $_flex-value in $o-flexbox__mod-flex-shrink {
-    @include o-flexbox__mod-flex-shrink($_flex-value)
+    @include o-flexbox__mod-flex-shrink($_flex-value);
   }
 }
 
@@ -356,11 +356,11 @@ $o-flexbox__mod-flex-shrink: inherit, initial, revert, revert-layer, unset;
     @if $_denominator != 0 {
       @for $_numerator from 1 through $_denominator {
         @if $_numerator != $_denominator or $_denominator == 1 {
-          .o-flexbox.o-flexbox__flex-basis#{string-ratio.s-core-string-ratio($_numerator, $_denominator)} > .o-flexbox__item {
+          .o-flexbox.o-flexbox__flex-basis#{s-core-string-ratio($_numerator, $_denominator)} > .o-flexbox__item {
             flex-basis: ($_numerator / $_denominator * 100%);
           }
 
-          .o-flexbox > .o-flexbox__item.o-flexbox__item--flex-basis#{string-ratio.s-core-string-ratio($_numerator, $_denominator)} {
+          .o-flexbox > .o-flexbox__item.o-flexbox__item--flex-basis#{s-core-string-ratio($_numerator, $_denominator)} {
             flex-basis: ($_numerator / $_denominator * 100%);
           }
         }
@@ -388,7 +388,7 @@ $o-flexbox__mod-flex-shrink: inherit, initial, revert, revert-layer, unset;
 }
 
 @mixin o-flexbox__mod-flex-basis__width--percentage($_flex-value: 0) {
-  .o-flexbox.o-flexbox__flex-width--#{$_flex-value}-percent{
+  .o-flexbox.o-flexbox__flex-width--#{$_flex-value}-percent {
     flex-basis: $_flex-value * 100%;
   }
 }
@@ -397,16 +397,16 @@ $o-flexbox__mod-flex-shrink: inherit, initial, revert, revert-layer, unset;
   @include o-flexbox__mod-flex-basis--fractions();
 
   @each $_flex-value in $o-flexbox__mod-flex-basis {
-    @include o-flexbox__mod-flex-basis($_flex-value)
+    @include o-flexbox__mod-flex-basis($_flex-value);
   }
   @each $_flex-value in $o-flexbox__mod-flex-basis__width--px {
-    @include o-flexbox__mod-flex-basis__width--px($_flex-value)
+    @include o-flexbox__mod-flex-basis__width--px($_flex-value);
   }
   @each $_flex-value in $o-flexbox__mod-flex-basis__width--em {
-    @include o-flexbox__mod-flex-basis__width--rem($_flex-value)
+    @include o-flexbox__mod-flex-basis__width--rem($_flex-value);
   }
   @each $_flex-value in $o-flexbox__mod-flex-basis__width--percentage {
-    @include o-flexbox__mod-flex-basis__width--percentage($_flex-value)
+    @include o-flexbox__mod-flex-basis__width--percentage($_flex-value);
   }
 }
 

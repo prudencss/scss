@@ -1,7 +1,7 @@
-@use "../foundations/foundations__dimensions";
-@use "../foundations/foundations__positions";
-
 @use "sass:map";
+
+@import "../foundations/foundations__dimensions";
+@import "../foundations/foundations__positions";
 
 /* -------------------------------------------------------------------------
  * CSS ARROWS
@@ -9,8 +9,8 @@
 
 // Utility vars
 
-$u-arrows__sizes: foundations__dimensions.$f-dimensions__arrow;
-$u-arrows__fractions: foundations__positions.$f-positions__fractions;
+$u-arrows__sizes: $f-dimensions__arrow;
+$u-arrows__fractions: $f-positions__fractions;
 
 // Utility toggling
 
@@ -52,8 +52,8 @@ $u-arrows--enabled: true !default;
 }
 
 @mixin u-arrow__mod--fraction--left($_fraction-name, $_fraction-val) {
-  %u-arrow--left#{foundations__positions.$f-positions--separator}#{$_fraction-name},
-  .u-arrow--left#{foundations__positions.$f-positions--separator}#{$_fraction-name} {
+  %u-arrow--left#{$f-positions--separator}#{$_fraction-name},
+  .u-arrow--left#{$f-positions--separator}#{$_fraction-name} {
     @extend %u-arrow--vertical-pos;
 
     left: 0;
@@ -64,8 +64,8 @@ $u-arrows--enabled: true !default;
 }
 
 @mixin u-arrow__mod--fraction--right($_fraction-name, $_fraction-val) {
-  %u-arrow--right#{foundations__positions.$f-positions--separator}#{$_fraction-name},
-  .u-arrow--right#{foundations__positions.$f-positions--separator}#{$_fraction-name} {
+  %u-arrow--right#{$f-positions--separator}#{$_fraction-name},
+  .u-arrow--right#{$f-positions--separator}#{$_fraction-name} {
     @extend %u-arrow--vertical-pos;
 
     right: 0;
@@ -76,8 +76,8 @@ $u-arrows--enabled: true !default;
 }
 
 @mixin u-arrow__mod--fraction--bottom($_fraction-name, $_fraction-val) {
-  %u-arrow--bottom#{foundations__positions.$f-positions--separator}#{$_fraction-name},
-  .u-arrow--bottom#{foundations__positions.$f-positions--separator}#{$_fraction-name} {
+  %u-arrow--bottom#{$f-positions--separator}#{$_fraction-name},
+  .u-arrow--bottom#{$f-positions--separator}#{$_fraction-name} {
     @extend %u-arrow--horizontal-pos;
 
     bottom: 0;
@@ -88,8 +88,8 @@ $u-arrows--enabled: true !default;
 }
 
 @mixin u-arrow__mod--fraction--top($_fraction-name, $_fraction-val) {
-  %u-arrow--top#{foundations__positions.$f-positions--separator}#{$_fraction-name},
-  .u-arrow--top#{foundations__positions.$f-positions--separator}#{$_fraction-name} {
+  %u-arrow--top#{$f-positions--separator}#{$_fraction-name},
+  .u-arrow--top#{$f-positions--separator}#{$_fraction-name} {
     @extend %u-arrow--horizontal-pos;
 
     top: 0;

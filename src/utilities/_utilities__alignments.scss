@@ -1,7 +1,7 @@
 @use "sass:map";
-@use "../foundations/foundations__breakpoints";
-@use "../settings/core-functions/string-breakpoint";
-@use "../tools/tools__sass-mq";
+@import "../foundations/foundations__breakpoints";
+@import "../settings/core-functions/string-breakpoint";
+@import "../tools/tools__sass-mq";
 
 /* -------------------------------------------------------------------------
  * ALIGNMENTS
@@ -25,7 +25,7 @@ $u-align__alignments: left, center, right !default;
 // Options Breakpoints
 
 $u-align__mod-bp--enabled: true !default;
-$u-align__mod-bp: map.remove(foundations__breakpoints.$f-breakpoints, "xxs") !default;
+$u-align__mod-bp: map.remove($f-breakpoints, "xxs") !default;
 
 // Utility selector output
 // --------------------------------------------------
@@ -43,9 +43,9 @@ $u-align__mod-bp: map.remove(foundations__breakpoints.$f-breakpoints, "xxs") !de
 
 @if $u-align--enabled and $u-align__mod-bp--enabled {
   @each $_bp-name, $_bp-value in $u-align__mod-bp {
-    @include tools__sass-mq.t-mq($from: $_bp-name) {
+    @include t-mq($from: $_bp-name) {
       @each $_alignment in $u-align__alignments {
-        .u-align--#{$_alignment}#{string-breakpoint.s-core-string-breakpoint($_bp-name)} {
+        .u-align--#{$_alignment}#{s-core-string-breakpoint($_bp-name)} {
           text-align: $_alignment !important;
         }
       }

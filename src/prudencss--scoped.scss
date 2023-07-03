@@ -11,11 +11,11 @@
  * foundations ................ Visual language expressed into SASS vars
  * tools ...................... Helper mixins for mq, quantities, ... */
 
-@use "settings/settings__core";
-@use "settings/settings__config";
-@use "settings/settings__core-functions";
-@use "foundations/foundations";
-@use "tools/tools";
+@import "settings/settings__core";
+@import "settings/settings__config";
+@import "settings/settings__core-functions";
+@import "foundations/foundations";
+@import "tools/tools";
 
 // Enable scoped flag
 $s-config__scoped: true;
@@ -29,14 +29,14 @@ $s-config__scoped: true;
  * elements ................... HTML elements default appearance
  * material ................... Class based elements: headings, icons, ... */
 
-@use "generic/generic";
-@use "elements/elements";
-@use "material/material";
+@import "generic/generic";
+@import "elements/elements";
+@import "material/material";
 
 /* -------------------------------------------------------------------------
  * SCOPED CLASS AND CONTENT */
 
-.s-#{settings__config.$s-config__scope-selector} {
+.s-#{$s-config__scope-selector} {
 
   /* -------------------------------------------------------------------------
    * ABSTRACTIONS

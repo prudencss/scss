@@ -1,6 +1,6 @@
-@use "../foundations/foundations__breakpoints";
-@use "../settings/core-functions/string-breakpoint";
-@use "../tools/tools__sass-mq";
+@import "../foundations/foundations__breakpoints";
+@import "../settings/core-functions/string-breakpoint";
+@import "../tools/tools__sass-mq";
 
 /* -------------------------------------------------------------------------
  * WIDTHS
@@ -43,7 +43,7 @@ $u-widths__fractions: 1 2 3 4 5 6 7 8 9 10 11 12 !default;
 // Option Breakpoints
 
 $u-widths__bp--enabled: true !default;
-$u-widths__bp: foundations__breakpoints.$f-breakpoints;
+$u-widths__bp: $f-breakpoints;
 
 // Pull and push options
 
@@ -113,8 +113,8 @@ $u-widths__offset-pull--enabled: true !default;
 
 @if $u-widths--enabled and $u-widths__bp--enabled {
   @each $_bp-name, $_bp-value in $u-widths__bp {
-    @include tools__sass-mq.t-mq($from: $_bp-name) {
-      @include u-widths($u-widths__fractions, string-breakpoint.s-core-string-breakpoint($_bp-name));
+    @include t-mq($from: $_bp-name) {
+      @include u-widths($u-widths__fractions, s-core-string-breakpoint($_bp-name));
     }
   }
 }

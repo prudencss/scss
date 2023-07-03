@@ -1,13 +1,13 @@
 @use "sass:map";
 @use "sass:math";
 @use "sass:meta";
-@use "../elements/elements__headings";
-@use "../foundations/foundations__font-families";
-@use "../foundations/foundations__font-sizes";
-@use "../foundations/foundations__line-heights";
-@use "../generic/generic__reset";
-@use "../settings/core-functions/map-diff";
-@use "../settings/core-functions/px-to-rem";
+@import "../elements/elements__headings";
+@import "../foundations/foundations__font-families";
+@import "../foundations/foundations__font-sizes";
+@import "../foundations/foundations__line-heights";
+@import "../generic/generic__reset";
+@import "../settings/core-functions/map-diff";
+@import "../settings/core-functions/px-to-rem";
 
 /* -------------------------------------------------------------------------
  * HEADINGS
@@ -24,11 +24,11 @@ $m-heading--enabled: true !default;
 // Material default properties
 
 $m-heading__properties: (
-  "font-family": foundations__font-families.$f-font-family__primary,
+  "font-family": $f-font-family__primary,
   "font-weight": 400,
-  "font-size": foundations__font-sizes.$f-font-size--xxl,
-  "line-height": elements__headings.$e-headings__line-height,
-  "margin-bottom": elements__headings.$e-headings__margin-bottom
+  "font-size": $f-font-size--xxl,
+  "line-height": $e-headings__line-height,
+  "margin-bottom": $e-headings__margin-bottom
 ) !default;
 
 // Material Size Modifiers
@@ -36,33 +36,33 @@ $m-heading__properties: (
 $m-heading__mod-sizes--enabled: true !default;
 $m-heading__mod-sizes: (
   "tiny": (
-    "font-family": foundations__font-families.$f-font-family__primary,
+    "font-family": $f-font-family__primary,
     "font-weight": 700,
-    "font-size": foundations__font-sizes.$f-font-size--l,
-    "line-height": foundations__line-heights.$f-line-height--s,
-    "margin-bottom": generic__reset.$g-reset__spacing--vertical
+    "font-size": $f-font-size--l,
+    "line-height": $f-line-height--s,
+    "margin-bottom": $g-reset__spacing--vertical
   ),
   "small": (
-    "font-family": foundations__font-families.$f-font-family__primary,
+    "font-family": $f-font-family__primary,
     "font-weight": 400,
-    "font-size": foundations__font-sizes.$f-font-size--xl,
-    "line-height": foundations__line-heights.$f-line-height--s,
-    "margin-bottom": generic__reset.$g-reset__spacing--vertical
+    "font-size": $f-font-size--xl,
+    "line-height": $f-line-height--s,
+    "margin-bottom": $g-reset__spacing--vertical
   ),
   "medium": $m-heading__properties,
   "large": (
-    "font-family": foundations__font-families.$f-font-family__primary,
+    "font-family": $f-font-family__primary,
     "font-weight": 400,
-    "font-size": foundations__font-sizes.$f-font-size--xxxl,
-    "line-height": elements__headings.$e-headings__line-height,
-    "margin-bottom": elements__headings.$e-headings__margin-bottom
+    "font-size": $f-font-size--xxxl,
+    "line-height": $e-headings__line-height,
+    "margin-bottom": $e-headings__margin-bottom
   ),
   "huge": (
-    "font-family": foundations__font-families.$f-font-family__primary,
+    "font-family": $f-font-family__primary,
     "font-weight": 400,
-    "font-size": foundations__font-sizes.$f-font-size--xxxl + foundations__font-sizes.$f-font-size--m,
-    "line-height": elements__headings.$e-headings__line-height,
-    "margin-bottom": elements__headings.$e-headings__margin-bottom
+    "font-size": $f-font-size--m,
+    "line-height": $e-headings__line-height,
+    "margin-bottom": $e-headings__margin-bottom
   )
 ) !default;
 
@@ -83,7 +83,7 @@ $m-heading__mod-sizes: (
 
   @each $_property, $_value in map.merge($_default-properties, $_properties) {
     @if meta.type_of($_value) == "number" and math.unit($_value) == "px" {
-      $_value: px-to-rem.s-core-px-to-rem($_value);
+      $_value: s-core-px-to-rem($_value);
     }
 
     #{$_property}: $_value;
@@ -105,9 +105,9 @@ $m-heading__mod-sizes: (
 @if $m-heading--enabled and $m-heading__mod-sizes--enabled {
   @each $_mod-name, $_mod-properties in $m-heading__mod-sizes {
     .m-heading--#{$_mod-name} {
-      @each $_property, $_value in map-diff.s-core-map-diff($m-heading__properties, $_mod-properties) {
+      @each $_property, $_value in s-core-map-diff($m-heading__properties, $_mod-properties) {
         @if meta.type_of($_value) == "number" and math.unit($_value) == "px" {
-          $_value: px-to-rem.s-core-px-to-rem($_value);
+          $_value: s-core-px-to-rem($_value);
         }
 
         #{$_property}: $_value;

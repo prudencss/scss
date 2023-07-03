@@ -8,7 +8,7 @@
  * reset .................. A tiny reset to complement normalize
  * error .................. Helper class for debug hinting as of debug settings */
 
-@use "generic__box-sizing";
-@use "generic__normalize";
-@use "generic__reset";
-@use "generic__error";
+@import "generic__box-sizing";
+@import "generic__normalize";
+@import "generic__reset";
+@import "generic__error";

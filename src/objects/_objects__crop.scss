@@ -1,4 +1,4 @@
-@use "../foundations/foundations__aspect-ratios";
+@import "../foundations/foundations__aspect-ratios";
 
 /* -------------------------------------------------------------------------
  * CROP
@@ -17,7 +17,7 @@ $o-crop--enabled: true !default;
 
 // Ratios
 
-$o-crop__ratios: foundations__aspect-ratios.$f-aspect-ratios !default;
+$o-crop__ratios: $f-aspect-ratios !default;
 $o-crop__ratios--enabled: true !default;
 
 // Modifiers Alignments

@@ -1,6 +1,6 @@
-@use "../foundations/foundations__font-families";
-
 @use "sass:map";
+
+@import "../foundations/foundations__font-families";
 
 /* -------------------------------------------------------------------------
  * FONT-FAMILIES
@@ -16,7 +16,7 @@ $u-font-families--enabled: true !default;
 
 // Font-families maps
 
-$u-font-families__maps: map.remove(foundations__font-families.$f-font-families-core, "decorative") !default;
+$u-font-families__maps: map.remove($f-font-families-core, "decorative") !default;
 
 // Utilities output
 // --------------------------------------------------
@@ -27,7 +27,7 @@ $u-font-families__maps: map.remove(foundations__font-families.$f-font-families-c
       font-family: $_font-family__value !important;
     }
   }
-  @each $_font-family__name, $_font-family__value in foundations__font-families.$f-font-family--decorative {
+  @each $_font-family__name, $_font-family__value in $f-font-family--decorative {
     .u-font-family__decorative--#{$_font-family__name} {
       font-family: $_font-family__value !important;
     }

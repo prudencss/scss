@@ -17,12 +17,18 @@ $f-aspect-ratio--2-1: 1 / 2 !default;
 
 // Aspect ratios map
 
+$ratio_1: string-ratio.s-core-string-ratio-separation(1, 1);
+$ratio_2: string-ratio.s-core-string-ratio-separation(4, 3);
+$ratio_3: string-ratio.s-core-string-ratio-separation(3, 2);
+$ratio_4: string-ratio.s-core-string-ratio-separation(16, 9);
+$ratio_5: string-ratio.s-core-string-ratio-separation(2, 1);
+
 $f-aspect-ratios: (
-  string-ratio.s-core-string-ratio-separation(1, 1): $f-aspect-ratio--1-1,
-  string-ratio.s-core-string-ratio-separation(4, 3): $f-aspect-ratio--4-3,
-  string-ratio.s-core-string-ratio-separation(3, 2): $f-aspect-ratio--3-2,
-  string-ratio.s-core-string-ratio-separation(16, 9): $f-aspect-ratio--16-9,
-  string-ratio.s-core-string-ratio-separation(2, 1): $f-aspect-ratio--2-1
+  "#{$ratio_1}": $f-aspect-ratio--1-1,
+  "#{$ratio_2}": $f-aspect-ratio--4-3,
+  "#{$ratio_3}": $f-aspect-ratio--3-2,
+  "#{$ratio_4}": $f-aspect-ratio--16-9,
+  "#{$ratio_5}": $f-aspect-ratio--2-1
 ) !default;
 
 ////////////////////////////////////////////////////////////////////////////////

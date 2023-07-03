@@ -1,10 +1,10 @@
 @use "sass:map";
 @use "sass:math";
 @use "sass:meta";
-@use "../elements/elements__document";
-@use "../foundations/foundations__font-sizes";
-@use "../settings/core-functions/map-diff";
-@use "../settings/core-functions/px-to-rem";
+@import "../elements/elements__document";
+@import "../foundations/foundations__font-sizes";
+@import "../settings/core-functions/map-diff";
+@import "../settings/core-functions/px-to-rem";
 
 /* -------------------------------------------------------------------------
  * BODY
@@ -21,9 +21,9 @@ $m-body--enabled: true !default;
 // Material default properties
 
 $m-body__properties: (
-  "font-family": elements__document.$e-document__body--font-family,
-  "font-size": elements__document.$e-document__body--font-size,
-  "line-height": elements__document.$e-document__body--line-height,
+  "font-family": $e-document__body--font-family,
+  "font-size": $e-document__body--font-size,
+  "line-height": $e-document__body--line-height,
   "width": 100vw,
   "height": 100vh
 ) !default;
@@ -33,25 +33,25 @@ $m-body__properties: (
 $m-body__mod-sizes--enabled: true !default;
 $m-body__mod-sizes: (
   "xs": (
-    "font-family": elements__document.$e-document__body--font-family,
-    "font-size": foundations__font-sizes.$f-font-size--xs,
-    "line-height": elements__document.$e-document__body--line-height
+    "font-family": $e-document__body--font-family,
+    "font-size": $f-font-size--xs,
+    "line-height": $e-document__body--line-height
   ),
   "s": (
-    "font-family": elements__document.$e-document__body--font-family,
-    "font-size": foundations__font-sizes.$f-font-size--s,
-    "line-height": elements__document.$e-document__body--line-height
+    "font-family": $e-document__body--font-family,
+    "font-size": $f-font-size--s,
+    "line-height": $e-document__body--line-height
   ),
   "m": $m-body__properties,
   "l": (
-    "font-family": elements__document.$e-document__body--font-family,
-    "font-size": foundations__font-sizes.$f-font-size--l,
-    "line-height": elements__document.$e-document__body--line-height
+    "font-family": $e-document__body--font-family,
+    "font-size": $f-font-size--l,
+    "line-height": $e-document__body--line-height
   ),
   "xl": (
-    "font-family": elements__document.$e-document__body--font-family,
-    "font-size": foundations__font-sizes.$f-font-size--xl,
-    "line-height": elements__document.$e-document__body--line-height
+    "font-family": $e-document__body--font-family,
+    "font-size": $f-font-size--xl,
+    "line-height": $e-document__body--line-height
   )
 ) !default;
 
@@ -72,7 +72,7 @@ $m-body__mod-sizes: (
 
   @each $_property, $_value in map.merge($_default-properties, $_properties) {
     @if meta.type_of($_value) == "number" and math.unit($_value) == "px" {
-      $_value: px-to-rem.s-core-px-to-rem($_value);
+      $_value: s-core-px-to-rem($_value);
     }
 
     #{$_property}: $_value;
@@ -94,9 +94,9 @@ $m-body__mod-sizes: (
 @if $m-body--enabled and $m-body__mod-sizes--enabled {
   @each $_mod-name, $_mod-properties in $m-body__mod-sizes {
     .m-body__size--#{$_mod-name} {
-      @each $_property, $_value in map-diff.s-core-map-diff($m-body__properties, $_mod-properties) {
+      @each $_property, $_value in s-core-map-diff($m-body__properties, $_mod-properties) {
         @if meta.type_of($_value) == "number" and math.unit($_value) == "px" {
-          $_value: px-to-rem.s-core-px-to-rem($_value);
+          $_value: s-core-px-to-rem($_value);
         }
 
         #{$_property}: $_value;

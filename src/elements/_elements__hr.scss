@@ -1,4 +1,4 @@
-@use "elements__document";
+@import "elements__document";
 
 /* -------------------------------------------------------------------------
  * HORIZONTAL RULES
@@ -8,12 +8,12 @@
 // Hr variables
 
 $e-hr__width: 1px !default;
-$e-hr__color: elements__document.$e-document__body--color !default;
+$e-hr__color: $e-document__body--color !default;
 
 // Hr output
 
 hr {
   border-top-width: 0;
   border-bottom-width: $e-hr__width;
-  border-color: elements__document.$e-document__body--color;
+  border-color: $e-document__body--color;
 }

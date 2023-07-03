@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "../foundations/foundations__spaces";
-@use "../settings/core-functions/px-to-rem";
+@import "../foundations/foundations__spaces";
+@import "../settings/core-functions/px-to-rem";
 
 /* -------------------------------------------------------------------------
  * TABLE
@@ -19,12 +19,12 @@ $o-table--enabled: true !default;
 
 // Object Params
 
-$o-table__space: foundations__spaces.$f-space--none !default;
+$o-table__space: $f-space--none !default;
 
 // Modifiers Spaces
 
 $o-table_mod-spaces--enabled: true !default;
-$o-table__mod-spaces: map.remove(foundations__spaces.$f-spaces, "large", "huge") !default;
+$o-table__mod-spaces: map.remove($f-spaces, "large", "huge") !default;
 
 // Modifiers Fixed
 
@@ -38,7 +38,7 @@ $o-table__mod-fixed--enabled: true !default;
 }
 
 @mixin o-table__cell($_space-value: $o-table__space) {
-  padding: px-to-rem.s-core-px-to-rem($_space-value);
+  padding: s-core-px-to-rem($_space-value);
 }
 
 // Object selector output
@@ -62,7 +62,7 @@ $o-table__mod-fixed--enabled: true !default;
   .o-table--space-#{$_space-name} {
     th,
     td {
-      padding: px-to-rem.s-core-px-to-rem($_space-value);
+      padding: s-core-px-to-rem($_space-value);
     }
   }
 }
